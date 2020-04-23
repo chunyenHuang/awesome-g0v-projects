@@ -14,4 +14,5 @@
 ## Prior Art
 
 - https://amb.g0v.tw/repos
+- https://github.com/g0v/ambassador
 - https://github.com/g0v/awesome-g0v
