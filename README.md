@@ -1,5 +1,10 @@
 # awesome-g0v-projects
 
+## Workflow
+
+- Github PR
+- Server fetch github info (last update date, issues, contributors, details...) daily or by event
+
 ## Reference
 
 - https://g0v-tw.slack.com/archives/C02G2SXKX/p1582454881007300
