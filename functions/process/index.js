@@ -24,7 +24,7 @@ exports.handler = async () => {
   }
   const { GITHUB_API_KEY: githubApiKey } = JSON.parse(secret);
 
-  const jsonObj = await csv().fromStream(request.get(CSV_URL));
+  const jsonObj = await csv().fromStream(request.get(CSV_URL_ORGS));
   const result = await parse(jsonObj, githubApiKey);
 
   const params = {
