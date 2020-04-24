@@ -1,0 +1,24 @@
+{
+    "extends": ["eslint:recommended", "google"],
+    "rules": {
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "unix"],
+        "semi": ["error", "always"],
+        "max-len": ["error", { "code": 160 }],
+        "no-console": ["error", { "allow": ["log", "warn", "error"] }],
+        "object-curly-spacing": ["error", "always"]
+    },
+    "plugins": [],
+    "env": {
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    }
+}
