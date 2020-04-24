@@ -11,7 +11,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const dataUrl = 'https://awesome-g0v-projects-data.s3.amazonaws.com/data.json';
+console.log(window.location);
+const env = window.location.hostname.includes('-prd-') ? 'prd' : 'dev';
+const dataUrl = `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/data.json`;
 
 function App() {
   const classes = useStyles();

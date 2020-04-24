@@ -1,15 +1,10 @@
-const path = require('path');
-const fs = require('fs');
-const csv = require('csvtojson');
 const { Octokit } = require('@octokit/rest');
 
-const { GITHUB_API_KEY } = process.env;
+module.exports.parse = async (jsonObj, githubApiKey) => {
+  const octokit = new Octokit({
+    auth: githubApiKey,
+  });
 
-const octokit = new Octokit({
-  auth: GITHUB_API_KEY,
-});
-
-module.exports.parse = async (jsonObj) => {
   const promises = jsonObj.map(async ({ name, githubOrgUrl, githubRepoUrls }) => {
     const org = githubOrgUrl.replace('https://github.com/', '');
     const { data: githubInfo } = await octokit.orgs.get({ org });
@@ -35,13 +30,19 @@ module.exports.parse = async (jsonObj) => {
     }
 
     const fetchRepoInfoPromises = repos.map(async (repo) => {
+      const params = { owner: org, repo: repo.name, };
       const [
         { data: contributors },
+        { data: languages },
       ] = await Promise.all([
-        octokit.repos.listContributors({ owner: org, repo: repo.name, }),
+        octokit.repos.listContributors(params),
+        octokit.repos.listLanguages(params),
       ])
 
       repo.contributors = contributors;
+      repo.languagePrimary = Object.keys(languages)[0];
+      repo.languageSecondary = Object.keys(languages)[1];
+      repo.languages = languages;
     });
 
     await Promise.all(fetchRepoInfoPromises);

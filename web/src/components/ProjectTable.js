@@ -66,7 +66,7 @@ function ProjectTable({ projects }) {
     expandableRows: true,
     pagination: true,
     rowsPerPageOptions: [10, 100, 500, 1000],
-    rowsPerPage: 100,
+    rowsPerPage: 10,
     renderExpandableRow(rowData, rowMeta) {
       const item = projects[rowMeta.dataIndex];
       console.log(item);

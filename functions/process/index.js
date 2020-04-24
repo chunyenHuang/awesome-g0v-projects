@@ -5,14 +5,23 @@ const request = require('request');
 const { parse } = require('./helper');
 
 const s3 = new AWS.S3();
+const client = new AWS.SecretsManager({ region: 'us-east-1' });
 
-const { S3_BUCKET_DATA } = process.env;
+const { S3_BUCKET_DATA, SECRET_NAME, CSV_URL } = process.env;
 
 exports.handler = async () => {
-  const csvUrl = `https://raw.githubusercontent.com/chunyenHuang/awesome-g0v-projects/master/data/projects.csv`;
-  const jsonObj = await csv().fromStream(request.get(csvUrl));
+  const data = await client.getSecretValue({ SecretId: SECRET_NAME }).promise();
+  let secret
+  if ('SecretString' in data) {
+    secret = data.SecretString;
+  } else {
+    const buff = new Buffer(data.SecretBinary, 'base64');
+    secret = buff.toString('ascii');
+  }
+  const { GITHUB_API_KEY: githubApiKey } = JSON.parse(secret);
 
-  const result = await parse(jsonObj);
+  const jsonObj = await csv().fromStream(request.get(CSV_URL));
+  const result = await parse(jsonObj, githubApiKey);
 
   const params = {
     Bucket: S3_BUCKET_DATA,
@@ -21,7 +30,6 @@ exports.handler = async () => {
     ContentType: 'application/json',
     ACL: 'public-read',
   };
-
   await s3.putObject(params).promise();
 
   return 'ok';
