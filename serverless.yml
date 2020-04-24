@@ -1,0 +1,74 @@
+service: awesome-g0v-projects
+
+frameworkVersion: '>=1.0.0 <2.0.0'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  profile: ${opt:profile}
+  product: awesome-g0v-projects
+  environment:
+    # Global authorizer key
+    S3_BUCKET_DATA: ${self:provider.product}-data
+    S3_BUCKET_WEB: ${self:provider.product}-website
+
+package:
+  individually: true
+
+plugins:
+  - serverless-webpack
+  - serverless-s3-sync
+  - serverless-iam-roles-per-function
+
+functions:
+  process:
+    handler: functions/process/index.handler
+    timeout: 300
+    events:
+      - schedule:
+          rate: rate(12 hours)
+    iamRoleStatementsName: ${self:provider.product}-process
+    iamRoleStatements:
+      - Effect: Allow
+        Action: s3:*
+        Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET_DATA}/*
+
+resources:
+  Resources:
+    DataBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.S3_BUCKET_DATA}
+        AccessControl: PublicRead
+        CorsConfiguration: 
+          CorsRules:
+            - AllowedHeaders: ['*']
+              AllowedMethods: [GET]
+              AllowedOrigins: ['*']
+    WebBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.S3_BUCKET_WEB}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+
+custom:
+  s3Sync:
+    - bucketName: ${self:provider.environment.S3_BUCKET_DATA}
+      localDir: data 
+      acl: public-read
+    - bucketName: ${self:provider.environment.S3_BUCKET_WEB}
+      localDir: web/build 
+      acl: public-read
+      defaultContentType: text/html 
+      params: 
+        - index.html:
+            CacheControl: 'no-cache'
+        - "*.js":
+            CacheControl: 'public, max-age=31536000' 
+  webpack:
+    includeModules: true

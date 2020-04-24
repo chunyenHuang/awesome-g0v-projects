@@ -1,0 +1,32 @@
+{
+  "name": "awesome-g0v-projects",
+  "version": "1.0.0",
+  "description": "## Workflow",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm i -g serverless",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunyenHuang/awesome-g0v-projects.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chunyenHuang/awesome-g0v-projects/issues"
+  },
+  "homepage": "https://github.com/chunyenHuang/awesome-g0v-projects#readme",
+  "devDependencies": {
+    "serverless-iam-roles-per-function": "^2.0.2",
+    "serverless-s3-sync": "^1.12.0",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.42.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@octokit/rest": "^17.5.2",
+    "csvtojson": "^2.0.10",
+    "request": "^2.88.2"
+  }
+}
