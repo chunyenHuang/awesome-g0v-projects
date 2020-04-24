@@ -11,22 +11,17 @@ import VisitButton from './VisitButton';
 
 const useStyles = makeStyles((theme) => ({
   nestedContainer: {
-    backgroundColor: 'grey',
+    backgroundColor: 'rgba(0,0,0,0.1)'
   },
 }));
 
-const dataUrl = 'https://awesome-g0v-projects-data.s3.amazonaws.com/data.json';
-
-function ProjectTable() {
+function ProjectTable({ projects }) {
   const classes = useStyles();
-
-  const [projects, setProjects] = useState([]);
-
   const title = 'Projects';
 
   const columns = [{
     name: 'name',
-    label: 'name',
+    label: 'Name',
     options: {
       filter: false,
       sort: true,
@@ -85,16 +80,6 @@ function ProjectTable() {
       );
     },
   };
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(dataUrl);
-      const data = await res.json();
-      console.log(data);
-
-      setProjects(data);
-    })();
-  }, []);
 
   return (
     <MUIDataTable
