@@ -7,6 +7,13 @@ function RepoTable({ repos = [] }) {
   const title = 'Repos';
 
   const columns = [{
+    name: 'owner.login',
+    label: 'Team',
+    options: {
+      filter: true,
+      sort: true,
+    },
+  }, {
     name: 'archived',
     label: 'Archived',
     options: {

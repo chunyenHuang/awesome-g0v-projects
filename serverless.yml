@@ -58,9 +58,6 @@ resources:
 
 custom:
   s3Sync:
-    - bucketName: ${self:provider.environment.S3_BUCKET_DATA}
-      localDir: data 
-      acl: public-read
     - bucketName: ${self:provider.environment.S3_BUCKET_WEB}
       localDir: web/build 
       acl: public-read

@@ -2,3 +2,5 @@
 .DS*
 
 .serverless
+
+result.json
