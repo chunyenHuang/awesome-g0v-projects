@@ -7,7 +7,7 @@ import RepoTable from './components/RepoTable';
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(2),
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
 }));
 
@@ -19,7 +19,7 @@ function App() {
   const classes = useStyles();
 
   const [organizations, setOrganizations] = useState([]);
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [repos, setRepos] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function App() {
       console.log(data);
 
       setOrganizations(data);
-      setRepos(data.reduce((items, project) => [...items, ...project.repos], []))
+      setRepos(data.reduce((items, project) => [...items, ...project.repos], []));
     })();
   }, []);
 

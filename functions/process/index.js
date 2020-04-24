@@ -15,7 +15,7 @@ const {
 
 exports.handler = async () => {
   const data = await client.getSecretValue({ SecretId: SECRET_NAME }).promise();
-  let secret
+  let secret;
   if ('SecretString' in data) {
     secret = data.SecretString;
   } else {

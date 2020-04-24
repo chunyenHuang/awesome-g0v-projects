@@ -41,18 +41,18 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
         try {
           data = await res.json();
         } catch (e) {
-          console.log('Invalid Json format',
-            url
-            .replace('https://raw.githubusercontent.com', 'https://github.com')
-            .replace(`/${full_name}/`, `/${full_name}/blob/`));
+          console.log(
+            'Invalid Json format',
+            url.replace('https://raw.githubusercontent.com', 'https://github.com').replace(`/${full_name}/`, `/${full_name}/blob/`),
+          );
         }
       }
 
       return {
         url: data ? url : null,
-        data
+        data,
       };
-    }
+    };
 
     const updatedRepos = [];
 
@@ -108,15 +108,14 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
           // custom
           languagePrimary: Object.keys(languages)[0],
           languageSecondary: Object.keys(languages)[1],
-          contributors: contributors.map(({ login, avatar_url, html_url, site_admin, contributions, type, }) => {
-            return { login, avatar_url, html_url, site_admin, contributions, type, };
+          contributors: contributors.map(({ login, avatar_url, html_url, site_admin, contributions, type }) => {
+            return { login, avatar_url, html_url, site_admin, contributions, type };
           }),
           languages,
         });
       });
 
       await Promise.all(fetchRepoInfoPromises);
-
     }, Promise.resolve());
 
     return {

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
 
 function TextLink({ url, title = 'link' }) {
@@ -10,7 +11,12 @@ function TextLink({ url, title = 'link' }) {
       href={url}
     >
       {title}
-    </Link>)
+    </Link>);
 }
+
+TextLink.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
 
 export default TextLink;

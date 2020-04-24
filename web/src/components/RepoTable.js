@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MUIDataTable from 'mui-datatables';
 import moment from 'moment';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -19,7 +20,9 @@ function RepoTable({ data = [] }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => value ? <ErrorIcon color="secondary" /> : <WbSunnyIcon style={{ color: green[500] }} />,
+      customBodyRender(value) {
+        return value ? <ErrorIcon color="secondary" /> : <WbSunnyIcon style={{ color: green[500] }} />;
+      },
     },
   }, {
     name: 'owner.login',
@@ -29,8 +32,8 @@ function RepoTable({ data = [] }) {
       sort: true,
       customBodyRender(value) {
         return (
-          <TextLink title={value} url={`https://github.com/${value}`} />)
-      }
+          <TextLink title={value} url={`https://github.com/${value}`} />);
+      },
     },
   }, {
     name: 'name',
@@ -67,13 +70,13 @@ function RepoTable({ data = [] }) {
       filter: false,
       sort: false,
       display: false,
-      customBodyRender: (value) => {
+      customBodyRender(value) {
         return (
           <ul>
             {Object.keys(value).map((key, index)=> <li key={index}>{key}</li>)}
           </ul>
-        )
-      }
+        );
+      },
     },
   }, {
     name: 'open_issues',
@@ -95,7 +98,7 @@ function RepoTable({ data = [] }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => moment(value).format('YYYY/MM/DD')
+      customBodyRender: (value) => moment(value).format('YYYY/MM/DD'),
     },
   }, {
     name: 'pushed_at',
@@ -103,7 +106,7 @@ function RepoTable({ data = [] }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => moment(value).format('YYYY/MM/DD')
+      customBodyRender: (value) => moment(value).format('YYYY/MM/DD'),
     },
   }, {
     name: 'license.spdx_id',
@@ -120,8 +123,8 @@ function RepoTable({ data = [] }) {
       filter: false,
       customBodyRender(value) {
         return (
-          <VisitButton url={value} />)
-      }
+          <VisitButton url={value} />);
+      },
     },
   }];
 
@@ -144,5 +147,9 @@ function RepoTable({ data = [] }) {
     />
   );
 }
+
+RepoTable.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default RepoTable;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MUIDataTable from 'mui-datatables';
 import {
   TableRow,
@@ -11,7 +12,7 @@ import VisitButton from './VisitButton';
 
 const useStyles = makeStyles((theme) => ({
   nestedContainer: {
-    backgroundColor: 'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
 }));
 
@@ -53,9 +54,8 @@ function OrganizationTable({ data }) {
     options: {
       filter: false,
       customBodyRender(value) {
-        return (
-          <VisitButton url={value} />)
-      }
+        return (<VisitButton url={value} />);
+      },
     },
   }];
 
@@ -90,5 +90,9 @@ function OrganizationTable({ data }) {
     />
   );
 }
+
+OrganizationTable.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default OrganizationTable;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 
 function VisitButton({ url, title = 'Visit' }) {
@@ -11,7 +12,12 @@ function VisitButton({ url, title = 'Visit' }) {
       href={url}
     >
       {title}
-    </Button>)
+    </Button>);
 }
+
+VisitButton.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
 
 export default VisitButton;
