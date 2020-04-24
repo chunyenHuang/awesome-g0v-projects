@@ -2,6 +2,7 @@
 .DS*
 
 .serverless
+.webpack
 
 result.json
 data-sample.json

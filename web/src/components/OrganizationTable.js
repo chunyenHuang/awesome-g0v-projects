@@ -15,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProjectTable({ projects }) {
+function OrganizationTable({ data }) {
   const classes = useStyles();
-  const title = 'Projects';
+  const title = 'Organizations';
 
   const columns = [{
     name: 'name',
@@ -28,7 +28,7 @@ function ProjectTable({ projects }) {
     },
   }, {
     name: 'githubInfo.login',
-    label: 'Team',
+    label: 'ID',
     options: {
       filter: false,
       sort: true,
@@ -68,7 +68,7 @@ function ProjectTable({ projects }) {
     rowsPerPageOptions: [10, 100, 500, 1000],
     rowsPerPage: 10,
     renderExpandableRow(rowData, rowMeta) {
-      const item = projects[rowMeta.dataIndex];
+      const item = data[rowMeta.dataIndex];
       console.log(item);
       const data = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
       return (
@@ -84,11 +84,11 @@ function ProjectTable({ projects }) {
   return (
     <MUIDataTable
       title={title}
-      data={projects}
+      data={data}
       columns={columns}
       options={options}
     />
   );
 }
 
-export default ProjectTable;
+export default OrganizationTable;

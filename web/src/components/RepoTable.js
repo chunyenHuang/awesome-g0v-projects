@@ -8,10 +8,10 @@ import { green } from '@material-ui/core/colors';
 import VisitButton from './VisitButton';
 import TextLink from './TextLink';
 
-function RepoTable({ repos = [] }) {
+function RepoTable({ data = [] }) {
   const title = 'Repos';
 
-  console.log(repos);
+  console.log(data);
 
   const columns = [{
     name: 'archived',
@@ -23,7 +23,7 @@ function RepoTable({ repos = [] }) {
     },
   }, {
     name: 'owner.login',
-    label: 'Team',
+    label: 'Org',
     options: {
       filter: true,
       sort: true,
@@ -34,7 +34,7 @@ function RepoTable({ repos = [] }) {
     },
   }, {
     name: 'name',
-    label: 'name',
+    label: 'Name',
     options: {
       filter: false,
       sort: true,
@@ -138,7 +138,7 @@ function RepoTable({ repos = [] }) {
   return (
     <MUIDataTable
       title={title}
-      data={repos}
+      data={data}
       columns={columns}
       options={options}
     />

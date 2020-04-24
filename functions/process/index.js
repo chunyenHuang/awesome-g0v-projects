@@ -7,7 +7,11 @@ const { parse } = require('./helper');
 const s3 = new AWS.S3();
 const client = new AWS.SecretsManager({ region: 'us-east-1' });
 
-const { S3_BUCKET_DATA, SECRET_NAME, CSV_URL } = process.env;
+const {
+  S3_BUCKET_DATA,
+  SECRET_NAME,
+  CSV_URL_ORGS,
+} = process.env;
 
 exports.handler = async () => {
   const data = await client.getSecretValue({ SecretId: SECRET_NAME }).promise();

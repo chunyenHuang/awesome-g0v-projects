@@ -1,5 +1,6 @@
 const { Octokit } = require('@octokit/rest');
 const fetch = require('node-fetch');
+const to = require('await-to-js').default;
 
 module.exports.parse = async (jsonObj, githubApiKey) => {
   const octokit = new Octokit({
@@ -35,12 +36,22 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
 
       const [err, res] = await to(fetch(url));
 
-      let data = {};
+      let data;
       if (!err && res.ok) {
-        data = await res.json();
+        try {
+          data = await res.json();
+        } catch (e) {
+          console.log('Invalid Json format',
+            url
+            .replace('https://raw.githubusercontent.com', 'https://github.com')
+            .replace(`/${full_name}/`, `/${full_name}/blob/`));
+        }
       }
 
-      return { url, data };
+      return {
+        url: data ? url : null,
+        data
+      };
     }
 
     const updatedRepos = [];
@@ -55,7 +66,10 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
           { data: languages },
           { url: g0vJsonUrl, data: g0vJson },
         ] = await Promise.all([
-          octokit.paginate(octokit.repos.listContributors, params),
+          octokit.paginate(octokit.repos.listContributors, params).catch((err) => {
+            console.log('Failed to get contributors for', params);
+            return [];
+          }),
           octokit.repos.listLanguages(params),
           getG0vJson(repo),
         ]);
