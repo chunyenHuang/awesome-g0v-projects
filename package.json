@@ -27,7 +27,9 @@
   },
   "dependencies": {
     "@octokit/rest": "^17.5.2",
+    "await-to-js": "^2.1.1",
     "csvtojson": "^2.0.10",
+    "node-fetch": "^2.6.0",
     "request": "^2.88.2"
   }
 }

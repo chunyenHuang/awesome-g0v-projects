@@ -6,6 +6,8 @@ const { parse } = require('../functions/process/helper');
 
 const { GITHUB_API_KEY } = process.env;
 
+jest.setTimeout(3 * 60 * 1000);
+
 describe('Process Helper', () => {
   it('parse', async () => {
     const jsonObj = await csv().fromFile(path.join(__dirname, '../data/projects.csv'));
