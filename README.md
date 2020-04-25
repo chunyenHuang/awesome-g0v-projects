@@ -29,3 +29,5 @@
 - https://amb.g0v.tw/repos
 - https://github.com/g0v/ambassador
 - https://github.com/g0v/awesome-g0v
+- https://github.com/g0v/g0v.json
+- https://github.com/g0v/editor
