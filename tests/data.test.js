@@ -18,7 +18,7 @@ describe('Test Data format', () => {
         const githubUrl = 'https://github.com';
 
         const checkFilePromises = items.map(async (item) => {
-          expect(Object.keys(item).length, 'Do not add new properties').toEqual(3);
+          expect(Object.keys(item).length, 'Do not add new properties').toEqual(4);
           expect(item.name.length, `name should be a valid string`).toBeGreaterThan(0);
           expect(item.githubId.length, 'name should be a valid string').toBeGreaterThan(0);
 

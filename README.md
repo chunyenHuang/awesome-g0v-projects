@@ -1,7 +1,7 @@
 # awesome-g0v-projects
 
 - [Website](http://awesome-g0v-projects-dev-website.s3-website-us-east-1.amazonaws.com/)
-- [Data JSON](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json)
+- [data.json](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json)
 
 ## How to add a new project?
 
@@ -9,8 +9,10 @@
 
 ## Workflow
 
-- Github PR
-- Server fetch github info (last update date, issues, contributors, details...) daily or by event
+- Create Github PR to update the source file  [organization.csv](data/organizations.csv)
+- Every 12 hours
+  - AWS Lambda fetches github info (last update date, issues, contributors, details...)
+  - Update [data.json](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json) in S3 bucket
 
 ## Reference
 
