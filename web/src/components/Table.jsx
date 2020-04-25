@@ -17,12 +17,15 @@ const theme = createMuiTheme({
   overrides: {
     MUIDataTableToolbar: {
       root: {
-        padding: '0px 8px 0px 8px',
+        // padding: '0px 8px 0px 8px',
       },
     },
     MUIDataTable: {
       paper: {
-        padding: '0px 8px 0px 8px',
+        padding: 0,
+      },
+      responsiveScrollMaxHeight: {
+        maxHeight: 'calc(100vh - 170px) !important',
       },
     },
     MUIDataTableHeadCell: {
@@ -33,6 +36,12 @@ const theme = createMuiTheme({
     },
     MUIDataTableBodyCell: {
       root: cellStyle,
+    },
+    MUIDataTableSelectCell: {
+      expandDisabled: {
+        // Soft hide the button.
+        visibility: 'hidden',
+      },
     },
   },
 });
@@ -46,10 +55,10 @@ function Table({ title, data, columns, options }) {
   // overwrite options
   const updatedOptions = Object.assign({
     pagination: true,
-    rowsPerPageOptions: [10, 50, 100, 500, 1000],
-    rowsPerPage: 10,
+    rowsPerPageOptions: [50, 100, 500, 1000],
+    rowsPerPage: 50,
     filterType: 'checkbox',
-    responsive: 'stacked',
+    responsive: 'scrollMaxHeight',
     fixedHeader: true,
     resizableColumns: false,
     selectableRows: 'none',

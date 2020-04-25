@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -9,12 +7,9 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Table from './Table';
 import RepoTable from './RepoTable';
 import VisitButton from './VisitButton';
+import NestedTableContainer from './table/NestedTableContainer';
 
-const useStyles = makeStyles((theme) => ({
-  nestedContainer: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-  },
-}));
+const useStyles = makeStyles((theme) => ({}));
 
 function OrganizationTable({ data }) {
   const classes = useStyles();
@@ -72,11 +67,9 @@ function OrganizationTable({ data }) {
       const item = data[rowMeta.dataIndex];
       const repos = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
       return (
-        <TableRow>
-          <TableCell colSpan={columns.length + 1} className={classes.nestedContainer}>
-            <RepoTable data={repos} />
-          </TableCell>
-        </TableRow>
+        <NestedTableContainer columns={columns}>
+          <RepoTable data={repos} />
+        </NestedTableContainer>
       );
     },
   };

@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
+import { green } from '@material-ui/core/colors';
 import ErrorIcon from '@material-ui/icons/Error';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import { green } from '@material-ui/core/colors';
-import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import CheckIcon from '@material-ui/icons/Check';
 
 import Table from './Table';
 import VisitButton from './VisitButton';
 import TextLink from './TextLink';
+import G0vJsonIconButton from './G0vJsonIconButton';
+import NestedTableContainer from './table/NestedTableContainer';
+import ProjectDetails from './ProjectDetails';
 
 function RepoTable({ data = [] }) {
   const { t } = useTranslation();
@@ -25,16 +27,6 @@ function RepoTable({ data = [] }) {
       sort: true,
       customBodyRender(value) {
         return value ? <ErrorIcon color="secondary" /> : <WbSunnyIcon style={{ color: green[500] }} />;
-      },
-    },
-  }, {
-    name: 'g0vJsonUrl',
-    label: t('table.repo.g0vJsonProvided'),
-    options: {
-      filter: false,
-      sort: true,
-      customBodyRender(value) {
-        return value ? <CheckIcon style={{ color: green[500] }} /> : '';
       },
     },
   }, {
@@ -130,6 +122,17 @@ function RepoTable({ data = [] }) {
       sort: true,
     },
   }, {
+    name: 'g0vJsonUrl',
+    label: t('table.repo.g0vJsonProvided'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value, { rowData }) => {
+        const repo = `${rowData[1]}/${rowData[2]}`;
+        return (<G0vJsonIconButton url={value} repo={repo} />);
+      },
+    },
+  }, {
     name: 'html_url',
     label: ' ',
     options: {
@@ -138,7 +141,20 @@ function RepoTable({ data = [] }) {
     },
   }];
 
-  const options = {};
+  const options = {
+    expandableRows: true,
+    isRowExpandable(dataIndex) {
+      return data[dataIndex].g0vJsonUrl;
+    },
+    renderExpandableRow(rowData, rowMeta) {
+      const item = data[rowMeta.dataIndex];
+      return (
+        <NestedTableContainer columns={columns}>
+          <ProjectDetails project={item} />
+        </NestedTableContainer>
+      );
+    },
+  };
 
   return (
     <Table

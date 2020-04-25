@@ -31,6 +31,7 @@
   "table.project.partOf": "Part Of",
   "table.project.products": "產出網址",
   "table.project.projects": "專案",
+  "table.project.g0vJson": "g0v.json",
 
   "table.organization.title": "團隊列表",
   "table.organization.type": "類別",
@@ -55,6 +56,14 @@
   "table.repo.pushedAt": "近期更新",
   "table.repo.license": "授權",
   "table.repo.githubRepo": "GitHub Repo",
+
+  "g0vJson.editor": "g0v 線上 JSON Editor",
+  "g0vJson.helpAdd": "協助新增 g0v.json",
+  "g0vJson.helpEdit": "協助修改 g0v.json",
+
+  "header.findProjects": "找專案",
+  "header.findOrganizations": "找團隊",
+  "header.findRepositories": "找GitHub",
 
   "end": "The end of file"
 }
