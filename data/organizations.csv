@@ -1,5 +1,16 @@
-name,githubOrgUrl,githubRepoUrls
-Cofacts 真的假的,https://github.com/cofacts,
-美國國會台灣觀測站,https://github.com/ACTtaiwan,
-g0v零時政府,https://github.com/g0v,
-違章工廠舉報系統,https://github.com/Disfactory,
+type,name,githubId,githubRepos
+org,Cofacts 真的假的,cofacts,
+org,美國國會台灣觀測站,ACTtaiwan,
+org,g0v零時政府,g0v,
+org,違章工廠舉報系統,Disfactory,
+org,Taiwan National Treasure,national-treasures-tw,
+org,Hackfoldr,hackfoldr,
+org,Movement,4movement,
+org,Bifrostio,bifrostio,
+org,InLiveTW,inLiveTW,
+org,fepztw,fepztw,
+
+user,Ronny Wang,ronnywang,"judicial-easyer,taiwan-cabinet,dev-env,axe.g0v.tw,vote2014,campaign-finance.g0v.ronny.tw,tw-campaign-finance,taiwan-address-lookup,data.g0v.ronny.tw,ecolife.epa.gov.tw,jobhelper,twcompany,company-graph,newsdiff,newstrend.g0v.ronny.tw,lagnews"
+user,Super Ching,superChing,"extract_declared_sentence"
+user,Kiang,kiang,"dgbas.gov.tw,elections,tncc,lead_pipes,salary,chimney_map"
+user,tka,tka,"ideapool"

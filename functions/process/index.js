@@ -40,6 +40,7 @@ exports.handler = async () => {
     Body: JSON.stringify(report),
     ContentType: 'application/json',
     ACL: 'public-read',
+    CacheControl: 'max-age=3600',
   };
   await s3.putObject(params).promise();
 

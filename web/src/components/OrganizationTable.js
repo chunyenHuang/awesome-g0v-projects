@@ -23,6 +23,13 @@ function OrganizationTable({ data }) {
   const title = t('table.organization.title');
 
   const columns = [{
+    name: 'githubInfo.type',
+    label: t('table.organization.type'),
+    options: {
+      filter: false,
+      sort: true,
+    },
+  }, {
     name: 'name',
     label: t('table.organization.name'),
     options: {

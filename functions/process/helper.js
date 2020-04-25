@@ -7,22 +7,25 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
     auth: githubApiKey,
   });
 
-  const promises = jsonObj.map(async ({ name, githubOrgUrl, githubRepoUrls }) => {
-    const org = githubOrgUrl.replace('https://github.com/', '');
-    const { data: githubInfo } = await octokit.orgs.get({ org });
+  const promises = jsonObj.map(async ({ type, name, githubId, githubRepos }) => {
+    const owner = githubId.replace('https://github.com/', '');
 
-    const targetRepos = githubRepoUrls.split(',').filter((x) => x);
+    const { data: githubInfo } = (type === 'org') ? await octokit.orgs.get({ org: owner }):
+      await octokit.users.getByUsername({ username: owner });
+
+    const targetRepos = githubRepos.split(',').filter((x) => x);
+
     // Only query for registered repos.
     let repos;
     if (targetRepos.length === 0) {
-      repos = await octokit.paginate(octokit.repos.listForOrg, { org });
+      repos = (type === 'org') ? await octokit.paginate(octokit.repos.listForOrg, { org: owner }) :
+        await octokit.paginate(octokit.repos.listForUser, { username: owner });
     } else {
       repos = await Promise.all(
-        targetRepos.map(async (url) => {
-          const name = url.split('/').pop();
+        targetRepos.map(async (repo) => {
           const params = {
-            owner: org,
-            repo: name,
+            owner,
+            repo,
           };
 
           const { data } = await octokit.repos.get(params);
@@ -78,7 +81,7 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
     await groups.reduce(async (chain, group) => {
       await chain;
       const fetchRepoInfoPromises = group.map(async (repo) => {
-        const params = { owner: org, repo: repo.name, per_page: 100 };
+        const params = { owner, repo: repo.name, per_page: 100 };
         const [
           contributors,
           { data: languages },
@@ -151,7 +154,8 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
     };
   });
 
-  return Promise.all(promises);
+  const result = await Promise.all(promises);
+  return result.filter((x) => x);
 };
 
 /**

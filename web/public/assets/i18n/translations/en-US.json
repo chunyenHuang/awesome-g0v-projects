@@ -33,6 +33,7 @@
   "table.project.projects": "Projects",
 
   "table.organization.title": "Organizations",
+  "table.organization.type": "Type",
   "table.organization.name": "Name",
   "table.organization.id": "ID",
   "table.organization.description": "Description",

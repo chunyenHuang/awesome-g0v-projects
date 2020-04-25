@@ -33,6 +33,7 @@
   "table.project.projects": "專案",
 
   "table.organization.title": "團隊列表",
+  "table.organization.type": "類別",
   "table.organization.name": "名稱",
   "table.organization.id": "辨識碼",
   "table.organization.description": "描述",

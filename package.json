@@ -8,7 +8,7 @@
     "build": "cd web && npm run build && cd ..",
     "deploy": "sls deploy",
     "deploy:local": "sls deploy --profile goldax",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/jest tests"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "jest": "^25.4.0",
+    "jest-expect-message": "^1.0.2",
     "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-pseudo-parameters": "^2.5.0",
     "serverless-s3-sync": "^1.12.0",
@@ -40,5 +42,10 @@
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-expect-message"
+    ]
   }
 }
