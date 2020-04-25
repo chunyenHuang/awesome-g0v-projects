@@ -22,6 +22,7 @@ const dataUrl = `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/data.
 function App() {
   const classes = useStyles();
 
+  const [lastUpdatedAt, setLastUpdatedAt] = useState();
   const [organizations, setOrganizations] = useState([]);
   const [projects, setProjects] = useState([]);
   const [repos, setRepos] = useState([]);
@@ -29,11 +30,15 @@ function App() {
   useEffect(() => {
     (async () => {
       const res = await fetch(dataUrl);
-      const data = await res.json();
+      const { updatedAt, data } = await res.json();
 
-      setOrganizations(data);
+      setLastUpdatedAt(updatedAt);
+      setOrganizations(data.sort((a, b) => a.name > b.name ? 1 : -1));
 
-      const allRepos = data.reduce((items, project) => [...items, ...project.repos], []);
+      const allRepos = data
+        .reduce((items, project) => [...items, ...project.repos], [])
+        .sort((a, b) => a.pushed_at < b.pushed_at ? 1 : -1);
+
       setProjects(allRepos.filter((x) => x.g0vJson));
       setRepos(allRepos);
     })();
@@ -41,7 +46,7 @@ function App() {
 
   return (
     <React.Suspense fallback={<CircularProgress />}>
-      <Header />
+      <Header lastUpdatedAt={lastUpdatedAt} />
       <div className={classes.container}>
         <ProjectTable data={projects}/>
       </div>

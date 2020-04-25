@@ -80,6 +80,13 @@ function ProjectTable({ data = [] }) {
       },
     },
   }, {
+    name: 'name',
+    label: t('table.project.repo'),
+    options: {
+      filter: false,
+      sort: true,
+    },
+  }, {
     name: 'g0vJson.name',
     label: t('table.project.name'),
     options: {

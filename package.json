@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm i -g serverless",
+    "build": "cd web && npm run build && cd ..",
+    "deploy": "sls deploy",
+    "deploy:local": "sls deploy --profile goldax",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,6 +37,7 @@
     "@octokit/rest": "^17.5.2",
     "await-to-js": "^2.1.1",
     "csvtojson": "^2.0.10",
+    "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.2"
   }

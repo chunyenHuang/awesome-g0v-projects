@@ -1,8 +1,9 @@
 {
   "app.name": "令人驚奇的零時政府專案",
+  "app.updatedAt": "更新於",
 
   "table.project.title": "專案列表 (根據專案提供的g0v.json)",
-  "table.project.status": "狀態",
+  "table.project.status": "進度",
   "table.project.org": "團隊",
   "table.project.author": "作者",
   "table.project.thumbnail": "縮圖",

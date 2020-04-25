@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 const csv = require('csvtojson');
 const request = require('request');
+const moment = require('moment');
 
 const { parse } = require('./helper');
 
@@ -27,10 +28,16 @@ exports.handler = async () => {
   const jsonObj = await csv().fromStream(request.get(CSV_URL_ORGS));
   const result = await parse(jsonObj, githubApiKey);
 
+  const report = {
+    updatedAt: moment().toISOString(),
+    source: CSV_URL_ORGS,
+    data: result,
+  };
+
   const params = {
     Bucket: S3_BUCKET_DATA,
     Key: 'data.json',
-    Body: JSON.stringify(result),
+    Body: JSON.stringify(report),
     ContentType: 'application/json',
     ACL: 'public-read',
   };

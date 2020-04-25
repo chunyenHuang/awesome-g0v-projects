@@ -1,5 +1,6 @@
 {
   "app.name": "Awesome g0v projects",
+  "app.updatedAt": "Updated At",
 
   "table.project.title": "Projects (based on g0v.json)",
   "table.project.status": "Status",
