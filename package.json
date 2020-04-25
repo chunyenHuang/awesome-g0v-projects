@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm i -g serverless",
-    "build": "cd web && npm run build && cd ..",
-    "deploy": "sls deploy",
-    "deploy:local": "sls deploy --profile goldax",
+    "build:web": "cd web && npm i && npm run build && cd ..",
+    "deploy": "node_modules/.bin/serverless deploy",
+    "deploy:local": "node_modules/.bin/serverless deploy --profile goldax",
     "test": "node_modules/.bin/jest tests"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "jest": "^25.4.0",
     "jest-expect-message": "^1.0.2",
+    "serverless": "^1.68.0",
     "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-pseudo-parameters": "^2.5.0",
     "serverless-s3-sync": "^1.12.0",
