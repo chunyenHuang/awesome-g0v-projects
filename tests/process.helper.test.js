@@ -10,6 +10,8 @@ jest.setTimeout(3 * 60 * 1000);
 
 describe('Process Helper', () => {
   it('parse: test data', async () => {
+    if (!GITHUB_API_KEY) return console.log('Bypass without GITHUB_API_KEY');
+
     const jsonObj = [{
       type: 'user',
       name: 'John Huang',
