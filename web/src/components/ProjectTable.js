@@ -93,7 +93,7 @@ function ProjectTable({ data = [] }) {
     },
   }, {
     name: 'g0vJson.name_zh',
-    label: t('table.project.name'),
+    label: t('table.project.name_zh'),
     options: {
       filter: false,
       sort: true,
@@ -109,7 +109,7 @@ function ProjectTable({ data = [] }) {
     },
   }, {
     name: 'g0vJson.description_zh',
-    label: t('table.project.description'),
+    label: t('table.project.description_zh'),
     options: {
       filter: false,
       sort: false,

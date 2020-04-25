@@ -14,7 +14,7 @@ import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import ProjectDetails from './ProjectDetails';
 
-function RepoTable({ data = [] }) {
+function RepoTable({ data = [], nested = false }) {
   const { t } = useTranslation();
 
   const title = t('table.repo.title');
@@ -162,12 +162,14 @@ function RepoTable({ data = [] }) {
       data={data}
       columns={columns}
       options={options}
+      nested={nested}
     />
   );
 }
 
 RepoTable.propTypes = {
   data: PropTypes.array.isRequired,
+  nested: PropTypes.bool,
 };
 
 export default RepoTable;

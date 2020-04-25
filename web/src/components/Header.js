@@ -64,7 +64,7 @@ function Header({ lastUpdatedAt }) {
             variant="body2"
             color="textSecondary"
           >
-            {t('app.updatedAt')} {moment(lastUpdatedAt).format('YYYY-MM-DD HH:mm:ss')}
+            {t('app.updatedAt')} {moment(lastUpdatedAt).fromNow()}
           </Typography>}
         <VisitButton
           className={classes.button}

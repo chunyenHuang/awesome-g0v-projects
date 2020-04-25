@@ -68,7 +68,7 @@ function OrganizationTable({ data }) {
       const repos = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
       return (
         <NestedTableContainer columns={columns}>
-          <RepoTable data={repos} />
+          <RepoTable data={repos} nested={true} />
         </NestedTableContainer>
       );
     },
