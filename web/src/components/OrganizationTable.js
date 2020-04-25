@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MUIDataTable from 'mui-datatables';
-import {
-  TableRow,
-  TableCell,
-} from '@material-ui/core';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
+import Table from './Table';
 import RepoTable from './RepoTable';
 import VisitButton from './VisitButton';
 
@@ -18,63 +18,56 @@ const useStyles = makeStyles((theme) => ({
 
 function OrganizationTable({ data }) {
   const classes = useStyles();
-  const title = 'Organizations';
+  const { t } = useTranslation();
+
+  const title = t('table.organization.title');
 
   const columns = [{
     name: 'name',
-    label: 'Name',
+    label: t('table.organization.name'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'githubInfo.login',
-    label: 'ID',
+    label: t('table.organization.id'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'githubInfo.description',
-    label: 'Description',
+    label: t('table.organization.description'),
     options: {
       filter: false,
       sort: false,
     },
   }, {
     name: 'repos.length',
-    label: 'Repositories',
+    label: t('table.organization.repos'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'githubInfo.html_url',
-    label: 'Visit',
+    label: ' ',
     options: {
       filter: false,
-      customBodyRender(value) {
-        return (<VisitButton url={value} />);
-      },
+      customBodyRender: (value) => <VisitButton url={value} title={t('table.organization.githubRepo')} icon={<GitHubIcon />}/>,
     },
   }];
 
   const options = {
-    fixedHeader: true,
-    selectableRows: 'none',
-    filterType: 'checkbox',
     expandableRows: true,
-    pagination: true,
-    rowsPerPageOptions: [10, 100, 500, 1000],
-    rowsPerPage: 10,
     renderExpandableRow(rowData, rowMeta) {
       const item = data[rowMeta.dataIndex];
-      console.log(item);
-      const data = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
+      const repos = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
       return (
         <TableRow>
           <TableCell colSpan={columns.length + 1} className={classes.nestedContainer}>
-            <RepoTable repos={data} />
+            <RepoTable data={repos} />
           </TableCell>
         </TableRow>
       );
@@ -82,7 +75,7 @@ function OrganizationTable({ data }) {
   };
 
   return (
-    <MUIDataTable
+    <Table
       title={title}
       data={data}
       columns={columns}

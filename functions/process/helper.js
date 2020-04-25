@@ -35,16 +35,34 @@ module.exports.parse = async (jsonObj, githubApiKey) => {
       const url = `https://raw.githubusercontent.com/${full_name}/${default_branch}/g0v.json`;
 
       const [err, res] = await to(fetch(url));
+      const output = await res.text();
 
       let data;
       if (!err && res.ok) {
         try {
-          data = await res.json();
+          data = JSON.parse(output);
         } catch (e) {
           console.log(
-            'Invalid Json format',
+            'Invalid Json format. Make a PR for this file:',
             url.replace('https://raw.githubusercontent.com', 'https://github.com').replace(`/${full_name}/`, `/${full_name}/blob/`),
           );
+
+          // try common error fix
+          try {
+            const fixedString = output
+              .replace(/\r?\n|\r/g, '')
+              .replace(/\s\s+/g, ' ') // extra white space
+              .replace(/,(\s+)?}/g, '{') // ,}
+              .replace(/,(\s+)?\]/g, ']') // ,]
+              .replace(/\](\s+)?"/g, '],"') // ]"
+              .replace(/}(\s+)?"/g, '},"'); // }"
+
+            data = JSON.parse(fixedString);
+            console.log('Fix by common JSON fix');
+          } catch (e) {
+            console.log(e);
+          }
+          data = {};
         }
       }
 

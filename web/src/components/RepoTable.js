@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MUIDataTable from 'mui-datatables';
 import moment from 'moment';
 import ErrorIcon from '@material-ui/icons/Error';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import { green } from '@material-ui/core/colors';
+import { useTranslation } from 'react-i18next';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import CheckIcon from '@material-ui/icons/Check';
 
+import Table from './Table';
 import VisitButton from './VisitButton';
 import TextLink from './TextLink';
 
 function RepoTable({ data = [] }) {
-  const title = 'Repos';
+  const { t } = useTranslation();
 
-  console.log(data);
+  const title = t('table.repo.title');
 
   const columns = [{
     name: 'archived',
-    label: 'Status',
+    label: t('table.repo.activity'),
     options: {
       filter: false,
       sort: true,
@@ -25,8 +28,18 @@ function RepoTable({ data = [] }) {
       },
     },
   }, {
+    name: 'g0vJsonUrl',
+    label: t('table.repo.g0vJsonProvided'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender(value) {
+        return value ? <CheckIcon style={{ color: green[500] }} /> : '';
+      },
+    },
+  }, {
     name: 'owner.login',
-    label: 'Org',
+    label: t('table.repo.org'),
     options: {
       filter: true,
       sort: true,
@@ -37,35 +50,35 @@ function RepoTable({ data = [] }) {
     },
   }, {
     name: 'name',
-    label: 'Name',
+    label: t('table.repo.name'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'description',
-    label: 'Description',
+    label: t('table.repo.description'),
     options: {
       filter: false,
       sort: false,
     },
   }, {
     name: 'languagePrimary',
-    label: 'Language #1',
+    label: t('table.repo.language'),
     options: {
       filter: true,
       sort: true,
     },
   }, {
     name: 'languageSecondary',
-    label: 'Language #2',
+    label: t('table.repo.language2'),
     options: {
       filter: true,
       sort: true,
     },
   }, {
     name: 'languages',
-    label: 'All Languages',
+    label: t('table.repo.allLanguages'),
     options: {
       filter: false,
       sort: false,
@@ -80,21 +93,21 @@ function RepoTable({ data = [] }) {
     },
   }, {
     name: 'open_issues',
-    label: 'Issues',
+    label: t('table.repo.issues'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'contributors.length',
-    label: 'Contributors',
+    label: t('table.repo.contributors'),
     options: {
       filter: false,
       sort: true,
     },
   }, {
     name: 'created_at',
-    label: 'Created At',
+    label: t('table.repo.createdAt'),
     options: {
       filter: false,
       sort: true,
@@ -102,7 +115,7 @@ function RepoTable({ data = [] }) {
     },
   }, {
     name: 'pushed_at',
-    label: 'Last Push At',
+    label: t('table.repo.pushedAt'),
     options: {
       filter: false,
       sort: true,
@@ -110,7 +123,7 @@ function RepoTable({ data = [] }) {
     },
   }, {
     name: 'license.spdx_id',
-    label: 'License',
+    label: t('table.repo.license'),
     options: {
       display: false,
       filter: true,
@@ -118,28 +131,17 @@ function RepoTable({ data = [] }) {
     },
   }, {
     name: 'html_url',
-    label: 'Visit',
+    label: ' ',
     options: {
       filter: false,
-      customBodyRender(value) {
-        return (
-          <VisitButton url={value} />);
-      },
+      customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.githubRepo')} icon={<GitHubIcon />}/>,
     },
   }];
 
-  const options = {
-    fixedHeader: true,
-    selectableRows: 'none',
-    filterType: 'checkbox',
-    pagination: true,
-    rowsPerPageOptions: [10, 100, 500, 1000],
-    rowsPerPage: 10,
-    expandableRows: false,
-  };
+  const options = {};
 
   return (
-    <MUIDataTable
+    <Table
       title={title}
       data={data}
       columns={columns}
