@@ -80,7 +80,7 @@ function DeveloperTable({ repos = [], nested = false }) {
     name: 'averageContributions',
     label: t('table.developer.averageContributions'),
     options: {
-      filter: true,
+      filter: false,
       sort: true,
     },
   }, {
