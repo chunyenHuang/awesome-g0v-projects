@@ -12,6 +12,7 @@ import Header from './components/Header';
 import ProjectTable from './components/ProjectTable';
 import OrganizationTable from './components/OrganizationTable';
 import RepoTable from './components/RepoTable';
+import DeveloperTable from './components/DeveloperTable';
 
 const useStyles = makeStyles((theme) => ({
   main: {},
@@ -47,6 +48,8 @@ function App() {
 
       const allRepos = data
         .reduce((items, project) => [...items, ...project.repos], [])
+        // Ignore fork projects
+        .filter((x) => !x.fork)
         .sort((a, b) => a.pushed_at < b.pushed_at ? 1 : -1);
 
       setProjects(allRepos.filter((x) => x.g0vJsonUrl));
@@ -68,6 +71,9 @@ function App() {
             </Route>
             <Route path="/repositories" exact>
               <RepoTable data={repos}/>
+            </Route>
+            <Route path="/developers" exact>
+              <DeveloperTable repos={repos}/>
             </Route>
           </div>
         </React.Suspense>

@@ -43,6 +43,9 @@ function Header({ lastUpdatedAt }) {
   }, {
     title: t('header.findRepositories'),
     path: '/repositories',
+  }, {
+    title: t('header.findDevelopers'),
+    path: '/developers',
   }];
 
   return (

@@ -31,6 +31,7 @@
   "table.project.partOf": "Part Of",
   "table.project.products": "Products",
   "table.project.projects": "Projects",
+  "table.project.g0vJson": "g0v.json",
 
   "table.organization.title": "Organizations",
   "table.organization.type": "Type",
@@ -56,6 +57,16 @@
   "table.repo.license": "License",
   "table.repo.githubRepo": "GitHub Repo",
 
+  "table.developer.title": "Developers",
+  "table.developer.type": "Type",
+  "table.developer.avatar": "Avatar",
+  "table.developer.githubId": "ID",
+  "table.developer.majorRepoName": " Major Repo",
+  "table.developer.majorContributions": "Major contributions",
+  "table.developer.repos": "Participated Repos",
+  "table.developer.averageContributions": "Avg contributions",
+  "table.developer.githubPage": "GitHub Page",
+
   "g0vJson.editor": "g0v Online JSON Editor",
   "g0vJson.helpAdd": "Help add g0v.json",
   "g0vJson.helpEdit": "Help edit g0v.json",
@@ -63,6 +74,7 @@
   "header.findProjects": "Find Projects",
   "header.findOrganizations": "Find Organizations",
   "header.findRepositories": "Find GitHub Repos",
+  "header.findDevelopers": "Find Developers",
 
   "end": "The end of file"
 }
