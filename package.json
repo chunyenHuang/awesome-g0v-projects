@@ -4,8 +4,9 @@
   "description": "## Workflow",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm i -g serverless",
-    "build:web": "cd web && npm i && npm run build && cd ..",
+    "eslint": "node_modules/.bin/eslint functions tests && cd web && node_modules/.bin/eslint src",
+    "build": "npm run build:web",
+    "build:web": "cd web && npm run build && cd ..",
     "deploy": "node_modules/.bin/serverless deploy",
     "deploy:local": "node_modules/.bin/serverless deploy --profile goldax",
     "invoke:local": "aws lambda invoke --function-name awesome-g0v-projects-dev-process --profile goldax --log-type Tail tests/invoke-result.json",
