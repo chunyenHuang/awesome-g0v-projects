@@ -1,0 +1,63 @@
+[
+  {
+    "name": "John Huang",
+    "githubInfo": {
+      "login": "chunyenHuang",
+      "html_url": "https://github.com/chunyenHuang",
+      "public_repos": 102,
+      "type": "User",
+      "created_at": "2015-06-07T20:37:13Z",
+      "updated_at": "2020-04-25T18:06:51Z"
+    },
+    "repos": [
+      {
+        "name": "awesome-g0v-projects",
+        "owner": {
+          "login": "chunyenHuang",
+          "type": "User",
+          "avatar_url": "https://avatars1.githubusercontent.com/u/12788155?v=4",
+          "html_url": "https://github.com/chunyenHuang",
+          "site_admin": false
+        },
+        "html_url": "https://github.com/chunyenHuang/awesome-g0v-projects",
+        "description": "http://awesome-g0v-projects-dev-website.s3-website-us-east-1.amazonaws.com/",
+        "created_at": "2020-04-23T18:26:42Z",
+        "updated_at": "2020-04-26T06:08:59Z",
+        "pushed_at": "2020-04-26T14:22:21Z",
+        "homepage": "",
+        "language": "JavaScript",
+        "fork": false,
+        "forks_count": 1,
+        "archived": false,
+        "disabled": false,
+        "license": null,
+        "forks": 1,
+        "open_issues": 2,
+        "stargazers_count": 2,
+        "watchers_count": 2,
+        "open_issues_count": 2,
+        "watchers": 2,
+        "default_branch": "master",
+        "g0vJsonUrl": null,
+        "g0vJson": {},
+        "languages": {
+          "JavaScript": 48732,
+          "HTML": 1732,
+          "CSS": 403
+        },
+        "languagePrimary": "JavaScript",
+        "languageSecondary": "HTML",
+        "contributors": [
+          {
+            "login": "chunyenHuang",
+            "avatar_url": "https://avatars1.githubusercontent.com/u/12788155?v=4",
+            "html_url": "https://github.com/chunyenHuang",
+            "site_admin": false,
+            "contributions": 45,
+            "type": "User"
+          }
+        ]
+      }
+    ]
+  }
+]

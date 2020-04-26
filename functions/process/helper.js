@@ -6,6 +6,7 @@ const { groupArrayByCount, fixJSONString } = require('../utils');
 
 const RESERVED_RATE = 2000;
 const BATCH_PROCESS_REPOS_SIZE = 300;
+const EXCLUDE_FORK_REPO = true;
 
 let octokit;
 
@@ -102,6 +103,11 @@ async function getRepos(owner, type, targetRepos = []) {
     );
   }
 
+  // only keep the original project.
+  if (EXCLUDE_FORK_REPO) {
+    repos = repos.filter((x) => !x.fork);
+  }
+
   return repos;
 }
 
@@ -113,6 +119,7 @@ async function getGithubInfo(type, owner) {
     login: githubInfo.login,
     description: githubInfo.description,
     html_url: githubInfo.html_url,
+    avatar_url: githubInfo.avatar_url,
     public_repos: githubInfo.public_repos,
     type: githubInfo.type,
     created_at: githubInfo.created_at,
@@ -148,6 +155,7 @@ async function processRepo(owner, repo) {
     pushed_at: repo.pushed_at,
     homepage: repo.homepage,
     language: repo.language,
+    fork: repo.fork,
     forks_count: repo.forks_count,
     archived: repo.archived,
     disabled: repo.disabled,
