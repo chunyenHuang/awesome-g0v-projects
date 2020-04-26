@@ -25,7 +25,10 @@ jobs:
     - run: npm ci
     - run: cd web && npm ci
     - run: npm run build:web
-    - run: npm run deploy
+    - name: serverless deploy
+      uses: serverless/github-action@master
+      with:
+        args: deploy
       env:
         AWS_ACCESS_KEY_ID: ${{secrets.aws_access_key_id}}
         AWS_SECRET_ACCESS_KEY: ${{secrets.aws_secret_access_key}}
