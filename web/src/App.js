@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
 import './i18n';
 
@@ -10,9 +14,15 @@ import OrganizationTable from './components/OrganizationTable';
 import RepoTable from './components/RepoTable';
 
 const useStyles = makeStyles((theme) => ({
+  main: {},
+  spinner: {
+    position: 'absolute',
+    top: 150,
+    left: 'calc(50% - 20px)',
+  },
   container: {
-    padding: theme.spacing(2),
-    backgroundColor: 'rgba(0,0,0,0.1)',
+    // padding: theme.spacing(2),
+    paddingTop: 55,
   },
 }));
 
@@ -39,24 +49,30 @@ function App() {
         .reduce((items, project) => [...items, ...project.repos], [])
         .sort((a, b) => a.pushed_at < b.pushed_at ? 1 : -1);
 
-      setProjects(allRepos.filter((x) => x.g0vJson));
+      setProjects(allRepos.filter((x) => x.g0vJsonUrl));
       setRepos(allRepos);
     })();
   }, []);
 
   return (
-    <React.Suspense fallback={<CircularProgress />}>
-      <Header lastUpdatedAt={lastUpdatedAt} />
-      <div className={classes.container}>
-        <ProjectTable data={projects}/>
-      </div>
-      <div className={classes.container}>
-        <OrganizationTable data={organizations}/>
-      </div>
-      <div className={classes.container}>
-        <RepoTable data={repos}/>
-      </div>
-    </React.Suspense>
+    <div className={classes.main}>
+      <Router>
+        <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
+          <Header lastUpdatedAt={lastUpdatedAt} />
+          <div className={classes.container}>
+            <Route path="/" exact>
+              <ProjectTable data={projects}/>
+            </Route>
+            <Route path="/organizations" exact>
+              <OrganizationTable data={organizations}/>
+            </Route>
+            <Route path="/repositories" exact>
+              <RepoTable data={repos}/>
+            </Route>
+          </div>
+        </React.Suspense>
+      </Router>
+    </div>
   );
 }
 

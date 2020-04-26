@@ -7,6 +7,10 @@
 
 - [Example 新增範例](https://github.com/chunyenHuang/awesome-g0v-projects/pull/3)
 
+## How to help create PR for adding or editing `g0v.json` for existing repos?
+
+![Demo GIF](docs/add-edit-g0vJson.gif)
+
 ## Workflow
 
 - Create Github PR to update the source file  [organization.csv](data/organizations.csv)
@@ -25,3 +29,5 @@
 - https://amb.g0v.tw/repos
 - https://github.com/g0v/ambassador
 - https://github.com/g0v/awesome-g0v
+- https://github.com/g0v/g0v.json
+- https://github.com/g0v/editor

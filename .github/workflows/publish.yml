@@ -1,20 +1,20 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: PR Test
+name: Publish to AWS
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
 
 jobs:
-  build:
+  publish:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,8 +24,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: cd web && npm ci
-    - run: npm run eslint
-    - run: npm test
+    - run: npm run build:web
+    - run: npm run deploy
       env:
-        CI: true
-    - run: npm run build --if-present
+        AWS_ACCESS_KEY_ID: ${{secrets.aws_access_key_id}}
+        AWS_SECRET_ACCESS_KEY: ${{secrets.aws_secret_access_key}}

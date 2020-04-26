@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
 function VisitButton({ url, title = 'Visit', icon, className }) {
-  const isDisabled = (!url || url === '');
+  const isDisabled = (!url || url === '' || !url.startsWith('http'));
   const size = 'small';
 
   if (icon) {

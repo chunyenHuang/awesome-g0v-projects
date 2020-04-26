@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import DescriptionIcon from '@material-ui/icons/Description';
 import LanguageIcon from '@material-ui/icons/Language';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -16,14 +14,13 @@ import CellParagraph from './table/CellParagraph';
 import VisitButton from './VisitButton';
 import TextLink from './TextLink';
 import ProjectDetails from './ProjectDetails';
+import G0vJsonIconButton from './G0vJsonIconButton';
+import NestedTableContainer from './table/NestedTableContainer';
 
 const useStyles = makeStyles((theme) => ({
   img: {
     maxHeight: 65,
     maxWidth: '100%',
-  },
-  nestedContainer: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
   },
 }));
 
@@ -96,7 +93,7 @@ function ProjectTable({ data = [] }) {
     },
   }, {
     name: 'g0vJson.name_zh',
-    label: t('table.project.name'),
+    label: t('table.project.name_zh'),
     options: {
       filter: false,
       sort: true,
@@ -112,7 +109,7 @@ function ProjectTable({ data = [] }) {
     },
   }, {
     name: 'g0vJson.description_zh',
-    label: t('table.project.description'),
+    label: t('table.project.description_zh'),
     options: {
       filter: false,
       sort: false,
@@ -199,6 +196,17 @@ function ProjectTable({ data = [] }) {
       customBodyRender: (value) => moment(value).format('YYYY/MM/DD'),
     },
   }, {
+    name: 'g0vJsonUrl',
+    label: ' ',
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value, { rowData }) => {
+        const repo = `${rowData[1]}/${rowData[4]}`;
+        return (<G0vJsonIconButton url={value} repo={repo} />);
+      },
+    },
+  }, {
     name: 'g0vJson.homepage',
     label: ' ',
     options: {
@@ -236,11 +244,9 @@ function ProjectTable({ data = [] }) {
     renderExpandableRow(rowData, rowMeta) {
       const item = data[rowMeta.dataIndex];
       return (
-        <TableRow>
-          <TableCell colSpan={columns.length + 1} className={classes.nestedContainer}>
-            <ProjectDetails project={item} />
-          </TableCell>
-        </TableRow>
+        <NestedTableContainer columns={columns}>
+          <ProjectDetails project={item} />
+        </NestedTableContainer>
       );
     },
   };

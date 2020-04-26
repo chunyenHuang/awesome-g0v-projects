@@ -56,5 +56,13 @@
   "table.repo.license": "License",
   "table.repo.githubRepo": "GitHub Repo",
 
+  "g0vJson.editor": "g0v Online JSON Editor",
+  "g0vJson.helpAdd": "Help add g0v.json",
+  "g0vJson.helpEdit": "Help edit g0v.json",
+
+  "header.findProjects": "Find Projects",
+  "header.findOrganizations": "Find Organizations",
+  "header.findRepositories": "Find GitHub Repos",
+
   "end": "The end of file"
 }

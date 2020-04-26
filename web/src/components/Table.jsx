@@ -17,12 +17,15 @@ const theme = createMuiTheme({
   overrides: {
     MUIDataTableToolbar: {
       root: {
-        padding: '0px 8px 0px 8px',
+        // padding: '0px 8px 0px 8px',
       },
     },
     MUIDataTable: {
       paper: {
-        padding: '0px 8px 0px 8px',
+        padding: 0,
+      },
+      responsiveScrollMaxHeight: {
+        maxHeight: 'calc(100vh - 170px) !important',
       },
     },
     MUIDataTableHeadCell: {
@@ -34,10 +37,16 @@ const theme = createMuiTheme({
     MUIDataTableBodyCell: {
       root: cellStyle,
     },
+    MUIDataTableSelectCell: {
+      expandDisabled: {
+        // Soft hide the button.
+        visibility: 'hidden',
+      },
+    },
   },
 });
 
-function Table({ title, data, columns, options }) {
+function Table({ title, data, columns, options, nested = false }) {
   const onItemClick = (rowData, rowMeta) => {
     const item = data[rowMeta.dataIndex];
     console.log(item);
@@ -46,10 +55,10 @@ function Table({ title, data, columns, options }) {
   // overwrite options
   const updatedOptions = Object.assign({
     pagination: true,
-    rowsPerPageOptions: [10, 50, 100, 500, 1000],
-    rowsPerPage: 10,
+    responsive: nested ? 'stacked' : 'scrollMaxHeight',
+    rowsPerPageOptions: nested ? [10, 50, 100, 1000] : [50, 100, 500, 1000],
+    rowsPerPage: nested ? 10 : 50,
     filterType: 'checkbox',
-    responsive: 'stacked',
     fixedHeader: true,
     resizableColumns: false,
     selectableRows: 'none',
@@ -76,6 +85,7 @@ Table.propTypes = {
   data: PropTypes.array,
   columns: PropTypes.array,
   options: PropTypes.object,
+  nested: PropTypes.bool,
 };
 
 export default Table;

@@ -4,5 +4,4 @@
 .serverless
 .webpack
 
-result.json
-data-sample.json
+tests/*.json
