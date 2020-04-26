@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
@@ -9,10 +9,10 @@ import RepoTable from './RepoTable';
 import VisitButton from './VisitButton';
 import NestedTableContainer from './table/NestedTableContainer';
 
-const useStyles = makeStyles((theme) => ({}));
+// const useStyles = makeStyles((theme) => ({}));
 
 function OrganizationTable({ data }) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const { t } = useTranslation();
 
   const title = t('table.organization.title');

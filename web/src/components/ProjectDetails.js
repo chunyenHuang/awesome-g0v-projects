@@ -43,7 +43,7 @@ function ProjectDetails({ project = {} }) {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Grid container justify="center" alignItems="center">
-            <img src={project.g0vJson.thumbnail} className={classes.image} />
+            <img src={project.g0vJson.thumbnail} className={classes.image} alt="thumbnail"/>
           </Grid>
         </Grid>
         <Grid item xs={8} className={classes.listContainer}>
