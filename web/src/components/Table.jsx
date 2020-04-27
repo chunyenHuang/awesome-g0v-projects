@@ -43,6 +43,11 @@ const theme = createMuiTheme({
         visibility: 'hidden',
       },
     },
+    MUIDataTableFilter: {
+      root: {
+        minWidth: 400,
+      },
+    },
   },
 });
 
@@ -58,7 +63,7 @@ function Table({ title, data, columns, options, nested = false }) {
     responsive: nested ? 'stacked' : 'scrollMaxHeight',
     rowsPerPageOptions: nested ? [10, 50, 100, 1000] : [50, 100, 500, 1000],
     rowsPerPage: nested ? 10 : 50,
-    filterType: 'checkbox',
+    filterType: 'multiselect',
     fixedHeader: true,
     resizableColumns: false,
     selectableRows: 'none',

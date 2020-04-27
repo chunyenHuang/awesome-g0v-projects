@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import { green } from '@material-ui/core/colors';
 import ErrorIcon from '@material-ui/icons/Error';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import DescriptionIcon from '@material-ui/icons/Description';
 
 import Table from './Table';
-import VisitButton from './VisitButton';
+import GithubLinkButton from './GithubLinkButton';
 import TextLink from './TextLink';
+import CellList from './table/CellList';
+import VisitButton from './VisitButton';
 import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import ProjectDetails from './ProjectDetails';
+import { getRepos } from '../data';
 
-function RepoTable({ data = [], nested = false }) {
+function RepoTable({ data: inData, nested = false }) {
   const { t } = useTranslation();
+  const [data, setData] = useState([]);
+  const [languages, setLanguages] = useState([]);
 
   const title = t('table.repo.title');
 
@@ -33,7 +38,7 @@ function RepoTable({ data = [], nested = false }) {
     name: 'owner.login',
     label: t('table.repo.org'),
     options: {
-      filter: true,
+      filter: false,
       sort: true,
       customBodyRender(value) {
         return (
@@ -58,30 +63,27 @@ function RepoTable({ data = [], nested = false }) {
     name: 'languagePrimary',
     label: t('table.repo.language'),
     options: {
-      filter: true,
+      filter: false,
       sort: true,
     },
   }, {
     name: 'languageSecondary',
     label: t('table.repo.language2'),
     options: {
-      filter: true,
+      filter: false,
       sort: true,
     },
   }, {
     name: 'languages',
     label: t('table.repo.allLanguages'),
     options: {
-      filter: false,
+      filter: true,
+      filterOptions: {
+        names: languages,
+      },
       sort: false,
       display: false,
-      customBodyRender(value) {
-        return (
-          <ul>
-            {Object.keys(value).map((key, index)=> <li key={index}>{key}</li>)}
-          </ul>
-        );
-      },
+      customBodyRender: (value) => <CellList value={value} />,
     },
   }, {
     name: 'open_issues',
@@ -133,15 +135,23 @@ function RepoTable({ data = [], nested = false }) {
       },
     },
   }, {
+    name: 'hackmdUrl',
+    label: ' ',
+    options: {
+      filter: false,
+      customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.hackmdUrl')} icon={<DescriptionIcon />} />,
+    },
+  }, {
     name: 'html_url',
     label: ' ',
     options: {
       filter: false,
-      customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.githubRepo')} icon={<GitHubIcon />}/>,
+      customBodyRender: (value) => <GithubLinkButton url={value} />,
     },
   }];
 
   const options = {
+    filterType: 'multiselect',
     expandableRows: true,
     isRowExpandable(dataIndex) {
       return data[dataIndex].g0vJsonUrl;
@@ -155,6 +165,28 @@ function RepoTable({ data = [], nested = false }) {
       );
     },
   };
+
+  useEffect(() => {
+    const allLanguages = [];
+    data.forEach((item) => {
+      item.languages.forEach((key) => {
+        if (!allLanguages.includes(key)) {
+          allLanguages.push(key);
+        }
+      });
+    });
+    setLanguages(allLanguages);
+  }, [data]);
+
+  useEffect(() => {
+    if (inData) {
+      setData(inData);
+    } else {
+      (async () => {
+        setData(await getRepos());
+      })();
+    }
+  }, [inData]);
 
   return (
     <Table

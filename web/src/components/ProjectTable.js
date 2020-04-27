@@ -1,48 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
 import DescriptionIcon from '@material-ui/icons/Description';
 import LanguageIcon from '@material-ui/icons/Language';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import { useTranslation } from 'react-i18next';
 
 import Table from './Table';
 import CellList from './table/CellList';
 import CellParagraph from './table/CellParagraph';
+import CellImage from './table/CellImage';
 import VisitButton from './VisitButton';
 import TextLink from './TextLink';
 import ProjectDetails from './ProjectDetails';
 import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
+import GithubLinkButton from './GithubLinkButton';
+import { getProjects } from '../data';
+import ProjectStatusBadget from './ProjectStatusBadget';
 
-const useStyles = makeStyles((theme) => ({
-  img: {
-    maxHeight: 65,
-    maxWidth: '100%',
-  },
-}));
-
-function ProjectTable({ data = [] }) {
-  const classes = useStyles();
+function ProjectTable({ data: inData }) {
   const { t } = useTranslation();
+  const [data, setData] = useState([]);
+  const [filterOptions, setFilterOptions] = useState({
+    status: [],
+    keywords: [],
+    needs: [],
+    languages: [],
+  });
 
   const title = t('table.project.title');
-
-  data = data.map((item) => {
-    item.g0vJson.name_zh = item.g0vJson.name_zh || item.g0vJson.name;
-    item.g0vJson.description_zh = item.g0vJson.description_zh || item.g0vJson.description;
-    return item;
-  });
 
   const columns = [{
     name: 'g0vJson.status',
     label: t('table.project.status'),
     options: {
       filter: true,
+      filterOptions: {
+        names: filterOptions.status,
+      },
       sort: true,
-      customBodyRender: (value = '') => `${value.toUpperCase()}`,
+      customBodyRender: (value = '') => <ProjectStatusBadget value={value} />,
     },
   }, {
     name: 'owner.login',
@@ -69,12 +66,7 @@ function ProjectTable({ data = [] }) {
       filter: false,
       sort: false,
       display: false,
-      customBodyRender(value) {
-        return (
-          <Grid container justify="center" align="center">
-            {value && <img src={value} alt="-" className={classes.img}/>}
-          </Grid>);
-      },
+      customBodyRender: (value = []) => <CellImage value={value[0]} />,
     },
   }, {
     name: 'name',
@@ -119,7 +111,10 @@ function ProjectTable({ data = [] }) {
     name: 'g0vJson.keywords',
     label: t('table.project.keywords'),
     options: {
-      filter: false,
+      filter: true,
+      filterOptions: {
+        names: filterOptions.keywords,
+      },
       sort: true,
       customBodyRender: (value) => <CellList value={value} />,
     },
@@ -127,7 +122,10 @@ function ProjectTable({ data = [] }) {
     name: 'g0vJson.needs',
     label: t('table.project.needs'),
     options: {
-      filter: false,
+      filter: true,
+      filterOptions: {
+        names: filterOptions.needs,
+      },
       sort: true,
       customBodyRender: (value) => <CellList value={value} />,
     },
@@ -145,7 +143,7 @@ function ProjectTable({ data = [] }) {
     label: t('table.project.language'),
     options: {
       display: false,
-      filter: true,
+      filter: false,
       sort: true,
     },
   }, {
@@ -153,14 +151,17 @@ function ProjectTable({ data = [] }) {
     label: t('table.project.language2'),
     options: {
       display: false,
-      filter: true,
+      filter: false,
       sort: true,
     },
   }, {
     name: 'languages',
     label: t('table.project.allLanguages'),
     options: {
-      filter: false,
+      filter: true,
+      filterOptions: {
+        names: filterOptions.languages,
+      },
       sort: false,
       display: true,
       customBodyRender: (value) => <CellList value={value} />,
@@ -232,10 +233,7 @@ function ProjectTable({ data = [] }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender(value) {
-        return (
-          <VisitButton url={value} title={t('table.project.githubRepo')} icon={<GitHubIcon />}/>);
-      },
+      customBodyRender: (value) => <GithubLinkButton url={value} />,
     },
   }];
 
@@ -251,6 +249,58 @@ function ProjectTable({ data = [] }) {
     },
   };
 
+  useEffect(() => {
+    const allStatus = [];
+    const allKeywords = [];
+    const allNeeds = [];
+    const allLanguages = [];
+    data.forEach((item) => {
+      item.languages.forEach((key) => {
+        if (!allLanguages.includes(key)) {
+          allLanguages.push(key);
+        }
+      });
+
+      if (Array.isArray(item.g0vJson.keywords)) {
+        item.g0vJson.keywords.forEach((key) => {
+          if (!allKeywords.includes(key)) {
+            allKeywords.push(key);
+          }
+        });
+      }
+
+      if (Array.isArray(item.g0vJson.needs)) {
+        item.g0vJson.needs.forEach((key) => {
+          if (!allNeeds.includes(key)) {
+            allNeeds.push(key);
+          }
+        });
+      }
+
+      if (item.g0vJson.status) {
+        if (!allStatus.includes(item.g0vJson.status.toLowerCase())) {
+          allStatus.push(item.g0vJson.status.toLowerCase());
+        }
+      }
+    });
+    setFilterOptions({
+      languages: allLanguages,
+      keywords: allKeywords,
+      needs: allNeeds,
+      status: allStatus,
+    });
+  }, [data]);
+
+  useEffect(() => {
+    if (inData) {
+      setData(inData);
+    } else {
+      (async () => {
+        setData(await getProjects());
+      })();
+    }
+  }, [inData]);
+
   return (
     <Table
       title={title}
@@ -262,7 +312,7 @@ function ProjectTable({ data = [] }) {
 }
 
 ProjectTable.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
 };
 
 export default ProjectTable;

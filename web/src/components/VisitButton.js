@@ -4,13 +4,15 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 
-function VisitButton({ url, title = 'Visit', icon, className }) {
+function VisitButton({ url, title = 'Visit', tooltip, icon, className }) {
   const isDisabled = (!url || url === '' || !url.startsWith('http'));
   const size = 'small';
 
+  const tooltipTitle = tooltip || (isDisabled ? '' : title);
+
   if (icon) {
     return (
-      <Tooltip title={title}>
+      <Tooltip title={tooltipTitle}>
         <span>
           <IconButton
             className={className}
@@ -43,6 +45,7 @@ function VisitButton({ url, title = 'Visit', icon, className }) {
 VisitButton.propTypes = {
   url: PropTypes.string,
   title: PropTypes.string,
+  tooltip: PropTypes.string,
   icon: PropTypes.object,
   className: PropTypes.string,
 };
