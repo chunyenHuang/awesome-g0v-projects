@@ -1,26 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import GitHubIcon from '@material-ui/icons/GitHub';
 
 import Table from './Table';
-import VisitButton from './VisitButton';
+import GithubLinkButton from './GithubLinkButton';
 import TextLink from './TextLink';
 import NestedTableContainer from './table/NestedTableContainer';
 import RepoTable from './RepoTable';
+import CellImage from './table/CellImage';
+import { getRepos } from '../data';
 
-const useStyles = makeStyles((theme) => ({
-  img: {
-    maxHeight: 65,
-    maxWidth: '100%',
-  },
-}));
-
-function DeveloperTable({ repos = [], nested = false }) {
-  const classes = useStyles();
+function DeveloperTable({ repos: inRepos, nested = false }) {
   const { t } = useTranslation();
+  const [repos, setRepos] = useState([]);
   const [data, setData] = useState([]);
 
   const title = t('table.developer.title');
@@ -39,12 +31,7 @@ function DeveloperTable({ repos = [], nested = false }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender(value) {
-        return (
-          <Grid container justify="center" align="center">
-            {value && <img src={value} alt="-" className={classes.img}/>}
-          </Grid>);
-      },
+      customBodyRender: (value) => <CellImage value={value} />,
     },
   }, {
     name: 'details.login',
@@ -89,10 +76,7 @@ function DeveloperTable({ repos = [], nested = false }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender(value) {
-        return (
-          <VisitButton url={value} title={t('table.developer.githubPage')} icon={<GitHubIcon />}/>);
-      },
+      customBodyRender: (value)=><GithubLinkButton url={value} />,
     },
   }];
 
@@ -111,6 +95,16 @@ function DeveloperTable({ repos = [], nested = false }) {
   useEffect(() => {
     setData(getContributorsFromRepos(repos));
   }, [repos]);
+
+  useEffect(() => {
+    if (inRepos) {
+      setRepos(inRepos);
+    } else {
+      (async () => {
+        setRepos(await getRepos());
+      })();
+    }
+  }, [inRepos]);
 
   return (
     <Table

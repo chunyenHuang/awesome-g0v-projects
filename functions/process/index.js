@@ -2,6 +2,7 @@ const AWS = require('aws-sdk');
 const csv = require('csvtojson');
 const request = require('request');
 const moment = require('moment');
+const fetch = require('node-fetch');
 
 const { parse } = require('./helper');
 
@@ -43,6 +44,21 @@ exports.handler = async () => {
     CacheControl: 'max-age=3600',
   };
   await s3.putObject(params).promise();
+
+  // handle hackmd
+  const hackmdOverviewUrl = 'https://g0v.hackmd.io/api/overview'; // ?v=
+  // const hackmdHistoryurl = 'https://g0v.hackmd.io/api/_/history'; // ?v=1587947073774&limit=100
+  const res = await fetch(hackmdOverviewUrl);
+  const hackmdOverviewData = await res.json();
+
+  await s3.putObject({
+    Bucket: S3_BUCKET_DATA,
+    Key: 'hackmd.json',
+    Body: JSON.stringify(hackmdOverviewData),
+    ContentType: 'application/json',
+    ACL: 'public-read',
+    CacheControl: 'max-age=3600',
+  }).promise();
 
   return 'ok';
 };

@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import GitHubIcon from '@material-ui/icons/GitHub';
 
 import Table from './Table';
 import RepoTable from './RepoTable';
-import VisitButton from './VisitButton';
+import GithubLinkButton from './GithubLinkButton';
 import NestedTableContainer from './table/NestedTableContainer';
-
+import CellImage from './table/CellImage';
+import { getOrganizations } from '../data';
 // const useStyles = makeStyles((theme) => ({}));
 
-function OrganizationTable({ data }) {
+function OrganizationTable({ data: inData }) {
   // const classes = useStyles();
   const { t } = useTranslation();
+  const [data, setData] = useState([]);
 
   const title = t('table.organization.title');
 
@@ -23,6 +24,15 @@ function OrganizationTable({ data }) {
     options: {
       filter: false,
       sort: true,
+      display: false,
+    },
+  }, {
+    name: 'githubInfo.avatar_url',
+    label: t('table.organization.avatar'),
+    options: {
+      filter: false,
+      sort: false,
+      customBodyRender: (value) => <CellImage value={value} />,
     },
   }, {
     name: 'name',
@@ -57,7 +67,7 @@ function OrganizationTable({ data }) {
     label: ' ',
     options: {
       filter: false,
-      customBodyRender: (value) => <VisitButton url={value} title={t('table.organization.githubRepo')} icon={<GitHubIcon />}/>,
+      customBodyRender: (value)=><GithubLinkButton url={value} />,
     },
   }];
 
@@ -74,6 +84,17 @@ function OrganizationTable({ data }) {
     },
   };
 
+
+  useEffect(() => {
+    if (inData) {
+      setData(inData);
+    } else {
+      (async () => {
+        setData(await getOrganizations());
+      })();
+    }
+  }, [inData]);
+
   return (
     <Table
       title={title}
@@ -85,7 +106,7 @@ function OrganizationTable({ data }) {
 }
 
 OrganizationTable.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
 };
 
 export default OrganizationTable;

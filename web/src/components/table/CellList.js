@@ -15,7 +15,8 @@ function CellList({ value = [], targetKey }) {
   const classes = useStyles();
   const showLast = 3;
 
-  if (typeof value === 'string') {
+  if (typeof value === 'string' || !value) {
+    value = value || '';
     return (
       <span>
         {value.startsWith('http') ? <TextLink url={value} title={value} /> : value}

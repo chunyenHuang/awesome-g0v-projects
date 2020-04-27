@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'react-router-dom/Link';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import moment from 'moment';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import LanguageSelector from './LanguageSelector';
 import VisitButton from './VisitButton';
+import GithubLinkButton from './GithubLinkButton';
+import routes from '../routes';
+import { getGithubDataUrl, getGithubData } from '../data';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -27,26 +29,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const env = window.location.hostname.includes('-prd-') ? 'prd' : 'dev';
-const dataUrl = `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/data.json`;
-
-function Header({ lastUpdatedAt }) {
+function Header() {
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const routes = [{
-    title: t('header.findProjects'),
-    path: '/',
-  }, {
-    title: t('header.findOrganizations'),
-    path: '/organizations',
-  }, {
-    title: t('header.findRepositories'),
-    path: '/repositories',
-  }, {
-    title: t('header.findDevelopers'),
-    path: '/developers',
-  }];
+  const [isLoading, setIsLoading] = useState(true);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState('');
+
+  useEffect(() => {
+    setTimeout(async () => {
+      const { updatedAt } = await getGithubData();
+      setLastUpdatedAt(updatedAt);
+      setIsLoading(false);
+    }, 5000);
+  }, []);
 
   return (
     <AppBar position="fixed" color="default">
@@ -56,11 +52,13 @@ function Header({ lastUpdatedAt }) {
         </Typography>
         {routes.map(({ title, path }) => (
           <Button to={path} key={title} component={Link}>
-            {title}
+            {t(title)}
           </Button>
         ))}
 
         <div className={classes.space}></div>
+
+        {isLoading && <CircularProgress size={20} color="inherit" className={classes.button} />}
 
         {lastUpdatedAt &&
           <Typography
@@ -71,15 +69,13 @@ function Header({ lastUpdatedAt }) {
           </Typography>}
         <VisitButton
           className={classes.button}
-          url={dataUrl}
+          url={getGithubDataUrl()}
           title={'Download JSON'}
           icon={<CloudDownloadIcon />}
         />
-        <VisitButton
+        <GithubLinkButton
           className={classes.button}
-          url={'https://github.com/chunyenHuang/awesome-g0v-projects'}
-          title={'GitHub'}
-          icon={<GitHubIcon />}
+          url='chunyenHuang/awesome-g0v-projects'
         />
         <LanguageSelector />
       </Toolbar>
@@ -87,8 +83,6 @@ function Header({ lastUpdatedAt }) {
   );
 }
 
-Header.propTypes = {
-  lastUpdatedAt: PropTypes.string,
-};
+Header.propTypes = {};
 
 export default Header;

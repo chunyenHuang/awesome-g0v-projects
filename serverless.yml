@@ -32,7 +32,7 @@ functions:
     timeout: 300
     events:
       - schedule:
-          rate: rate(12 hours)
+          rate: rate(4 hours)
     iamRoleStatementsName: ${self:provider.product}-process
     iamRoleStatements:
       - Effect: Allow

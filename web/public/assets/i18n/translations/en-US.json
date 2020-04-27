@@ -35,6 +35,7 @@
 
   "table.organization.title": "Organizations",
   "table.organization.type": "Type",
+  "table.organization.avatar": "Avatar",
   "table.organization.name": "Name",
   "table.organization.id": "ID",
   "table.organization.description": "Description",
@@ -71,10 +72,11 @@
   "g0vJson.helpAdd": "Help add g0v.json",
   "g0vJson.helpEdit": "Help edit g0v.json",
 
-  "header.findProjects": "Find Projects",
-  "header.findOrganizations": "Find Organizations",
-  "header.findRepositories": "Find GitHub Repos",
-  "header.findDevelopers": "Find Developers",
+  "header.findProjects": "Projects",
+  "header.findOrganizations": "Organizations",
+  "header.findRepositories": "GitHub Repos",
+  "header.findDevelopers": "Developers",
+  "header.findCowriting": "Co-writing",
 
   "end": "The end of file"
 }
