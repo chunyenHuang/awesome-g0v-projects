@@ -169,6 +169,10 @@ function ProposalTable({ data, nested = false }) {
     isRowExpandable: () => false,
   };
 
+  useEffect(() => {
+    setManpowers([]);
+  }, []);
+
   return (
     <Table
       title={title}

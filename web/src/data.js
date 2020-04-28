@@ -130,8 +130,8 @@ export const getProjects = async () => {
 };
 
 export const getProposalsDataUrl = () => {
-  return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU';
-}
+  return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU'; // eslint-disable-line
+};
 
 export const getProposalEvents = async () => {
   const url = getProposalsDataUrl();
@@ -139,8 +139,6 @@ export const getProposalEvents = async () => {
   const { values } = await res.json();
 
   const headers = values.shift().map((x) => x.replace(/ /g, '_'));
-  console.log(headers);
-
   const events = {};
 
   values.forEach((row) => {
@@ -164,8 +162,6 @@ export const getProposalEvents = async () => {
     };
     events[rowData.term].proposals.push(rowData);
   });
-
-  console.log(events)
 
   return Object.keys(events).reverse().map((key) => events[key]);
 };
