@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className={classes.main}>
-      <Router basename={window.location.pathname || ''}>
+      <Router basename={`${process.env.PUBLIC_URL}`}>
         <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
           <Header />
           <div className={classes.container}>

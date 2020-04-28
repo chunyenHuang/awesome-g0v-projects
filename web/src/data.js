@@ -128,3 +128,44 @@ export const getProjects = async () => {
       return item;
     });
 };
+
+export const getProposalsDataUrl = () => {
+  return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU';
+}
+
+export const getProposalEvents = async () => {
+  const url = getProposalsDataUrl();
+  const res = await fetch(url);
+  const { values } = await res.json();
+
+  const headers = values.shift().map((x) => x.replace(/ /g, '_'));
+  console.log(headers);
+
+  const events = {};
+
+  values.forEach((row) => {
+    const rowData = headers.reduce((obj, header, index) => {
+      row[index] = row[index] || '';
+      if (['manpower', 'three_brief', 'tags', 'license_data'].includes(header)) {
+        obj[header] = row[index]
+          .replace(/[.,、，；\\/](\s+)?/g, ',')
+          .split(',');
+      } else {
+        obj[header] = row[index];
+      }
+      return obj;
+    }, {});
+    events[rowData.term] = events[rowData.term] || {
+      term: rowData.term,
+      date: rowData.date,
+      event_name: rowData.event_name,
+      dummy_event_type: rowData.dummy_event_type,
+      proposals: [],
+    };
+    events[rowData.term].proposals.push(rowData);
+  });
+
+  console.log(events)
+
+  return Object.keys(events).reverse().map((key) => events[key]);
+};

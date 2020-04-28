@@ -1,5 +1,5 @@
 {
-  "app.name": "令人驚奇的零時政府專案",
+  "app.name": "令人驚奇的零時政府",
   "app.updatedAt": "更新於",
 
   "table.project.title": "專案列表 (根據專案提供的g0v.json)",
@@ -86,11 +86,31 @@
   "table.hackmd.lastchangeAt": "最近更新於",
   "table.hackmd.hackmd": "Hackmd 頁面",
 
+  "table.proposal.listTitle": "提案列表",
+  "table.proposal.term": "屆數",
+  "table.proposal.eventName": "活動",
+  "table.proposal.eventType": "活動類別",
+  "table.proposal.date": "提案日期",
+  "table.proposal.project": "提案名稱",
+  "table.proposal.ownerName": "提案人",
+  "table.proposal.slackId": "Slack ID",
+  "table.proposal.slackChannel": "Slack頻道",
+  "table.proposal.threeBrief": "關鍵字",
+  "table.proposal.educationProject": "教育相關",
+  "table.proposal.tags": "標籤",
+  "table.proposal.manpower": "人力需求",
+  "table.proposal.license": "授權",
+  "table.proposal.video": "影片",
+  "table.proposal.guideline": "資料文件",
+  "table.proposal.otherDocument": "其他文件",
+  "table.proposal.proposalCount": "提案數",
+
   "g0vJson.editor": "g0v 線上 JSON Editor",
   "g0vJson.helpAdd": "協助新增 g0v.json",
   "g0vJson.helpEdit": "協助修改 g0v.json",
 
   "header.findProjects": "找專案",
+  "header.findProposals": "找提案",
   "header.findOrganizations": "找團隊",
   "header.findRepositories": "找GitHub",
   "header.findDevelopers": "找幫手",
