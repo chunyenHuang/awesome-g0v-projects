@@ -25,6 +25,7 @@ jobs:
     - run: npm ci
     - run: cd web && npm ci
     - run: npm run build:web
+    - run: npm run deploy:gh-page
     - run: npm run deploy
       env:
         AWS_ACCESS_KEY_ID: ${{secrets.aws_access_key_id}}
