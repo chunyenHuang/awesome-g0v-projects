@@ -9,6 +9,7 @@
     "build:web": "cd web && npm run build && cd ..",
     "deploy": "node_modules/.bin/serverless deploy",
     "deploy:local": "node_modules/.bin/serverless deploy --profile goldax",
+    "deploy:gh-page": "gh-pages -d build",
     "invoke:local": "aws lambda invoke --function-name awesome-g0v-projects-dev-process --profile goldax --log-type Tail tests/invoke-result.json",
     "test": "node_modules/.bin/jest tests"
   },
@@ -21,13 +22,14 @@
   "bugs": {
     "url": "https://github.com/chunyenHuang/awesome-g0v-projects/issues"
   },
-  "homepage": "https://github.com/chunyenHuang/awesome-g0v-projects#readme",
+  "homepage": "https://chunyenHuang.github.io/awesome-g0v-projects",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "gh-pages": "^2.2.0",
     "jest": "^25.4.0",
     "jest-expect-message": "^1.0.2",
     "serverless": "^1.68.0",
