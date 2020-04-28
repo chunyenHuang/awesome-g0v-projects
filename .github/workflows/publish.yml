@@ -25,7 +25,11 @@ jobs:
     - run: npm ci
     - run: cd web && npm ci
     - run: npm run build:web
-    - run: npm run deploy:gh-page
+    - name: Deploy GitHub Page
+      uses: peaceiris/actions-gh-pages@v3.5.7
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./web/build
     - run: npm run deploy
       env:
         AWS_ACCESS_KEY_ID: ${{secrets.aws_access_key_id}}
