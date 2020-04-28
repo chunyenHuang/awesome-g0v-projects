@@ -16,9 +16,10 @@
 
 ## 我能幫上什麼 | How can I help? 
 
-### 加入 g0v slack | Join g0v slack
+### 加入零時政府 | Join g0v
 
-- [點我加入](https://join.g0v.tw/)
+- [點我加入 GitHub Member](https://g0v.hackmd.io/I4_oYRIvT9S0RKufKKKKvg#%E7%94%B3%E8%AB%8B%E6%88%90%E7%82%BA-member-%E6%A9%9F%E5%88%B6)
+- [點我加入 Slack](https://join.g0v.tw/)
 
 ### 新增追蹤團隊或個人 | Add new organizations or users 
 
