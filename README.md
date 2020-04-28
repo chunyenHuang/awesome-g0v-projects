@@ -7,6 +7,10 @@
 
 ## 我能幫上什麼 | How can I help? 
 
+### 加入 g0v slack | Join g0v slack
+
+- [點我加入](https://join.g0v.tw/)
+
 ### 新增追蹤團隊或個人 | Add new organizations or users 
 
 - [Example 範例](https://github.com/chunyenHuang/awesome-g0v-projects/pull/3)
