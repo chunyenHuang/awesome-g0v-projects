@@ -9,7 +9,7 @@
     "build:web": "cd web && npm run build && cd ..",
     "deploy": "node_modules/.bin/serverless deploy",
     "deploy:local": "node_modules/.bin/serverless deploy --profile goldax",
-    "deploy:gh-page": "gh-pages -d build",
+    "deploy:gh-page": "gh-pages -d web/build",
     "invoke:local": "aws lambda invoke --function-name awesome-g0v-projects-dev-process --profile goldax --log-type Tail tests/invoke-result.json",
     "test": "node_modules/.bin/jest tests"
   },
