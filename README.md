@@ -1,6 +1,6 @@
 # awesome-g0v-projects
 
-- [Website](http://awesome-g0v-projects-dev-website.s3-website-us-east-1.amazonaws.com/)
+- [Website](https://chunyenhuang.github.io/awesome-g0v-projects)
 - [data.json](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json)
 
 ## How to add a new project?
