@@ -15,13 +15,6 @@
 
 ![Demo GIF](docs/add-edit-g0vJson.gif)
 
-## Workflow
-
-- Create Github PR to update the source file  [organization.csv](data/organizations.csv)
-- Every 12 hours
-  - AWS Lambda fetches github info (last update date, issues, contributors, details...)
-  - Update [data.json](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json) in S3 bucket
-
 ## 資料參考來源 | Reference
 
 - [g0v Database 資料庫說明](https://g0v.hackmd.io/eC2vgApVTu2AT7UmHeLDEg?view)
@@ -37,3 +30,36 @@
 - [機器大使 repo](https://github.com/g0v/ambassador)
 - [awesome-g0v](https://github.com/g0v/awesome-g0v)
 - [g0v.json  editor](https://github.com/g0v/editor)
+
+## Workflow
+
+- Create Github PR to update the source file  [organization.csv](data/organizations.csv)
+- Every 12 hours
+  - AWS Lambda fetches github info (last update date, issues, contributors, details...)
+  - Update [data.json](https://awesome-g0v-projects-dev-data.s3.amazonaws.com/data.json) in S3 bucket
+  
+## Developement
+
+### Frontend
+
+```bash
+cd web
+npm i
+npm start
+```
+
+### Backend
+
+```bash
+npm i
+```
+
+## Deployment
+
+### Frontend
+
+- gp-pages
+
+### Backend
+
+- serverless (AWS)
