@@ -2,8 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
+  Switch,
 } from 'react-router-dom';
 
 import './i18n';
@@ -29,15 +30,17 @@ function App() {
 
   return (
     <div className={classes.main}>
-      <Router basename={`${process.env.PUBLIC_URL}`}>
+      <Router basename={'/'}>
         <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
           <Header />
           <div className={classes.container}>
-            {routes.map((route, index) => (
-              <Route path={route.path} exact key={index}>
-                <route.component />
-              </Route>
-            ))}
+            <Switch>
+              {routes.map((route, index) => (
+                <Route path={route.path} exact key={index}>
+                  <route.component />
+                </Route>
+              ))}
+            </Switch>
           </div>
         </React.Suspense>
       </Router>

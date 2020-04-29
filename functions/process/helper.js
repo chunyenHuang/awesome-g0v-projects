@@ -9,14 +9,17 @@ const BATCH_PROCESS_REPOS_SIZE = 300;
 const EXCLUDE_FORK_REPO = true;
 
 let octokit;
+let logs;
 
 module.exports.parse = async (jsonObj, githubApiKey, reservedRate = RESERVED_RATE) => {
   octokit = new Octokit({
     auth: githubApiKey,
   });
 
+  logs = [];
+
   const { data: { rate: { limit, remaining, reset } } } = await octokit.rateLimit.get();
-  console.log(`Github API Rate`, { limit, remaining, reset });
+  logs.push(`Github API Rate`, { limit, remaining, reset });
 
   // Prevent throttling, only execute this when there is sufficient rate for requests.
   if (remaining < reservedRate) {
@@ -29,9 +32,15 @@ module.exports.parse = async (jsonObj, githubApiKey, reservedRate = RESERVED_RAT
 
   const { data: { rate: { remaining: currentRemaining } } } = await octokit.rateLimit.get();
 
-  console.log(`${remaining - currentRemaining} - GitHub api calls used in this process.`);
+  const issues = await getIssues(jsonObj);
 
-  return result.filter((x) => x);
+  logs.push(`${remaining - currentRemaining} - GitHub api calls used in this process.`);
+
+  return {
+    data: result.filter((x) => x),
+    issues,
+    logs,
+  };
 };
 
 async function getG0vJson({ full_name, default_branch }) {
@@ -43,9 +52,14 @@ async function getG0vJson({ full_name, default_branch }) {
   }
 
   const output = await res.text();
-  const customLog = `Invalid Json format. Make a PR for this file:` +
-    `${url.replace('https://raw.githubusercontent.com', 'https://github.com').replace(`/${full_name}/`, `/${full_name}/blob/`)}`;
-  const data = fixJSONString(output, customLog);
+  const { data, error } = fixJSONString(output);
+
+  if (error) {
+    const customLog = `Invalid Json format. Make a PR for this file:` +
+      `${url.replace('https://raw.githubusercontent.com', 'https://github.com').replace(`/${full_name}/`, `/${full_name}/blob/`)}`;
+
+    logs.push(customLog);
+  }
 
   return {
     url: data ? url : null,
@@ -63,7 +77,7 @@ async function getContributors(octokit, owner, repo) {
   const [error, results] = await to(octokit.paginate(octokit.repos.listContributors, params));
 
   if (error) {
-    console.log(`Failed to get contributors for ${owner}/${repo}`);
+    logs.push(`Failed to get contributors for ${owner}/${repo}`);
     return [];
   }
 
@@ -203,4 +217,29 @@ async function processGithubOrgOrUser({ type, name, githubId, githubRepos }) {
     githubInfo,
     repos: updatedRepos,
   };
+}
+
+async function getIssues(jsonObj) {
+  const targets = [];
+  jsonObj.forEach((item) => {
+    const repos = item.githubRepos.split(',').filter((x) => x);
+    if (repos.length > 0) {
+      repos.forEach((repo) => {
+        targets.push(`repo:${item.githubId}/${repo}`);
+      });
+    } else {
+      targets.push(`${item.type}:${item.githubId}`);
+    }
+  });
+
+  const query = {
+    q: `type:issues+state:open+${targets.join('+')}`,
+    sort: 'created',
+    order: 'desc',
+    per_page: 100,
+  };
+
+  const { data } = await octokit.search.issuesAndPullRequests(query);
+  data.query = query;
+  return data;
 }

@@ -15,7 +15,19 @@ const {
   CSV_URL_ORGS,
 } = process.env;
 
-exports.handler = async () => {
+const uploadJsonData = async (filename, data) => {
+  const params = {
+    Bucket: S3_BUCKET_DATA,
+    Key: filename,
+    Body: JSON.stringify(data),
+    ContentType: 'application/json',
+    ACL: 'public-read',
+    CacheControl: 'max-age=3600',
+  };
+  await s3.putObject(params).promise();
+};
+
+const getSecret = async () => {
   const data = await client.getSecretValue({ SecretId: SECRET_NAME }).promise();
   let secret;
   if ('SecretString' in data) {
@@ -24,41 +36,32 @@ exports.handler = async () => {
     const buff = new Buffer(data.SecretBinary, 'base64');
     secret = buff.toString('ascii');
   }
-  const { GITHUB_API_KEY: githubApiKey } = JSON.parse(secret);
+  return JSON.parse(secret);
+};
+
+exports.handler = async () => {
+  const { GITHUB_API_KEY: githubApiKey } = await getSecret();
 
   const jsonObj = await csv().fromStream(request.get(CSV_URL_ORGS));
-  const result = await parse(jsonObj, githubApiKey);
+  const { data, issues, logs } = await parse(jsonObj, githubApiKey);
 
   const report = {
     updatedAt: moment().toISOString(),
     source: CSV_URL_ORGS,
-    data: result,
+    data,
   };
-
-  const params = {
-    Bucket: S3_BUCKET_DATA,
-    Key: 'data.json',
-    Body: JSON.stringify(report),
-    ContentType: 'application/json',
-    ACL: 'public-read',
-    CacheControl: 'max-age=3600',
-  };
-  await s3.putObject(params).promise();
 
   // handle hackmd
   const hackmdOverviewUrl = 'https://g0v.hackmd.io/api/overview'; // ?v=
-  // const hackmdHistoryurl = 'https://g0v.hackmd.io/api/_/history'; // ?v=1587947073774&limit=100
   const res = await fetch(hackmdOverviewUrl);
   const hackmdOverviewData = await res.json();
 
-  await s3.putObject({
-    Bucket: S3_BUCKET_DATA,
-    Key: 'hackmd.json',
-    Body: JSON.stringify(hackmdOverviewData),
-    ContentType: 'application/json',
-    ACL: 'public-read',
-    CacheControl: 'max-age=3600',
-  }).promise();
+  await Promise.all([
+    uploadJsonData('data.json', report),
+    uploadJsonData('issues.json', issues),
+    uploadJsonData('logs.json', logs),
+    uploadJsonData('hackmd.json', hackmdOverviewData),
+  ]);
 
   return 'ok';
 };

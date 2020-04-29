@@ -29,6 +29,7 @@ function ProjectTable({ data: inData }) {
   });
 
   const title = t('table.project.title');
+  const description = 'Data Source: GitHub & g0v.json';
 
   const columns = [{
     name: 'g0vJson.status',
@@ -304,6 +305,7 @@ function ProjectTable({ data: inData }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}
       columns={columns}
       options={options}

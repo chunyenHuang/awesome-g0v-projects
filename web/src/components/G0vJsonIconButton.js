@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Iframe from 'react-iframe';
 import { useTranslation } from 'react-i18next';
 
-import TextLink from './TextLink';
+import GithubLinkButton from './GithubLinkButton';
 
 const useStyles = makeStyles((theme) => ({
   iframe: {
@@ -40,6 +40,8 @@ function G0vJsonIconButton({ url, repo, className }) {
 
   const params = [
     `repo=${repo}`,
+    'hideHeader=1',
+    'autoLogin=1',
   ];
 
   const iframeUrl = `https://g0v.github.io/editor?${params.join('&')}`;
@@ -62,7 +64,7 @@ function G0vJsonIconButton({ url, repo, className }) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="customized-dialog-title">
-          {t('g0vJson.editor')} (<TextLink url="https://github.com/g0v/editor" title="GitHub" variant="h6"/>)
+          {t('g0vJson.editor')} <GithubLinkButton url="https://github.com/g0v/editor"/>
           <IconButton
             aria-label="close"
             className={classes.closeButton}

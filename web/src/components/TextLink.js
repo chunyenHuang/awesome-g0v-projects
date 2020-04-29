@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '@material-ui/core/Link';
 
-function TextLink({ url, title = 'link', ...args }) {
+function TextLink({ url, title = 'link', variant = 'body2', ...args }) {
   return (
     <Link
-      variant="body2"
+      variant={variant}
       color="primary"
       { ...args }
       target="_blank"
@@ -19,6 +19,7 @@ function TextLink({ url, title = 'link', ...args }) {
 TextLink.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 export default TextLink;

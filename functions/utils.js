@@ -28,16 +28,17 @@ function groupArrayByCount(inArray = [], inCount) {
   return result;
 }
 
-function fixJSONString(input = '', customLog ) {
+function fixJSONString(input = '') {
   if (typeof input !== 'string') {
     return input;
   }
 
   let data;
+  let error;
   try {
     data = JSON.parse(input);
   } catch (e) {
-    customLog && console.log(customLog);
+    error = e;
 
     // try common error fix
     try {
@@ -56,5 +57,5 @@ function fixJSONString(input = '', customLog ) {
     data = {};
   }
 
-  return data;
+  return { data, error };
 }

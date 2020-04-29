@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import MUIDataTable from 'mui-datatables';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
+import TableFooter from './TableFooter';
+
 const cellStyle = {
   maxWidth: 150,
   minWidth: 32,
@@ -51,7 +53,7 @@ const theme = createMuiTheme({
   },
 });
 
-function Table({ title, data, columns, options, nested = false }) {
+function Table({ title, description, data, columns, options, nested = false }) {
   const onItemClick = (rowData, rowMeta) => {
     const item = data[rowMeta.dataIndex];
     console.log(item);
@@ -70,6 +72,18 @@ function Table({ title, data, columns, options, nested = false }) {
     isRowSelectable: () => false,
     onRowClick: onItemClick,
     print: true,
+    customFooter: (count, page, rowsPerPage, changeRowsPerPage, changePage, textLabels) => {
+      return (
+        <TableFooter
+          description={description}
+          count={count}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          changeRowsPerPage={changeRowsPerPage}
+          changePage={changePage}
+          textLabels={textLabels} />
+      );
+    },
   }, options);
 
   return (
@@ -87,6 +101,7 @@ function Table({ title, data, columns, options, nested = false }) {
 
 Table.propTypes = {
   title: PropTypes.string,
+  description: PropTypes.string,
   data: PropTypes.array,
   columns: PropTypes.array,
   options: PropTypes.object,
