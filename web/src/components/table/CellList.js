@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 function CellList({ value = [], targetKey }) {
   const classes = useStyles();
   const showLast = 3;

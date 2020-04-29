@@ -17,6 +17,7 @@ function OrganizationTable({ data: inData }) {
   const [data, setData] = useState([]);
 
   const title = t('table.organization.title');
+  const description = 'Data Source: GitHub';
 
   const columns = [{
     name: 'githubInfo.type',
@@ -98,6 +99,7 @@ function OrganizationTable({ data: inData }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}
       columns={columns}
       options={options}

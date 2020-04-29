@@ -13,6 +13,7 @@ function ProposalEventTable({ data: inData, nested = false }) {
   const [data, setData] = useState([]);
 
   const title = t('table.proposal.listTitle');
+  const description = 'Data Source: https://docs.google.com/spreadsheets/d/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/edit#gid=1563040282';
 
   const columns = [{
     name: 'term',
@@ -77,6 +78,7 @@ function ProposalEventTable({ data: inData, nested = false }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}s
       columns={columns}
       options={options}

@@ -16,6 +16,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
   const [data, setData] = useState([]);
 
   const title = t('table.developer.title');
+  const description = 'Data Source: GitHub';
 
   const columns = [{
     name: 'details.type',
@@ -109,6 +110,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}
       columns={columns}
       options={options}

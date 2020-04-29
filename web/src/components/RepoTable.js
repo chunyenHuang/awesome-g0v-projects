@@ -23,6 +23,7 @@ function RepoTable({ data: inData, nested = false }) {
   const [languages, setLanguages] = useState([]);
 
   const title = t('table.repo.title');
+  const description = 'Data Source: GitHub';
 
   const columns = [{
     name: 'archived',
@@ -191,6 +192,7 @@ function RepoTable({ data: inData, nested = false }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}
       columns={columns}
       options={options}

@@ -15,6 +15,7 @@ function HackmdTagTable() {
   const [data, setData] = useState([]);
 
   const title = t('table.hackmdTag.listTitle');
+  const description = 'Data Source: https://g0v.hackmd.io';
 
   const columns = [{
     name: 'tag',
@@ -87,6 +88,7 @@ function HackmdTagTable() {
   return (
     <Table
       title={title}
+      description={description}
       data={data}
       columns={columns}
       options={options}

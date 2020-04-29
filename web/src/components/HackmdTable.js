@@ -13,6 +13,7 @@ function HackmdTable({ data, nested = false }) {
   const [tags, setTags] = useState([]);
 
   const title = t('table.hackmd.listTitle');
+  const description = 'Data Source: https://g0v.hackmd.io';
 
   const columns = [{
     name: 'title',
@@ -105,6 +106,7 @@ function HackmdTable({ data, nested = false }) {
   return (
     <Table
       title={title}
+      description={description}
       data={data}s
       columns={columns}
       options={options}

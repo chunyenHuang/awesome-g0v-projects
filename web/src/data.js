@@ -6,6 +6,10 @@ export const getGithubDataUrl = () => {
   return `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/data.json`;
 };
 
+export const getGithubIssuesUrl = () => {
+  return `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/issues.json`;
+};
+
 export const getHackmdData = async () => {
   const key = 'hackmd';
   if (cache[key]) return cache[key];
@@ -164,4 +168,12 @@ export const getProposalEvents = async () => {
   });
 
   return Object.keys(events).reverse().map((key) => events[key]);
+};
+
+export const getGitHubIssues = async () => {
+  const url = getGithubIssuesUrl();
+  const res = await fetch(url);
+  const { items } = await res.json();
+
+  return items;
 };
