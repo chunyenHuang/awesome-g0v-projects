@@ -124,6 +124,7 @@ async function getContributors(repo) {
 
   if (error) {
     logs.push(`Failed to get contributors for ${repo.full_name}`);
+    logs.push(JSON.stringify(error));
     return [];
   }
 
@@ -144,6 +145,7 @@ async function getLanguages(repo) {
 
   if (error) {
     logs.push(`Failed to get languages for ${repo.full_name}`);
+    logs.push(JSON.stringify(error));
     return {
       languages: {},
       languagePrimary: 'N/A',
