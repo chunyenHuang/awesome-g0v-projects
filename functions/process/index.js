@@ -43,15 +43,19 @@ const getSecret = async () => {
 exports.handler = async () => {
   const { GITHUB_API_KEY: githubApiKey } = await getSecret();
 
+  const projectsCsvUrl = `${CSV_URL}/projects.csv`;
+  const tagsCsvUrl = `${CSV_URL}/tags.csv`;
+  const ownersCsvUrl = `${CSV_URL}/owners.csv`;
+
   const [
     projects,
     tags,
     owners,
     { url: g0vDataUrl, data: g0vDbData },
   ] = await Promise.all([
-    csv().fromStream(request.get(`${CSV_URL}/projects.json`)),
-    csv().fromStream(request.get(`${CSV_URL}/tags.json`)),
-    csv().fromStream(request.get(`${CSV_URL}/owners.json`)),
+    csv().fromStream(request.get(projectsCsvUrl)),
+    csv().fromStream(request.get(tagsCsvUrl)),
+    csv().fromStream(request.get(ownersCsvUrl)),
     g0vDb(),
   ]);
   const { repos, issues, logs } = await getReposAndIssues(projects, githubApiKey);
@@ -66,17 +70,17 @@ exports.handler = async () => {
   await Promise.all([
     uploadJsonData('projects.json', {
       updatedAt,
-      source: `${CSV_URL}/projects.json`,
+      source: projectsCsvUrl,
       data: projects,
     }),
     uploadJsonData('tags.json', {
       updatedAt,
-      source: `${CSV_URL}/tags.json`,
+      source: tagsCsvUrl,
       data: tags,
     }),
     uploadJsonData('owners.json', {
       updatedAt,
-      source: `${CSV_URL}/owners.json`,
+      source: ownersCsvUrl,
       data: owners,
     }),
     uploadJsonData('repos.json', {
@@ -91,7 +95,7 @@ exports.handler = async () => {
     }),
     uploadJsonData('logs.json', {
       updatedAt,
-      source: '',
+      source: 'Server',
       data: logs,
     }),
     uploadJsonData('g0vDbData.json', {
