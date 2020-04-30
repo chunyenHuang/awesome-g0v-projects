@@ -46,11 +46,20 @@
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "react-markdown": "^4.3.1",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "similarity": "^1.2.1"
   },
   "jest": {
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "testPathIgnorePatterns": [
+      "node_modules"
+    ],
     "setupFilesAfterEnv": [
       "jest-expect-message"
-    ]
+    ],
+    "verbose": true
   }
 }
