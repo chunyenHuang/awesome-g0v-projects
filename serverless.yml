@@ -16,6 +16,7 @@ provider:
     S3_BUCKET_WEB: ${self:provider.product}-${self:provider.stage}-website
 
     CSV_URL_ORGS: https://raw.githubusercontent.com/chunyenHuang/awesome-g0v-projects/master/data/organizations.csv
+    CSV_URL: https://raw.githubusercontent.com/chunyenHuang/awesome-g0v-projects/master/data
 
 package:
   individually: true
@@ -32,7 +33,7 @@ functions:
     timeout: 300
     events:
       - schedule:
-          rate: rate(4 hours)
+          rate: rate(6 hours)
     iamRoleStatementsName: ${self:provider.product}-process
     iamRoleStatements:
       - Effect: Allow

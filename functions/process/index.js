@@ -4,7 +4,8 @@ const request = require('request');
 const moment = require('moment');
 const fetch = require('node-fetch');
 
-const { parse } = require('./helper');
+const { getReposAndIssues } = require('./helper');
+const g0vDb = require('./g0vDb');
 
 const s3 = new AWS.S3();
 const client = new AWS.SecretsManager({ region: 'us-east-1' });
@@ -12,7 +13,7 @@ const client = new AWS.SecretsManager({ region: 'us-east-1' });
 const {
   S3_BUCKET_DATA,
   SECRET_NAME,
-  CSV_URL_ORGS,
+  CSV_URL,
 } = process.env;
 
 const uploadJsonData = async (filename, data) => {
@@ -42,25 +43,67 @@ const getSecret = async () => {
 exports.handler = async () => {
   const { GITHUB_API_KEY: githubApiKey } = await getSecret();
 
-  const jsonObj = await csv().fromStream(request.get(CSV_URL_ORGS));
-  const { data, issues, logs } = await parse(jsonObj, githubApiKey);
-
-  const report = {
-    updatedAt: moment().toISOString(),
-    source: CSV_URL_ORGS,
-    data,
-  };
+  const [
+    projects,
+    tags,
+    owners,
+    { url: g0vDataUrl, data: g0vDbData },
+  ] = await Promise.all([
+    csv().fromStream(request.get(`${CSV_URL}/projects.json`)),
+    csv().fromStream(request.get(`${CSV_URL}/tags.json`)),
+    csv().fromStream(request.get(`${CSV_URL}/owners.json`)),
+    g0vDb(),
+  ]);
+  const { repos, issues, logs } = await getReposAndIssues(projects, githubApiKey);
 
   // handle hackmd
   const hackmdOverviewUrl = 'https://g0v.hackmd.io/api/overview'; // ?v=
   const res = await fetch(hackmdOverviewUrl);
   const hackmdOverviewData = await res.json();
 
+  const updatedAt = moment().toISOString();
+
   await Promise.all([
-    uploadJsonData('data.json', report),
-    uploadJsonData('issues.json', issues),
-    uploadJsonData('logs.json', logs),
-    uploadJsonData('hackmd.json', hackmdOverviewData),
+    uploadJsonData('projects.json', {
+      updatedAt,
+      source: `${CSV_URL}/projects.json`,
+      data: projects,
+    }),
+    uploadJsonData('tags.json', {
+      updatedAt,
+      source: `${CSV_URL}/tags.json`,
+      data: tags,
+    }),
+    uploadJsonData('owners.json', {
+      updatedAt,
+      source: `${CSV_URL}/owners.json`,
+      data: owners,
+    }),
+    uploadJsonData('repos.json', {
+      updatedAt,
+      source: `GitHub`,
+      data: repos,
+    }),
+    uploadJsonData('issues.json', {
+      updatedAt,
+      source: `GitHub`,
+      data: issues,
+    }),
+    uploadJsonData('logs.json', {
+      updatedAt,
+      source: '',
+      data: logs,
+    }),
+    uploadJsonData('g0vDbData.json', {
+      updatedAt,
+      source: g0vDataUrl.split('?')[0],
+      data: g0vDbData,
+    }),
+    uploadJsonData('hackmd.json', {
+      updatedAt,
+      source: hackmdOverviewUrl,
+      data: hackmdOverviewData,
+    }),
   ]);
 
   return 'ok';

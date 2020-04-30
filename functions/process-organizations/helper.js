@@ -4,13 +4,14 @@ const to = require('await-to-js').default;
 
 const { groupArrayByCount, fixJSONString } = require('../utils');
 
-const RESERVED_RATE = 1000;
-const BATCH_PROCESS_REPOS_SIZE = 100;
+const RESERVED_RATE = 2000;
+const BATCH_PROCESS_REPOS_SIZE = 300;
+const EXCLUDE_FORK_REPO = true;
 
 let octokit;
 let logs;
 
-module.exports.getReposAndIssues = async (projects, githubApiKey, reservedRate = RESERVED_RATE) => {
+module.exports.parse = async (jsonObj, githubApiKey, reservedRate = RESERVED_RATE) => {
   octokit = new Octokit({
     auth: githubApiKey,
   });
@@ -18,7 +19,6 @@ module.exports.getReposAndIssues = async (projects, githubApiKey, reservedRate =
   logs = [];
 
   const { data: { rate: { limit, remaining, reset } } } = await octokit.rateLimit.get();
-  console.log({ limit, remaining, reset });
   logs.push(`Github API Rate`, { limit, remaining, reset });
 
   // Prevent throttling, only execute this when there is sufficient rate for requests.
@@ -26,58 +26,19 @@ module.exports.getReposAndIssues = async (projects, githubApiKey, reservedRate =
     throw new Error(`Will reset in ${((reset * 1000 - Date.now())/60000).toFixed(0)} minutes`);
   }
 
-  // get all the g0v repo first
-  const g0vRepos = await getAllReposForOrg('g0v');
-  logs.push(`g0vRepos: ${g0vRepos.length}`);
+  const promises = jsonObj.map(processGithubOrgOrUser);
 
-  const otherRepoNames = [];
-  projects.forEach(({ github_repos }) => {
-    const candidates = github_repos.split(',').filter((x) => x);
-    candidates
-      .filter((x) => !x.startsWith('g0v/')) // fetch the rest repos
-      .forEach((item) => {
-        if (!otherRepoNames.includes(item)) {
-          otherRepoNames.push(item);
-        }
-      });
-  });
-
-  logs.push(`otherRepoNames: ${otherRepoNames.length}`);
-
-  let allIssues = [];
-
-  const g0vGroups = groupArrayByCount(g0vRepos.map(({ full_name }) => full_name), BATCH_PROCESS_REPOS_SIZE);
-  await g0vGroups.reduce(async (chain, groupRepoNames) => {
-    await chain;
-    const [issues] = await Promise.all([
-      getIssues(groupRepoNames),
-    ]);
-    allIssues = [...allIssues, ...issues];
-  }, Promise.resolve());
-
-  let otherRepos = [];
-  const otherGroups = groupArrayByCount(otherRepoNames, BATCH_PROCESS_REPOS_SIZE);
-  await otherGroups.reduce(async (chain, groupRepoNames) => {
-    await chain;
-    const [issues, repos] = await Promise.all([
-      getIssues(groupRepoNames),
-      getAllRepos(groupRepoNames),
-    ]);
-    allIssues = [...allIssues, ...issues];
-    otherRepos = [...otherRepos, ...repos];
-  }, Promise.resolve());
-
-  const updatedRepos = await Promise.all(
-    [...g0vRepos, ...otherRepos].map(processRepo),
-  );
+  const result = await Promise.all(promises);
 
   const { data: { rate: { remaining: currentRemaining } } } = await octokit.rateLimit.get();
+
+  const issues = await getIssues(jsonObj);
 
   logs.push(`${remaining - currentRemaining} - GitHub api calls used in this process.`);
 
   return {
-    repos: updatedRepos.filter((x) => x),
-    issues: allIssues,
+    data: result.filter((x) => x),
+    issues,
     logs,
   };
 };
@@ -106,8 +67,7 @@ async function getG0vJson({ full_name, default_branch }) {
   };
 }
 
-async function getContributors(repo) {
-  const owner = repo.full_name.split('/')[0];
+async function getContributors(octokit, owner, repo) {
   const params = {
     owner,
     repo: repo.name,
@@ -117,7 +77,7 @@ async function getContributors(repo) {
   const [error, results] = await to(octokit.paginate(octokit.repos.listContributors, params));
 
   if (error) {
-    logs.push(`Failed to get contributors for ${repo.full_name}`);
+    logs.push(`Failed to get contributors for ${owner}/${repo}`);
     return [];
   }
 
@@ -126,20 +86,8 @@ async function getContributors(repo) {
   });
 }
 
-async function getLanguages(repo) {
-  const owner = repo.full_name.split('/')[0];
-  const [error, res] = await to(octokit.repos.listLanguages({ owner, repo: repo.name }));
-
-  if (error) {
-    logs.push(`Failed to get languages for ${repo.full_name}`);
-    return {
-      languages: {},
-      languagePrimary: 'N/A',
-      languageSecondary: 'N/A',
-    };
-  }
-
-  const languages = res.data;
+async function getLanguages(octokit, owner, repo) {
+  const { data: languages } = await octokit.repos.listLanguages({ owner, repo: repo.name });
 
   return {
     languages,
@@ -148,14 +96,59 @@ async function getLanguages(repo) {
   };
 }
 
-async function processRepo(repo) {
+async function getRepos(owner, type, targetRepos = []) {
+  // Only query for registered repos.
+  let repos;
+  if (targetRepos.length === 0) {
+    repos = (type === 'org') ?
+      await octokit.paginate(octokit.repos.listForOrg, { org: owner }) :
+      await octokit.paginate(octokit.repos.listForUser, { username: owner });
+  } else {
+    repos = await Promise.all(
+      targetRepos.map(async (repo) => {
+        const params = {
+          owner,
+          repo,
+        };
+
+        const { data } = await octokit.repos.get(params);
+        return data;
+      }),
+    );
+  }
+
+  // only keep the original project.
+  if (EXCLUDE_FORK_REPO) {
+    repos = repos.filter((x) => !x.fork);
+  }
+
+  return repos;
+}
+
+async function getGithubInfo(type, owner) {
+  const { data: githubInfo } = (type === 'org') ? await octokit.orgs.get({ org: owner }):
+    await octokit.users.getByUsername({ username: owner });
+
+  return {
+    login: githubInfo.login,
+    description: githubInfo.description,
+    html_url: githubInfo.html_url,
+    avatar_url: githubInfo.avatar_url,
+    public_repos: githubInfo.public_repos,
+    type: githubInfo.type,
+    created_at: githubInfo.created_at,
+    updated_at: githubInfo.updated_at,
+  };
+}
+
+async function processRepo(owner, repo) {
   const [
     contributors,
     { languages, languagePrimary, languageSecondary },
     { url: g0vJsonUrl, data: g0vJson },
   ] = await Promise.all([
-    getContributors(repo),
-    getLanguages(repo),
+    getContributors(octokit, owner, repo),
+    getLanguages(octokit, owner, repo),
     getG0vJson(repo),
   ]);
 
@@ -199,30 +192,54 @@ async function processRepo(repo) {
   };
 }
 
-async function getIssues(repoNames) {
+async function processGithubOrgOrUser({ type, name, githubId, githubRepos }) {
+  const owner = githubId.replace('https://github.com/', '');
+  const targetRepos = githubRepos.split(',').filter((x) => x);
+
+  const [githubInfo, repos] = await Promise.all([
+    getGithubInfo(type, owner),
+    getRepos(owner, type, targetRepos),
+  ]);
+
+  const updatedRepos = [];
+  const groups = groupArrayByCount(repos, BATCH_PROCESS_REPOS_SIZE);
+  await groups.reduce(async (chain, group) => {
+    await chain;
+    const fetchRepoInfoPromises = group.map(async (repo) => {
+      updatedRepos.push(await processRepo(owner, repo));
+    });
+
+    await Promise.all(fetchRepoInfoPromises);
+  }, Promise.resolve());
+
+  return {
+    name,
+    githubInfo,
+    repos: updatedRepos,
+  };
+}
+
+async function getIssues(jsonObj) {
+  const targets = [];
+  jsonObj.forEach((item) => {
+    const repos = item.githubRepos.split(',').filter((x) => x);
+    if (repos.length > 0) {
+      repos.forEach((repo) => {
+        targets.push(`repo:${item.githubId}/${repo}`);
+      });
+    } else {
+      targets.push(`${item.type}:${item.githubId}`);
+    }
+  });
+
   const query = {
-    q: `type:issues+state:open+${repoNames.map((x)=>`repo:${x}`).join('+')}`,
+    q: `type:issues+state:open+${targets.join('+')}`,
     sort: 'created',
     order: 'desc',
     per_page: 100,
   };
 
-  const { data: { items } } = await octokit.search.issuesAndPullRequests(query);
-  return items;
-}
-
-async function getAllRepos(repoNames) {
-  const query = {
-    q: `fork:false+${repoNames.map((x)=>`repo:${x}`).join('+')}`,
-    sort: 'updated',
-    order: 'desc',
-    per_page: 100,
-  };
-
-  const data = await octokit.paginate(octokit.search.repos, query);
+  const { data } = await octokit.search.issuesAndPullRequests(query);
+  data.query = query;
   return data;
-}
-
-async function getAllReposForOrg(org) {
-  return octokit.paginate(octokit.repos.listForOrg, { org, per_page: 100 });
 }

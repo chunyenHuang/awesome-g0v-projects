@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const csv = require('csvtojson');
 
-const { parse } = require('../functions/process/helper');
+const { getReposAndIssues } = require('../functions/process/helper');
 
 const { GITHUB_API_KEY } = process.env;
 
@@ -12,23 +12,31 @@ describe('Process Helper', () => {
   it('parse: test data', async () => {
     if (!GITHUB_API_KEY) return console.log('Bypass without GITHUB_API_KEY');
 
-    const jsonObj = [{
-      type: 'user',
-      name: 'John Huang',
-      githubId: 'chunyenHuang',
-      githubRepos: 'awesome-g0v-projects',
+    const projects = [{
+      github_repos: 'chunyenHuang/awesome-g0v-projects',
     }];
-    const result = await parse(jsonObj, GITHUB_API_KEY, 100);
+    const result = await getReposAndIssues(projects, GITHUB_API_KEY, 100);
 
     fs.writeFileSync(path.join(__dirname, 'result-test-data.json'), JSON.stringify(result, null, 2));
+    const { repos, issues, logs } = result;
+    expect(Array.isArray(repos)).toEqual(true);
+    expect(Array.isArray(issues)).toEqual(true);
+    expect(Array.isArray(logs)).toEqual(true);
   });
 
-  it('parse: organization.csv', async () => {
+  it('parse: projects.csv', async () => {
     if (!GITHUB_API_KEY) return console.log('Bypass without GITHUB_API_KEY');
 
-    const jsonObj = await csv().fromFile(path.join(__dirname, '../data/organizations.csv'));
-    const result = await parse(jsonObj, GITHUB_API_KEY);
+    const projects = await csv().fromFile(path.join(__dirname, '../data/projects.csv'));
+    const result = await getReposAndIssues(projects, GITHUB_API_KEY);
 
     fs.writeFileSync(path.join(__dirname, 'result.json'), JSON.stringify(result, null, 2));
+
+    const { repos, issues, logs } = result;
+    console.log(repos.length);
+    console.log(issues.length);
+    expect(Array.isArray(repos)).toEqual(true);
+    expect(Array.isArray(issues)).toEqual(true);
+    expect(Array.isArray(logs)).toEqual(true);
   });
 });

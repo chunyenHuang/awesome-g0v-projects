@@ -5,3 +5,8 @@
 .webpack
 
 tests/*.json
+tests/*.csv
+tests/*.txt
+tests/*.md
+
+coverage/*
