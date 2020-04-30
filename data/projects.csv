@@ -557,7 +557,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","福利搜尋",,"24","blue","福利",,"https://hackpad.com/Listening-%E8%81%BD%E9%9A%9C%E5%B0%88%E6%A1%88-86sC4t4wRxv"
 "g0v_db","空污檢測啦啦啦",,"249","miaoski","環境",,"https://g0v.hackpad.com/IoT-DIY-B1xkj9fUqqH"
 "g0v_db","空難事件視覺化",,"197","Kirby","歷史",,"https://g0v.hackpad.com/4o8ADZLQJfx"
-"g0v_db","立委咖電喂",,"326,315"," Fumi","國會,資料庫,政治",,"https://g0v.hackpad.com/--t5nla4R4Dft"
+"g0v_db","立委咖電喂",,"326,315","Fumi","國會,資料庫,政治",,"https://g0v.hackpad.com/--t5nla4R4Dft"
 "g0v_db","立委投票指南、議員投票指南、工會發起指南",,"121","johnny","政治",,"http://goo.gl/C6HIF"
 "g0v_db","立委投票指南－易用性測試",,"234","Yo Yo","選舉",,"https://g0v.hackpad.com/-Usability-test-yxrIYtdhyzF"
 "g0v_db","立志收羅全球知識，機器看得懂的維基百科--Wikidata",,"597","Allen","知識",,"wikidata.org"
@@ -580,7 +580,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","第五權電視牆監看「評」台g8v.tv",,"122","NewCliCker","媒體",,"https://g0v.hackpad.com/g8v.tv-lkpamtKwyr"
 "g0v_db","第零勢力：闌尾阻黨",,"231","台北林先生","國會",,
 "g0v_db","第零次設計松籌備",,"181","子龍","g0v",,"https://g0v.hackpad.com/0qqoIcDMCLJ"
-"g0v_db","算樹計畫 Evaluate the Opportunity of "Planting Trees" in Your Country 🌳🌳🌳",,"626","chewei","待確認",,"(1) g0v slack #gis (2) fb group: https://www.facebook.com/groups/573697330058183/ English Intro 👉 What is the open state of the tree data collection in various cities in the city? What is the relationship between trees and open source projects? This project hopes to figure out the outline of the tree distribution through the tree calculation. If the basic conditions are appropriate, the project will further evaluate the opportunity of "planting trees" and clarify the action of the project."
+"g0v_db","算樹計畫 Evaluate the Opportunity of Planting Trees in Your Country 🌳🌳🌳",,"626","chewei","待確認",,"https://www.facebook.com/groups/573697330058183"
 "g0v_db","維基百科的靠山你也可以用，什麼都收的wikidata",,"579","Allen","待確認",,
 "g0v_db","線上意見整理工具、線上社群參與政策手冊",,"476","sense.tw","待確認",,"https://docs.google.com/presentation/d/1mHMtkId9kWDnVgszQVbYxfx4wCJnLXryJ6eIRMnx_CE/edit#slide=id.g2f95f3a2fb_0_10"
 "g0v_db","總統盃黑客松平方投票法Open Source",,"582","雨蒼","工具",,
@@ -606,7 +606,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","菜價",,"105","muyueh","農業",,"http://muyueh.com/30/veggieprice/ggplot2"
 "g0v_db","萌典",,"68,58","au","語言,文典,資料庫",,"http://hack.g0v.tw/g0v-hackath5n/tDx3D5FZya5"
 "g0v_db","薪資與租屋居住品質關聯調查",,"484","Su-su","居住",,"https://g0v.hackpad.tw/hZwt2iPr78w"
-"g0v_db","蚊子館地圖",,"201,103"," 吳長鋼","土地,生活",,"http://wuchangkang.blogspot.tw/2014/01/app.html"
+"g0v_db","蚊子館地圖",,"201,103","吳長鋼","土地,生活",,"http://wuchangkang.blogspot.tw/2014/01/app.html"
 "g0v_db","蜂警區地圖",,"628","deeper","待確認",,"https://hackmd.io/cAGcqbo6SIeyoDAZqgaKzQ"
 "g0v_db","行動議題包",,"519","Eddie","公民參與",,"https://github.com/agameofprivacy/Movables-iOS"
 "g0v_db","行政院發言還原",,"92","james","政治",,
