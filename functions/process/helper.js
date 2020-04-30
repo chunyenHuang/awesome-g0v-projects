@@ -82,7 +82,11 @@ module.exports.getReposAndIssues = async (projects, githubApiKey, reservedRate =
   };
 };
 
-async function getG0vJson({ full_name, default_branch }) {
+async function getG0vJson({ size, full_name, default_branch }) {
+  if (size === 0) {
+    return { url: null, data: {} };
+  }
+
   const url = `https://raw.githubusercontent.com/${full_name}/${default_branch}/g0v.json`;
 
   const [err, res] = await to(fetch(url));
@@ -107,6 +111,8 @@ async function getG0vJson({ full_name, default_branch }) {
 }
 
 async function getContributors(repo) {
+  if (repo.size === 0) return [];
+
   const owner = repo.full_name.split('/')[0];
   const params = {
     owner,
@@ -127,8 +133,14 @@ async function getContributors(repo) {
 }
 
 async function getLanguages(repo) {
+  if (repo.size === 0 || !repo.language) return [];
+
   const owner = repo.full_name.split('/')[0];
-  const [error, res] = await to(octokit.repos.listLanguages({ owner, repo: repo.name }));
+  const params = {
+    owner,
+    repo: repo.name,
+  };
+  const [error, res] = await to(octokit.repos.listLanguages(params));
 
   if (error) {
     logs.push(`Failed to get languages for ${repo.full_name}`);
@@ -162,6 +174,7 @@ async function processRepo(repo) {
   // only keep necessary data
   return {
     name: repo.name,
+    full_name: repo.full_name,
     owner: {
       login: repo.owner.login,
       type: repo.owner.type,
@@ -169,6 +182,7 @@ async function processRepo(repo) {
       html_url: repo.owner.html_url,
       site_admin: repo.owner.site_admin,
     },
+    size: repo.size,
     html_url: repo.html_url,
     description: repo.description,
     created_at: repo.created_at,
