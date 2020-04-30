@@ -77,7 +77,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender: (value)=><GithubLinkButton url={value} />,
+      customBodyRender: (value) => <GithubLinkButton url={value} />,
     },
   }];
 
@@ -102,7 +102,8 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
       setRepos(inRepos);
     } else {
       (async () => {
-        setRepos(await getRepos());
+        const { data } = await getRepos();
+        setRepos(data);
       })();
     }
   }, [inRepos]);

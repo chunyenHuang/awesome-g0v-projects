@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme) => ({
   nestedContainer: {
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
+  childrenContainer: {
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 function NestedTableContainer({ columns = [], children }) {
@@ -16,7 +19,13 @@ function NestedTableContainer({ columns = [], children }) {
   return (
     <TableRow>
       <TableCell colSpan={columns.length + 1} className={classes.nestedContainer}>
-        {children}
+        {Array.isArray(children) ?
+          children.map((x, index)=>(
+            <div key={index} className={classes.childrenContainer}>
+              {x}
+            </div>
+          )):
+          children}
       </TableCell>
     </TableRow>);
 }

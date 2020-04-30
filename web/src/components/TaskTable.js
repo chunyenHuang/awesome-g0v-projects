@@ -143,7 +143,7 @@ function TaskTable({ data: inData, nested = false }) {
       if (inData) {
         setData(inData);
       } else {
-        const githubIssues = await getGitHubIssues();
+        const { data: githubIssues } = await getGitHubIssues();
 
         setData(githubIssues.map((item) => {
           item.source = 'GitHub';
@@ -151,7 +151,8 @@ function TaskTable({ data: inData, nested = false }) {
         }));
       }
 
-      setRepos(await getRepos());
+      const { data: repos } = await getRepos();
+      setRepos(repos);
     })();
   }, [inData]);
 

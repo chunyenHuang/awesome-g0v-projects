@@ -58,7 +58,7 @@ function ProjectDetails({ project = {} }) {
                         variant="body2"
                         color="textSecondary"
                       >
-                        {t(`table.project.${key}`)}
+                        {t(`table.g0vJsonProject.${key}`)}
                       </Typography>
                     }
                     secondary={

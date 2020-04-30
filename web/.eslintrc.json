@@ -10,7 +10,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/display-name": 0,
-    "require-jsdoc": 0
+    "require-jsdoc": 0,
+    "camelcase": 0
   },
   "settings": {
     "react":  {

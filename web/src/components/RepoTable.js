@@ -14,7 +14,7 @@ import CellList from './table/CellList';
 import VisitButton from './VisitButton';
 import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
-import ProjectDetails from './ProjectDetails';
+import G0vJsonProjectDetails from './G0vJsonProjectDetails';
 import { getRepos } from '../data';
 
 function RepoTable({ data: inData, nested = false }) {
@@ -61,7 +61,7 @@ function RepoTable({ data: inData, nested = false }) {
       sort: false,
     },
   }, {
-    name: 'languagePrimary',
+    name: 'language',
     label: t('table.repo.language'),
     options: {
       filter: false,
@@ -71,6 +71,7 @@ function RepoTable({ data: inData, nested = false }) {
     name: 'languageSecondary',
     label: t('table.repo.language2'),
     options: {
+      display: false,
       filter: false,
       sort: true,
     },
@@ -114,7 +115,7 @@ function RepoTable({ data: inData, nested = false }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => moment(value).format('YYYY/MM/DD'),
+      customBodyRender: (value) => moment(value).format('YYYY/MM/DD HH:MM'),
     },
   }, {
     name: 'license.spdx_id',
@@ -161,7 +162,7 @@ function RepoTable({ data: inData, nested = false }) {
       const item = data[rowMeta.dataIndex];
       return (
         <NestedTableContainer columns={columns}>
-          <ProjectDetails project={item} />
+          <G0vJsonProjectDetails project={item} />
         </NestedTableContainer>
       );
     },
@@ -184,7 +185,8 @@ function RepoTable({ data: inData, nested = false }) {
       setData(inData);
     } else {
       (async () => {
-        setData(await getRepos());
+        const { data } = await getRepos();
+        setData(data);
       })();
     }
   }, [inData]);

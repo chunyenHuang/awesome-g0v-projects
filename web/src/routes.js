@@ -1,10 +1,10 @@
 import ProjectTable from './components/ProjectTable';
-import OrganizationTable from './components/OrganizationTable';
-import RepoTable from './components/RepoTable';
-import DeveloperTable from './components/DeveloperTable';
-import HackmdTagTable from './components/HackmdTagTable';
 import ProposalEventTable from './components/ProposalEventTable';
 import TaskTable from './components/TaskTable';
+import HackmdTagTable from './components/HackmdTagTable';
+import RepoTable from './components/RepoTable';
+// import OrganizationTable from './components/OrganizationTable';
+import DeveloperTable from './components/DeveloperTable';
 
 export default [{
   title: 'header.findProjects',
@@ -26,10 +26,10 @@ export default [{
   title: 'header.findRepositories',
   path: '/repositories',
   component: RepoTable,
-}, {
-  title: 'header.findOrganizations',
-  path: '/organizations',
-  component: OrganizationTable,
+  // }, {
+  //   title: 'header.findOrganizations',
+  //   path: '/organizations',
+  //   component: OrganizationTable,
 }, {
   title: 'header.findDevelopers',
   path: '/developers',

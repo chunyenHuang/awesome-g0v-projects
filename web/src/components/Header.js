@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'react-router-dom/Link';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,15 +7,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+// import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import moment from 'moment';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import LanguageSelector from './LanguageSelector';
-import VisitButton from './VisitButton';
+// import VisitButton from './VisitButton';
 import GithubLinkButton from './GithubLinkButton';
 import routes from '../routes';
-import { getGithubDataUrl, getGithubData } from '../data';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -29,20 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header() {
+function Header({ updatedAt }) {
   const classes = useStyles();
   const { t } = useTranslation();
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [lastUpdatedAt, setLastUpdatedAt] = useState('');
-
-  useEffect(() => {
-    setTimeout(async () => {
-      const { updatedAt } = await getGithubData();
-      setLastUpdatedAt(updatedAt);
-      setIsLoading(false);
-    }, 5000);
-  }, []);
 
   return (
     <AppBar position="fixed" color="default">
@@ -58,21 +46,19 @@ function Header() {
 
         <div className={classes.space}></div>
 
-        {isLoading && <CircularProgress size={20} color="inherit" className={classes.button} />}
-
-        {lastUpdatedAt &&
+        {updatedAt &&
           <Typography
             variant="body2"
             color="textSecondary"
           >
-            {t('app.updatedAt')} {moment(lastUpdatedAt).fromNow()}
+            {t('app.updatedAt')} {moment(updatedAt).fromNow()}
           </Typography>}
-        <VisitButton
+        {/* <VisitButton
           className={classes.button}
-          url={getGithubDataUrl()}
+          url={getProjectsDataUrl()}
           title={'Download JSON'}
           icon={<CloudDownloadIcon />}
-        />
+        /> */}
         <GithubLinkButton
           className={classes.button}
           url='chunyenHuang/awesome-g0v-projects'
@@ -83,6 +69,8 @@ function Header() {
   );
 }
 
-Header.propTypes = {};
+Header.propTypes = {
+  updatedAt: PropTypes.string,
+};
 
 export default Header;

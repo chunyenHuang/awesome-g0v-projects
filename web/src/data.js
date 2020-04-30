@@ -1,22 +1,58 @@
+import { sortByKey } from './utils';
 const env = window.location.hostname.includes('-prd-') ? 'prd' : 'dev';
 
 const cache = {};
 
-export const getGithubDataUrl = () => {
-  return `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/data.json`;
+const API_URL = `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com`;
+
+export const getProjectsDataUrl = () => {
+  return `${API_URL}/projects.json`;
+};
+
+export const getTagsDataUrl = () => {
+  return `${API_URL}/tags.json`;
+};
+
+export const getOwnersDataUrl = () => {
+  return `${API_URL}/tags.json`;
+};
+
+export const getGithubReposUrl = () => {
+  return `${API_URL}/repos.json`;
 };
 
 export const getGithubIssuesUrl = () => {
-  return `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/issues.json`;
+  return `${API_URL}/issues.json`;
+};
+
+export const getG0VDataUrl = () => {
+  return `${API_URL}/g0vDbData.json`;
+};
+
+export const getHackmdDataUrl = () => {
+  return `${API_URL}/hackmd.json`;
+};
+
+export const load = async () => {
+  await Promise.all([
+    getTags(),
+    getRepos(),
+    getProposals(),
+  ]);
+
+  const results = await Promise.all([
+    getProjects(),
+  ]);
+
+  return results[0].updatedAt;
 };
 
 export const getHackmdData = async () => {
   const key = 'hackmd';
   if (cache[key]) return cache[key];
 
-  const dataUrl = `https://awesome-g0v-projects-${env}-data.s3.amazonaws.com/hackmd.json`;
-
-  const res = await fetch(dataUrl);
+  const url = getHackmdDataUrl();
+  const res = await fetch(url);
   const output = await res.json();
 
   cache[key] = output;
@@ -28,7 +64,7 @@ export const getHackmdDataByTag = async (inRepos) => {
   const key = 'hackmd-byTag';
   if (cache[key]) return cache[key];
 
-  const hackmdData = await getHackmdData();
+  const { data: hackmdData } = await getHackmdData();
 
   // group by tags
   const list = {};
@@ -56,7 +92,7 @@ export const getHackmdDataByTag = async (inRepos) => {
     });
   });
 
-  const repos = inRepos || await getRepos();
+  const repos = inRepos || (await getRepos()).data;
 
   const output = Object.keys(list)
     .map((key) => {
@@ -76,19 +112,20 @@ export const getHackmdDataByTag = async (inRepos) => {
         matchRepo.hackmdUrl = item.tagUrl;
       }
       return item;
-    }).sort((a, b) => a.recentLastChangedAt > b.recentLastChangedAt ? -1 : 1);
+    })
+    .sort(sortByKey('recentLastChangedAt', true));
 
   cache[key] = output;
 
   return output;
 };
 
-export const getGithubData = async () => {
-  const key = 'github';
+export const getTags = async () => {
+  const key = 'tags';
   if (cache[key]) return cache[key];
 
-  const dataUrl = getGithubDataUrl();
-  const res = await fetch(dataUrl);
+  const url = getTagsDataUrl();
+  const res = await fetch(url);
   const output = await res.json();
 
   cache[key] = output;
@@ -96,84 +133,133 @@ export const getGithubData = async () => {
   return output;
 };
 
-export const getOrganizations = async () => {
-  const { data } = await getGithubData();
-  return data
-    .filter((x) => x.githubInfo.type === 'Organization')
-    .sort((a, b) => a.name > b.name ? 1 : -1);
-};
-
 export const getRepos = async () => {
-  const { data } = await getGithubData();
-  const repos = data
-    .reduce((items, project) => [...items, ...project.repos], [])
+  const key = 'repos';
+  if (cache[key]) return cache[key];
+
+  const url = getGithubReposUrl();
+  const res = await fetch(url);
+  const output = await res.json();
+
+  cache[key] = output;
+  console.log(output);
+
+  output.data = output.data
     // Ignore fork projects
     .filter((x) => !x.fork)
-    .sort((a, b) => a.pushed_at < b.pushed_at ? 1 : -1)
+    .sort(sortByKey('pushed_at', true))
     .map((item) => {
-      item.languages = Object.keys(item.languages).map((key) => key);
+      item.languages = Object.keys(item.languages || {}).map((key) => key);
       return item;
     });
 
-  // link
-  await getHackmdDataByTag(repos);
+  // // link
+  // await getHackmdDataByTag(repos);
 
-  return repos;
+  return output;
 };
 
 export const getProjects = async () => {
-  const repos = await getRepos();
+  const key = 'projects';
+  if (cache[key]) return cache[key];
 
-  return repos
-    .filter((x) => x.g0vJsonUrl)
+  const url = getProjectsDataUrl();
+  const res = await fetch(url);
+  const output = await res.json();
+
+  const { data: repos } = await getRepos();
+  const { data: proposals } = await getProposals();
+
+  const isValidLink = (string) => {
+    return string !== '' && string.startsWith('http');
+  };
+
+  output.data = output.data
     .map((item) => {
-      item.g0vJson.name_zh = item.g0vJson.name_zh || item.g0vJson.name;
-      item.g0vJson.description_zh = item.g0vJson.description_zh || item.g0vJson.description;
+      item.g0v_db_rows = item.g0v_db_rows.split(',').filter((x) => x).map((x) => parseInt(x));
+      item.github_repos = item.github_repos.split(',').filter((x) => x);
+      item.owners = item.owners.split(',').filter((x) => x);
+      item.tags = item.tags.split(',').filter((x) => x);
+
+      item.proposals = proposals.filter((x) => item.g0v_db_rows.includes(x.row));
+      item.repos = repos.filter((x) => item.github_repos.includes(x.full_name));
+
+      item.lastProposedDate = (item.proposals[0] || {}).date;
+      item.lastRepoUpdatedDate = (item.repos[0] || {}).pushed_at;
+
+      // fill homepage url if possible
+      if (!isValidLink(item.homepage)) {
+        if (item.proposals[0]) {
+          const { guideline, video_link, other_document } = item.proposals[0];
+
+          item.homepage = isValidLink(guideline) ? guideline :
+            isValidLink(video_link) ? video_link : other_document;
+        } else
+        if (item.repos[0]) {
+          item.homepage = item.repos[0].html_url;
+        }
+      }
+
       return item;
-    });
+    })
+    .sort(sortByKey('lastProposedDate', true))
+    .sort(sortByKey('lastRepoUpdatedDate', true));
+
+  cache[key] = output;
+
+  return output;
 };
 
-export const getProposalsDataUrl = () => {
-  return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU'; // eslint-disable-line
+export const getProposals = async () => {
+  const key = 'proposals';
+  if (cache[key]) return cache[key];
+
+  const url = getG0VDataUrl();
+  const res = await fetch(url);
+  const output = await res.json();
+
+  output.data = output.data
+    .sort(sortByKey('date', true));
+
+  cache[key] = output;
+
+  return output;
 };
+
+// export const getProposalsDataUrl = () => {
+//   return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU'; // eslint-disable-line
+// };
 
 export const getProposalEvents = async () => {
-  const url = getProposalsDataUrl();
-  const res = await fetch(url);
-  const { values } = await res.json();
-
-  const headers = values.shift().map((x) => x.replace(/ /g, '_'));
   const events = {};
+  const { data } = await getProposals();
 
-  values.forEach((row) => {
-    const rowData = headers.reduce((obj, header, index) => {
-      row[index] = row[index] || '';
-      if (['manpower', 'three_brief', 'tags', 'license_data'].includes(header)) {
-        obj[header] = row[index]
-          .replace(/[.,、，；\\/](\s+)?/g, ',')
-          .split(',');
-      } else {
-        obj[header] = row[index];
-      }
-      return obj;
-    }, {});
-    events[rowData.term] = events[rowData.term] || {
-      term: rowData.term,
-      date: rowData.date,
-      event_name: rowData.event_name,
-      dummy_event_type: rowData.dummy_event_type,
+  data.forEach((item) => {
+    events[item.term] = events[item.term] || {
+      term: item.term,
+      date: item.date,
+      event_name: item.event_name,
+      dummy_event_type: item.dummy_event_type,
       proposals: [],
     };
-    events[rowData.term].proposals.push(rowData);
+    events[item.term].proposals.push(item);
   });
 
   return Object.keys(events).reverse().map((key) => events[key]);
 };
 
 export const getGitHubIssues = async () => {
+  const key = 'issues';
+  if (cache[key]) return cache[key];
+
   const url = getGithubIssuesUrl();
   const res = await fetch(url);
-  const { items } = await res.json();
+  const output = await res.json();
 
-  return items;
+  output.data = output.data
+    .sort(sortByKey('created_at', true));
+
+  cache[key] = output;
+
+  return output;
 };

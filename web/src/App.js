@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {
@@ -11,6 +11,7 @@ import './i18n';
 
 import Header from './components/Header';
 import routes from './routes';
+import { load } from './data';
 
 const useStyles = makeStyles((theme) => ({
   main: {},
@@ -27,21 +28,31 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const [updatedAt, setUpdatedAt] = useState(undefined);
+
+  useEffect(() => {
+    (async () => {
+      const lastUpdatedAt = await load();
+      setUpdatedAt(lastUpdatedAt);
+    })();
+  }, []);
 
   return (
     <div className={classes.main}>
       <Router basename={'/'}>
         <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
-          <Header />
-          <div className={classes.container}>
-            <Switch>
-              {routes.map((route, index) => (
-                <Route path={route.path} exact key={index}>
-                  <route.component />
-                </Route>
-              ))}
-            </Switch>
-          </div>
+          <Header updatedAt={updatedAt}/>
+          {!updatedAt && <CircularProgress className={classes.spinner} />}
+          {updatedAt &&
+            <div className={classes.container}>
+              <Switch>
+                {routes.map((route, index) => (
+                  <Route path={route.path} exact key={index}>
+                    <route.component />
+                  </Route>
+                ))}
+              </Switch>
+            </div>}
         </React.Suspense>
       </Router>
     </div>

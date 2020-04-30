@@ -4,6 +4,7 @@ import MUIDataTable from 'mui-datatables';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 import TableFooter from './TableFooter';
+import { debounceSearchRender } from './table/DebounceTableSearchRender';
 
 const cellStyle = {
   maxWidth: 150,
@@ -63,8 +64,8 @@ function Table({ title, description, data, columns, options, nested = false }) {
   const updatedOptions = Object.assign({
     pagination: true,
     responsive: nested ? 'stacked' : 'scrollMaxHeight',
-    rowsPerPageOptions: nested ? [10, 50, 100, 1000] : [50, 100, 500, 1000],
-    rowsPerPage: nested ? 10 : 50,
+    rowsPerPageOptions: nested ? [5, 50, 100, 1000] : [50, 100, 500, 1000],
+    rowsPerPage: nested ? 5 : 50,
     filterType: 'multiselect',
     fixedHeader: true,
     resizableColumns: false,
@@ -72,6 +73,7 @@ function Table({ title, description, data, columns, options, nested = false }) {
     isRowSelectable: () => false,
     onRowClick: onItemClick,
     print: true,
+    customSearchRender: debounceSearchRender(500),
     customFooter: (count, page, rowsPerPage, changeRowsPerPage, changePage, textLabels) => {
       return (
         <TableFooter

@@ -9,6 +9,7 @@ import GithubLinkButton from './GithubLinkButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import CellImage from './table/CellImage';
 import { getOrganizations } from '../data';
+import { sortByKey } from '../utils';
 // const useStyles = makeStyles((theme) => ({}));
 
 function OrganizationTable({ data: inData }) {
@@ -68,7 +69,7 @@ function OrganizationTable({ data: inData }) {
     label: ' ',
     options: {
       filter: false,
-      customBodyRender: (value)=><GithubLinkButton url={value} />,
+      customBodyRender: (value) => <GithubLinkButton url={value} />,
     },
   }];
 
@@ -76,7 +77,8 @@ function OrganizationTable({ data: inData }) {
     expandableRows: true,
     renderExpandableRow(rowData, rowMeta) {
       const item = data[rowMeta.dataIndex];
-      const repos = item.repos.sort((a, b) => a.pushed_at > b.pushed_at ? -1 : 1);
+      const repos = item.repos
+        .sort(sortByKey('pushed_at', true));
       return (
         <NestedTableContainer columns={columns}>
           <RepoTable data={repos} nested={true} />
