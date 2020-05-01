@@ -7,12 +7,11 @@
 
 ## 我能找到什麼 | Features
 
-- 專案 Project (根據repo內含的 [`g0v.json`](https://github.com/g0v/g0v.json))
+- 專案 (根據 [手動整理](https://github.com/chunyenHuang/awesome-g0v-projects/blob/master/data/projects.csv) [大松提案列表](https://docs.google.com/spreadsheets/d/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/edit#gid=1563040282))
 - 提案 (根據 [大松提案列表](https://docs.google.com/spreadsheets/d/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/edit#gid=1563040282))
 - 共筆 (根據 [g0v hackmd](https://g0v.hackmd.io/?nav=overview))
-- GitHub Repo (根據 [追蹤團隊與個人 data.json](https://github.com/chunyenHuang/awesome-g0v-projects/blob/master/data/organizations.csv))
-- 團隊 (根據 [追蹤團隊與個人 data.json](https://github.com/chunyenHuang/awesome-g0v-projects/blob/master/data/organizations.csv))
-- 幫手 (根據 [追蹤團隊與個人 data.json](https://github.com/chunyenHuang/awesome-g0v-projects/blob/master/data/organizations.csv))
+- GitHub Repo
+- 幫手
 
 ## 我能幫上什麼 | How can I help? 
 
