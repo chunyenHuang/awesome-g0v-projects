@@ -1,4 +1,3 @@
-import similarity from 'similarity';
 import { sortByKey } from './utils';
 const env = window.location.hostname.includes('-prd-') ? 'prd' : 'dev';
 
