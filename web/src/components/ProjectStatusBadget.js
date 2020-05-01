@@ -1,30 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  badget: {
-    border: '1px solid rgba(0,0,0,0.1)',
-    borderRadius: 3,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    textAlign: 'center',
-  },
-}));
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import ErrorIcon from '@material-ui/icons/Error';
+import FaceIcon from '@material-ui/icons/Face';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import { green } from '@material-ui/core/colors';
 
 function ProjectStatusBadget({ value }) {
-  const classes = useStyles();
-
-  if (!value) return null;
-
-  const color = 'textPrimary';
-
-  return (
-    <div className={classes.badget}>
-      <Typography color={color} variant="inherit">
-        {value.toLowerCase()}
-      </Typography>
-    </div>);
+  if (value === 'hot') {
+    return (<WbSunnyIcon style={{ color: green[500] }} />);
+  } else
+  if (value === 'normal') {
+    return (<FaceIcon color="primary" />);
+  } else
+  if (value === 'low') {
+    return (<ErrorIcon color="secondary" />);
+  } else {
+    return (<HelpOutlineIcon color="default" />);
+  }
 }
 
 ProjectStatusBadget.propTypes = {

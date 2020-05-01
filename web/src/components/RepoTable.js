@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { green } from '@material-ui/core/colors';
 import ErrorIcon from '@material-ui/icons/Error';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import DescriptionIcon from '@material-ui/icons/Description';
+// import DescriptionIcon from '@material-ui/icons/Description';
 
 import Table from './Table';
 import GithubLinkButton from './GithubLinkButton';
 import TextLink from './TextLink';
 import CellList from './table/CellList';
-import VisitButton from './VisitButton';
+// import VisitButton from './VisitButton';
 import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import G0vJsonProjectDetails from './G0vJsonProjectDetails';
@@ -136,13 +136,13 @@ function RepoTable({ data: inData, nested = false }) {
         return (<G0vJsonIconButton url={value} repo={repo} />);
       },
     },
-  }, {
-    name: 'hackmdUrl',
-    label: ' ',
-    options: {
-      filter: false,
-      customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.hackmdUrl')} icon={<DescriptionIcon />} />,
-    },
+  // }, {
+  //   name: 'hackmdUrl',
+  //   label: ' ',
+  //   options: {
+  //     filter: false,
+  //     customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.hackmdUrl')} icon={<DescriptionIcon />} />,
+  //   },
   }, {
     name: 'html_url',
     label: ' ',
@@ -204,7 +204,7 @@ function RepoTable({ data: inData, nested = false }) {
 }
 
 RepoTable.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   nested: PropTypes.bool,
 };
 

@@ -7,7 +7,7 @@ import Table from './Table';
 import VisitButton from './VisitButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import HackmdTable from './HackmdTable';
-import GithubLinkButton from './GithubLinkButton';
+// import GithubLinkButton from './GithubLinkButton';
 import { getHackmdDataByTag } from '../data';
 
 function HackmdTagTable() {
@@ -46,14 +46,14 @@ function HackmdTagTable() {
       filter: false,
       sort: true,
     },
-  }, {
-    name: 'githubRepoUrl',
-    label: ' ',
-    options: {
-      filter: false,
-      sort: false,
-      customBodyRender: (value) => <GithubLinkButton url={value} />,
-    },
+  // }, {
+  //   name: 'githubRepoUrl',
+  //   label: ' ',
+  //   options: {
+  //     filter: false,
+  //     sort: false,
+  //     customBodyRender: (value) => <GithubLinkButton url={value} />,
+  //   },
   }, {
     name: 'tagUrl',
     label: ' ',

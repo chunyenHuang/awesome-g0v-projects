@@ -6,55 +6,59 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TableFooter from './TableFooter';
 import { debounceSearchRender } from './table/DebounceTableSearchRender';
 
-const cellStyle = {
-  maxWidth: 150,
-  minWidth: 32,
-  wordBreak: 'break-word',
-  overflowWrap: 'break-word',
-  padding: '4px 4px 4px 8px',
-  cursor: 'pointer',
-  fontSize: 12,
+const theme = (props = {}) => {
+  const cellStyle = Object.assign({
+    maxWidth: 180,
+    minWidth: 32,
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
+    padding: '4px 4px 4px 8px',
+    cursor: 'pointer',
+    fontSize: 12,
+  }, props);
+
+  return createMuiTheme({
+    overrides: {
+      MUIDataTableToolbar: {
+        root: {
+          // padding: '0px 8px 0px 8px',
+        },
+      },
+      MUIDataTable: {
+        paper: {
+          padding: 0,
+        },
+        responsiveScrollMaxHeight: {
+          maxHeight: 'calc(100vh - 170px) !important',
+        },
+      },
+      MUIDataTableHeadCell: {
+        root: {
+          ...cellStyle,
+          fontWeight: 'bold',
+        },
+      },
+      MUIDataTableBodyCell: {
+        root: cellStyle,
+      },
+      MUIDataTableSelectCell: {
+        expandDisabled: {
+          // Soft hide the button.
+          visibility: 'hidden',
+        },
+      },
+      MUIDataTableFilter: {
+        root: {
+          minWidth: 400,
+        },
+      },
+    },
+  });
 };
 
-const theme = createMuiTheme({
-  overrides: {
-    MUIDataTableToolbar: {
-      root: {
-        // padding: '0px 8px 0px 8px',
-      },
-    },
-    MUIDataTable: {
-      paper: {
-        padding: 0,
-      },
-      responsiveScrollMaxHeight: {
-        maxHeight: 'calc(100vh - 170px) !important',
-      },
-    },
-    MUIDataTableHeadCell: {
-      root: {
-        ...cellStyle,
-        fontWeight: 'bold',
-      },
-    },
-    MUIDataTableBodyCell: {
-      root: cellStyle,
-    },
-    MUIDataTableSelectCell: {
-      expandDisabled: {
-        // Soft hide the button.
-        visibility: 'hidden',
-      },
-    },
-    MUIDataTableFilter: {
-      root: {
-        minWidth: 400,
-      },
-    },
-  },
-});
+console.log(theme);
 
-function Table({ title, description, data, columns, options, nested = false }) {
+function Table({ title, description, data, columns, options, nested = false, themeProps }) {
   const onItemClick = (rowData, rowMeta) => {
     const item = data[rowMeta.dataIndex];
     console.log(item);
@@ -64,8 +68,8 @@ function Table({ title, description, data, columns, options, nested = false }) {
   const updatedOptions = Object.assign({
     pagination: true,
     responsive: nested ? 'stacked' : 'scrollMaxHeight',
-    rowsPerPageOptions: nested ? [5, 50, 100, 1000] : [50, 100, 500, 1000],
-    rowsPerPage: nested ? 5 : 50,
+    rowsPerPageOptions: nested ? [5, 20, 100] : [10, 20, 100],
+    rowsPerPage: nested ? 5 : 20,
     filterType: 'multiselect',
     fixedHeader: true,
     resizableColumns: false,
@@ -89,7 +93,7 @@ function Table({ title, description, data, columns, options, nested = false }) {
   }, options);
 
   return (
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme(themeProps)}>
       <MUIDataTable
         className="data-table"
         title={title}
@@ -108,6 +112,7 @@ Table.propTypes = {
   columns: PropTypes.array,
   options: PropTypes.object,
   nested: PropTypes.bool,
+  themeProps: PropTypes.object,
 };
 
 export default Table;

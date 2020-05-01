@@ -16,7 +16,7 @@ import G0vJsonIconButton from './G0vJsonIconButton';
 import NestedTableContainer from './table/NestedTableContainer';
 import GithubLinkButton from './GithubLinkButton';
 import { getProjects } from '../data';
-import ProjectStatusBadget from './ProjectStatusBadget';
+import G0vProjectStatusBadget from './G0vProjectStatusBadget';
 
 function ProjectTable({ data: inData }) {
   const { t } = useTranslation();
@@ -40,7 +40,7 @@ function ProjectTable({ data: inData }) {
         names: filterOptions.status,
       },
       sort: true,
-      customBodyRender: (value = '') => <ProjectStatusBadget value={value} />,
+      customBodyRender: (value = '') => <G0vProjectStatusBadget value={value} />,
     },
   }, {
     name: 'owner.login',

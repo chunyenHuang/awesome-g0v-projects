@@ -208,7 +208,7 @@ async function processRepo(repo) {
     g0vJsonUrl,
     g0vJson,
     // custom
-    languages,
+    languages: Object.keys(languages || {}).map((key) => key),
     languagePrimary,
     languageSecondary,
     contributors,

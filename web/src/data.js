@@ -1,3 +1,4 @@
+import similarity from 'similarity';
 import { sortByKey } from './utils';
 const env = window.location.hostname.includes('-prd-') ? 'prd' : 'dev';
 
@@ -33,15 +34,13 @@ export const getHackmdDataUrl = () => {
   return `${API_URL}/hackmd.json`;
 };
 
-export const load = async () => {
-  await Promise.all([
-    getTags(),
-    getRepos(),
-    getProposals(),
-  ]);
+export const getLogDataUrl = () => {
+  return `${API_URL}/logs.json`;
+};
 
+export const load = async () => {
   const results = await Promise.all([
-    getProjects(),
+    getTags(),
   ]);
 
   return results[0].updatedAt;
@@ -92,27 +91,8 @@ export const getHackmdDataByTag = async (inRepos) => {
     });
   });
 
-  const repos = inRepos || (await getRepos()).data;
-
   const output = Object.keys(list)
-    .map((key) => {
-      const item = list[key];
-      const matchRepo = repos.find((x) => {
-        const targetName = item.tag.toLowerCase();
-
-        if (targetName === 'g0v') return false;
-
-        return x.owner.login.toLowerCase() === targetName ||
-          x.name.toLowerCase() === targetName ||
-          x.name.toLowerCase().startsWith(targetName) ||
-          targetName.startsWith(x.name.toLowerCase());
-      });
-      if (matchRepo) {
-        item.githubRepoUrl = matchRepo.html_url;
-        matchRepo.hackmdUrl = item.tagUrl;
-      }
-      return item;
-    })
+    .map((key) => list[key])
     .sort(sortByKey('recentLastChangedAt', true));
 
   cache[key] = output;
@@ -147,14 +127,7 @@ export const getRepos = async () => {
   output.data = output.data
     // Ignore fork projects
     .filter((x) => !x.fork)
-    .sort(sortByKey('pushed_at', true))
-    .map((item) => {
-      item.languages = Object.keys(item.languages || {}).map((key) => key);
-      return item;
-    });
-
-  // // link
-  // await getHackmdDataByTag(repos);
+    .sort(sortByKey('pushed_at', true));
 
   return output;
 };
@@ -167,43 +140,25 @@ export const getProjects = async () => {
   const res = await fetch(url);
   const output = await res.json();
 
-  const { data: repos } = await getRepos();
-  const { data: proposals } = await getProposals();
-
-  const isValidLink = (string) => {
-    return string !== '' && string.startsWith('http');
-  };
-
   output.data = output.data
     .map((item) => {
-      item.g0v_db_rows = item.g0v_db_rows.split(',').filter((x) => x).map((x) => parseInt(x));
-      item.github_repos = item.github_repos.split(',').filter((x) => x);
-      item.owners = item.owners.split(',').filter((x) => x);
-      item.tags = item.tags.split(',').filter((x) => x);
-
-      item.proposals = proposals.filter((x) => item.g0v_db_rows.includes(x.row));
-      item.repos = repos.filter((x) => item.github_repos.includes(x.full_name));
-
-      item.lastProposedDate = (item.proposals[0] || {}).date;
-      item.lastRepoUpdatedDate = (item.repos[0] || {}).pushed_at;
-
-      // fill homepage url if possible
-      if (!isValidLink(item.homepage)) {
-        if (item.proposals[0]) {
-          const { guideline, video_link, other_document } = item.proposals[0];
-
-          item.homepage = isValidLink(guideline) ? guideline :
-            isValidLink(video_link) ? video_link : other_document;
-        } else
-        if (item.repos[0]) {
-          item.homepage = item.repos[0].html_url;
-        }
+      const diff = Date.now() - (new Date(item.lastUpdatedAt).getTime());
+      if (!item.lastUpdatedAt) {
+        item.status = 'unknown';
+      } else
+      if (diff < 86400000 * 30) {
+        item.status = 'hot';
+      } else
+      if (diff < 86400000 * 30 * 6) {
+        item.status = 'normal';
+      } else {
+        item.status = 'low';
       }
 
       return item;
     })
     .sort(sortByKey('lastProposedDate', true))
-    .sort(sortByKey('lastRepoUpdatedDate', true));
+    .sort(sortByKey('lastUpdatedAt', true));
 
   cache[key] = output;
 
@@ -225,10 +180,6 @@ export const getProposals = async () => {
 
   return output;
 };
-
-// export const getProposalsDataUrl = () => {
-//   return 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU'; // eslint-disable-line
-// };
 
 export const getProposalEvents = async () => {
   const events = {};
@@ -258,6 +209,19 @@ export const getGitHubIssues = async () => {
 
   output.data = output.data
     .sort(sortByKey('created_at', true));
+
+  cache[key] = output;
+
+  return output;
+};
+
+export const getLogs = async () => {
+  const key = 'logs';
+  if (cache[key]) return cache[key];
+
+  const url = getLogDataUrl();
+  const res = await fetch(url);
+  const output = await res.json();
 
   cache[key] = output;
 

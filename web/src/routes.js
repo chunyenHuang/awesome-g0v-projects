@@ -5,6 +5,7 @@ import HackmdTagTable from './components/HackmdTagTable';
 import RepoTable from './components/RepoTable';
 // import OrganizationTable from './components/OrganizationTable';
 import DeveloperTable from './components/DeveloperTable';
+import Info from './components/Info';
 
 export default [{
   title: 'header.findProjects',
@@ -34,4 +35,9 @@ export default [{
   title: 'header.findDevelopers',
   path: '/developers',
   component: DeveloperTable,
+}, {
+  title: 'header.info',
+  path: '/info',
+  component: Info,
+  hide: true,
 }];

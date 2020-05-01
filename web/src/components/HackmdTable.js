@@ -92,8 +92,8 @@ function HackmdTable({ data, nested = false }) {
 
   useEffect(() => {
     const allTags = [];
-    data.forEach(({ tags = [] }) => {
-      tags.forEach((tag) => {
+    data.forEach(({ tags }) => {
+      (tags || []).forEach((tag) => {
         if (!allTags.includes(tag)) {
           allTags.push(tag);
         }

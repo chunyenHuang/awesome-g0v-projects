@@ -6,8 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 // import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import moment from 'moment';
 
 import LanguageSelector from './LanguageSelector';
@@ -38,7 +40,7 @@ function Header({ updatedAt }) {
         <Typography variant="h6" className={classes.title}>
           {t('app.name')}
         </Typography>
-        {routes.map(({ title, path }) => (
+        {routes.filter(({ hide })=>!hide).map(({ title, path }) => (
           <Button to={path} key={title} component={Link}>
             {t(title)}
           </Button>
@@ -59,6 +61,14 @@ function Header({ updatedAt }) {
           title={'Download JSON'}
           icon={<CloudDownloadIcon />}
         /> */}
+        <IconButton
+          className={classes.button}
+          to={'/info'}
+          size="small"
+          component={Link}
+        >
+          <HelpOutlineIcon />
+        </IconButton>
         <GithubLinkButton
           className={classes.button}
           url='chunyenHuang/awesome-g0v-projects'

@@ -121,7 +121,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
 }
 
 DeveloperTable.propTypes = {
-  repos: PropTypes.array.isRequired,
+  repos: PropTypes.array,
   nested: PropTypes.bool,
 };
 

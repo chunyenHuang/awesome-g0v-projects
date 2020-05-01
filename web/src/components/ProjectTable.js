@@ -7,14 +7,18 @@ import CellList from './table/CellList';
 import VisitButton from './VisitButton';
 import RepoTable from './RepoTable';
 import ProposalTable from './ProposalTable';
+import LinkTable from './LinkTable';
 // import ProjectDetails from './G0vJsonProjectDetails';
 import NestedTableContainer from './table/NestedTableContainer';
 import { getProjects, getTags } from '../data';
+import HackmdTable from './HackmdTable';
+import ProjectStatusBadget from './ProjectStatusBadget';
 
 function ProjectTable({ data: inData }) {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [tags, setTags] = useState([]);
+  // const [keywords, setKeywords] = useState([]);
 
   const title = t('table.project.title');
   const description = 'Data Source: g0v database & GitHub & g0v.json';
@@ -23,8 +27,27 @@ function ProjectTable({ data: inData }) {
     name: 'source',
     label: t('table.project.source'),
     options: {
+      display: false,
       filter: true,
       sort: true,
+      customFilterListOptions: {
+        render(v) {
+          return `${t('table.project.source')}: ${v}`;
+        },
+      },
+    },
+  }, {
+    name: 'status',
+    label: t('table.project.status'),
+    options: {
+      filter: true,
+      sort: true,
+      customBodyRender: (value = '') => <ProjectStatusBadget value={value} />,
+      customFilterListOptions: {
+        render(v) {
+          return `${t('table.project.status')}: ${v}`;
+        },
+      },
     },
   }, {
     name: 'name',
@@ -39,6 +62,49 @@ function ProjectTable({ data: inData }) {
     options: {
       filter: false,
       sort: true,
+    },
+  }, {
+    name: 'tags',
+    label: t('table.project.tags'),
+    options: {
+      filter: true,
+      filterOptions: {
+        names: tags,
+        logic: (tags, filters) => {
+          let isIncluded = false;
+          filters.forEach((i) => {
+            if (tags.includes(i)) {
+              isIncluded = true;
+            }
+          });
+
+          if (filters.length) return !isIncluded;
+          return false;
+        },
+      },
+      customFilterListOptions: {
+        render(v) {
+          return `${t('table.project.tags')}: ${v}`;
+        },
+      },
+      sort: false,
+      customBodyRender: (value) => <CellList value={value}/>,
+    },
+  }, {
+    name: 'keywords',
+    label: t('table.project.keywords'),
+    options: {
+      filter: false,
+      sort: false,
+      customBodyRender: (value) => <CellList value={value}/>,
+    },
+  }, {
+    name: 'owners',
+    label: t('table.project.owners'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value) => <CellList value={value}/>,
     },
   }, {
     name: 'g0v_db_rows.length',
@@ -66,44 +132,34 @@ function ProjectTable({ data: inData }) {
     name: 'lastRepoUpdatedDate',
     label: t('table.project.lastRepoUpdatedDate'),
     options: {
+      display: false,
       filter: false,
       sort: true,
       customBodyRender: (value) => value ? moment(value).format('YYYY/MM/DD') : '-',
     },
   }, {
-    name: 'owners',
-    label: t('table.project.owners'),
+    name: 'hackmds.length',
+    label: t('table.project.hackmdsCount'),
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => <CellList value={value}/>,
     },
   }, {
-    name: 'tags',
-    label: t('table.project.tags'),
+    name: 'lastHackmdUpdatedDate',
+    label: t('table.project.lastHackmdUpdatedDate'),
     options: {
-      filter: true,
-      filterOptions: {
-        names: tags,
-        logic: (tags, filters) => {
-          let isIncluded = false;
-          filters.forEach((i) => {
-            if (tags.includes(i)) {
-              isIncluded = true;
-            }
-          });
-
-          if (filters.length) return !isIncluded;
-          return false;
-        },
-      },
-      customFilterListOptions: {
-        render(v) {
-          return `tags: ${v}`;
-        },
-      },
+      display: false,
+      filter: false,
       sort: true,
-      customBodyRender: (value) => <CellList value={value}/>,
+      customBodyRender: (value) => value ? moment(value).format('YYYY/MM/DD') : '-',
+    },
+  }, {
+    name: 'lastUpdatedAt',
+    label: t('table.project.lastUpdatedAt'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value) => value ? moment(value).format('YYYY/MM/DD HH:MM') : '-',
     },
   }, {
     name: 'homepage',
@@ -130,9 +186,13 @@ function ProjectTable({ data: inData }) {
       return (
         <NestedTableContainer columns={columns}>
           {item.proposals.length > 0 &&
-            <ProposalTable data={item.proposals} nested={true} />}
+            <ProposalTable data={item.proposals} nested={true} hideFields={['event_name', 'dummy_event_type']} />}
           {item.repos.length > 0 &&
             <RepoTable data={item.repos} nested={true} />}
+          {item.hackmds.length > 0 &&
+            <HackmdTable data={item.hackmds} nested={true} /> }
+          {item.urls.length > 0 &&
+            <LinkTable data={item.urls} nested={true} /> }
         </NestedTableContainer>
       );
     },
@@ -152,6 +212,9 @@ function ProjectTable({ data: inData }) {
         ]);
         setData(projects);
         setTags(tags.map((x) => x.name));
+        // setKeywords(projects.reduce((result, project) => {
+        //   return [...result, ...project.keywords];
+        // }, []));
       })();
     }
   }, [inData]);

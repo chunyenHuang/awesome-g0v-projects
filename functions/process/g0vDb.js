@@ -7,20 +7,22 @@ module.exports = async () => {
 
   const headers = values.shift().map((x) => x.replace(/ /g, '_'));
 
-  const data = values.map((row, rowIndex) => {
-    return headers.reduce((obj, header, index) => {
-      row[index] = row[index] || '';
-      if (['manpower', 'three_brief', 'tags', 'license_data'].includes(header)) {
-        obj[header] = row[index]
-          .replace(/[.,、，；\\/](\s+)?/g, ',')
-          .split(',');
-      } else {
-        obj[header] = row[index];
-      }
-      obj.row = rowIndex + 2; // header + index
-      return obj;
-    }, {});
-  });
+  const data = values
+    .map((row, rowIndex) => {
+      return headers.reduce((obj, header, index) => {
+        row[index] = row[index] || '';
+        if (['manpower', 'three_brief', 'tags', 'license_data'].includes(header)) {
+          obj[header] = row[index]
+            .replace(/[.,、，；\\/](\s+)?/g, ',')
+            .split(',');
+        } else {
+          obj[header] = row[index];
+        }
+        obj.row = rowIndex + 2; // header + index
+        return obj;
+      }, {});
+    })
+    .sort((a, b) => a.date > b.date ? -1 : 1);
 
   return {
     url,

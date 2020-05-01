@@ -59,7 +59,11 @@ function ProposalEventTable({ data: inData, nested = false }) {
       const item = data[rowMeta.dataIndex];
       return (
         <NestedTableContainer columns={columns}>
-          <ProposalTable data={item.proposals} nested={true} />
+          <ProposalTable
+            data={item.proposals}
+            nested={true}
+            hideFields={['term', 'event_name', 'dummy_event_type', 'date']}
+          />
         </NestedTableContainer>
       );
     },
@@ -88,7 +92,7 @@ function ProposalEventTable({ data: inData, nested = false }) {
 }
 
 ProposalEventTable.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
   nested: PropTypes.bool,
 };
 

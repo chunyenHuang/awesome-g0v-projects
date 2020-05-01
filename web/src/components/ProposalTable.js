@@ -12,7 +12,7 @@ import Table from './Table';
 import CellList from './table/CellList';
 import VisitButton from './VisitButton';
 
-function ProposalTable({ data, nested = false }) {
+function ProposalTable({ data, nested = false, hideFields = [] }) {
   const { t } = useTranslation();
   const [manpowers, setManpowers] = useState([]);
 
@@ -22,7 +22,7 @@ function ProposalTable({ data, nested = false }) {
     name: 'term',
     label: t('table.proposal.term'),
     options: {
-      display: !nested,
+      display: !hideFields.includes('term'),
       filter: false,
       sort: true,
     },
@@ -30,7 +30,7 @@ function ProposalTable({ data, nested = false }) {
     name: 'event_name',
     label: t('table.proposal.eventName'),
     options: {
-      display: !nested,
+      display: !hideFields.includes('event_name'),
       filter: !nested,
       sort: true,
     },
@@ -38,7 +38,7 @@ function ProposalTable({ data, nested = false }) {
     name: 'dummy_event_type',
     label: t('table.proposal.eventType'),
     options: {
-      display: !nested,
+      display: !hideFields.includes('dummy_event_type'),
       filter: !nested,
       sort: true,
     },
@@ -46,7 +46,7 @@ function ProposalTable({ data, nested = false }) {
     name: 'date',
     label: t('table.proposal.date'),
     options: {
-      display: !nested,
+      display: !hideFields.includes('date'),
       sort: true,
       customBodyRender: (value) => moment(value).format('YYYY/MM/DD'),
     },
@@ -187,6 +187,7 @@ function ProposalTable({ data, nested = false }) {
 ProposalTable.propTypes = {
   data: PropTypes.array.isRequired,
   nested: PropTypes.bool,
+  hideFields: PropTypes.array,
 };
 
 export default ProposalTable;
