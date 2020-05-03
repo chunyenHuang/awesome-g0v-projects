@@ -10,7 +10,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","glyphs",,,"g0v","g0v基礎建設","g0v/glyph",https://github.com/g0v/glyph
 "awesome-g0v","common bootstrap theme and design guide for websites.",,,"g0v","g0v基礎建設","g0v/design-guide",https://github.com/g0v/design-guide
 "awesome-g0v","The hackathon portal based on [hackfoldr](http://hackfoldr.org/).",,,"g0v","g0v基礎建設","g0v/hack.g0v.tw",https://github.com/g0v/hack.g0v.tw
-"awesome-g0v","g0v Summit 台灣零時政府高峰會",,,"g0v","g0v基礎建設","g0v/summit.g0v.tw",https://github.com/g0v/summit.g0v.tw
+"awesome-g0v","g0v Summit 台灣零時政府高峰會",,"642,623,518,496,459,310,156,109","ipa,Bess,hychen,Mavis,LY,g0v","g0v基礎建設,g0v Summit","g0v/summit.g0v.tw",https://github.com/g0v/summit.g0v.tw
 "awesome-g0v","Hackfoldr Editor",,"353","g0v","g0v基礎建設","g0v/hackeditr",https://github.com/g0v/hackeditr
 "awesome-g0v","Hackfoldr 2.0",,,"hackfoldr","g0v基礎建設","hackfoldr/hackfoldr-2.0",https://github.com/hackfoldr/hackfoldr-2.0
 "awesome-g0v","Hacktabl 協作比較表格",,,"g0v","g0v基礎建設","g0v/hacktabl",https://github.com/g0v/hacktabl
@@ -147,7 +147,6 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","新聞小幫手",,"406,45","g0v","新媒體","g0v/newshelper-backend,g0v/newshelper-extension,yllan/newshelper-safari",https://github.com/g0v/newshelper-backend
 
 "g0v_db","0 時動議 LINK TOPIC",,"3","clkao,kcwu,hychen","媒體",,
-"g0v_db","11/9 Summit unconference懶人包",,"156","ipa","g0v Summit",,"https://g0v.hackpad.com/unconference--UQVESB4TJm3"
 "g0v_db","2015 WWViews ＠ TW 跨國審議/投票系統專案",,"232","家華","環境",,"https://g0v.hackpad.com/2015-WWViews-TW--W6l1GtZ3l1A"
 "g0v_db","2015 summer of ?",,"206","Ly","法律",,"https://speakerdeck.com/yhsiang/2015-summer-of"
 "g0v_db","2016 總統大選承諾一覽表",,"274,252","MrOrz","監督,政治",,"http://beta.hackfoldr.org/president2016-folder"
@@ -208,7 +207,6 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","Say Hi !!! g0ver",,"486","YuTin","待確認",,"https://github.com/g0v/g0ver-box"
 "g0v_db","Sea star in-media platform",,"635","fish","待確認",,"https://hackmd.io/wUN7Rx99QaKV2c7hLghCeQ"
 "g0v_db","Social Network Analysis of Taipei City Decision-Makers",,"636","Julien","待確認",,"http://bit.ly/2NqmTN0"
-"g0v_db","Summit 支援前線",,"310","LY","g0v Summit",,"https://g0v.hackpad.com/g0v-summit-2016--n6mtHE69Kzg"
 "g0v_db","TaipeiTimes特寫報告",,"266","Aaron","新聞",,"https://hackpad.com/Taipei-Times-Feature-Article-on-g0v-TdhRNHamGAV"
 "g0v_db","Taiwan 2030",,"319","BoYi","民主參與",,"http://hackfoldr.org/taiwan-2030"
 "g0v_db","Taiwan Debt Clock",,"40","ipa","財政",,"http://www.usdebtclock.org"
@@ -230,12 +228,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","g0v 2014 summit主視覺進度報告/填坑遊戲提案徵求",,"123","Shanzay/Airos","g0v",,"https://g0v.hackpad.com/g0v-summit-2014--S98dMyXUUR"
 "g0v_db","g0v Budget Reboot",,"357","clkao","財政",,"http://beta.hackfoldr.org/open-budget"
 "g0v_db","g0v Shadow",,"461","Ttcat","待確認",,"https://g0v.hackpad.tw/g0v-shadow-ta138sdLdND"
-"g0v_db","g0v Summit 2018 啟動 & 會議 APP 開發",,"459","ipa","g0v Summit",,"http://beta.hackfoldr.org/g0v-summit2018"
-"g0v_db","g0v Summit 2020 @ 台南 Tainan Taiwan",,"642,623","Bess","待確認",,"https://g0v.hackmd.io/@summit2020/book"
 "g0v_db","g0v sense tw 介紹 + g0v 歷屆關心議題整理",,"527","hychen","媒體",,"https://beta.hackfoldr.org/sense-tw"
-"g0v_db","g0v Summit 2018 線上交友大平台",,"518","ipa","g0v Summit",,"https://g0v.hackmd.io/POmvTZ-QQQWKcjUi52xOnA?view"
-"g0v_db","g0v Summit",,"109","hcchien","g0v",,
-"g0v_db","g0v Summit2018 協辦之黑客松活動提前曝光 (2018 HackH2O)",,"496","Mavis","g0v Summit",,"http://goo.gl/7entun"
 "g0v_db","g0v tools",,"516","YuTin","g0v",,"http://x.co/g0vtools"
 "g0v_db","g0v × gov--可以不去開曼設公司嗎？",,"192","蔡玉玲 (jaclyn)","經濟,民主參與",,"https://vtaiwan.tw"
 "g0v_db","g0v 全球推坑",,"529","Lulu","g0v",,"https://ocftw.kktix.cc/events/usavisits"
@@ -284,13 +277,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","sense.tw - 議題釐清工具",,"507","hychen","媒體",,
 "g0v_db","sense.tw 榕樹下・眾開講",,"492","ael","工具",,"https://docs.google.com/presentation/d/1JzmCysvXnzM7DhTlqwZolnW2Znk11A5icq-8WRnaJM0/edit?usp=sharing"
 "g0v_db","uWikipedia.org 油雞百科",,"510","fly","待確認",,"j.mp/y-tts-"
-"g0v_db","vTaiwan @ TAF",,"443","子魚","民主參與",,"https://g0v.hackpad.tw/vTaiwan-106.09.16--38bNZoqCDn4"
-"g0v_db","vTaiwan 公民參與新手村！來玩桌遊耶咿 :P",,"648","哲輔","待確認",,"https://g0v.hackmd.io/NeEbQF6iTVmZXyYOyV6mfQ?view"
-"g0v_db","vTaiwan 改版",,"362","書漾","民主參與",,"https://g0v.hackpad.com/H2QhNRFVMOw"
-"g0v_db","vTaiwan",,"509","Peace","民主參與",,"https://vtw.link/1v_1Wwt5gqaUEJeBNR5XU6Hm3JpqSxDorROfCzpDK1bY/https%253A%252F%252Fg0v.hackpad.tw%252F20180502-vTaiwan-XClxInLEjfe"
-"g0v_db","vTaiwan.tw 第二階段",,"216","au","民主參與",,"https://g0v.hackpad.com/vTaiwan.tw-hackath12n-RLDmz3h7oJg"
-"g0v_db","vTaiwan政府資料跨部門運用案",,"494","tmonk","民主參與,開放政府",,"https://g0v.hackpad.tw/vTaiwan-2018.03.03-Data-Integration--wrI370PrRxA"
-"g0v_db","vTaiwan：來做Chatbot吧",,"475","子魚","民主參與",,"https://docs.google.com/presentation/d/1fzcl1M43iA_1bqRbY3_r_jgP6OnJwZbrKNUPdkQKbcQ/edit#slide=id.p"
+"g0v_db","vTaiwan",,"648,509,494,475,443,362,216","子魚,Peace,書漾,哲輔,au,tmonk","民主參與",,"https://g0v.hackmd.io/@tmonk/rJHYWR9S4/https%3A%2F%2Fvtaiwan.tw%2F?type=book"
 "g0v_db","✨💌🕳zMAGIC CHAT PORTALS between the chat-homes of all communities!",,"546","patcon","工具",,"https://g0v.hackmd.io/s/Sy5y_pw1N"
 "g0v_db","「g0v 公民科技創新獎助金」& 詢問台",,"369","ipa","g0v",,"http://grants.g0v.tw"
 "g0v_db","「假的！」-- 護病比資料查詢",,"346","peggy","醫療",,"https://g0v.hackpad.com/L4KNanSM67U"

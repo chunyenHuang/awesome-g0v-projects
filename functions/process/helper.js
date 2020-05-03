@@ -67,9 +67,14 @@ module.exports.getReposAndIssues = async (projects, githubApiKey, reservedRate =
     otherRepos = [...otherRepos, ...repos];
   }, Promise.resolve());
 
-  const updatedRepos = await Promise.all(
-    [...g0vRepos, ...otherRepos].map(processRepo),
-  );
+  // batch process repos to avoid 500 errors
+  let updatedRepos = [];
+  const allGroups = groupArrayByCount([...g0vRepos, ...otherRepos], BATCH_PROCESS_REPOS_SIZE);
+  await allGroups.reduce(async (chain, groupRepos) => {
+    await chain;
+    const repos = await Promise.all(groupRepos.map(processRepo));
+    updatedRepos = [...updatedRepos, ...repos];
+  }, Promise.resolve());
 
   const { data: { rate: { remaining: currentRemaining } } } = await octokit.rateLimit.get();
 
@@ -110,13 +115,13 @@ async function getG0vJson({ size, full_name, default_branch }) {
   };
 }
 
-async function getContributors(repo) {
-  if (repo.size === 0) return [];
+async function getContributors({ size, full_name }) {
+  if (size === 0) return [];
 
-  const owner = repo.full_name.split('/')[0];
+  const [owner, repo] = full_name.split('/');
   const params = {
     owner,
-    repo: repo.name,
+    repo,
     anon: true,
     per_page: 100,
   };
@@ -133,13 +138,13 @@ async function getContributors(repo) {
   });
 }
 
-async function getLanguages(repo) {
-  if (repo.size === 0 || !repo.language) return [];
+async function getLanguages({ size, language, full_name }) {
+  if (size === 0 || !language) return [];
 
-  const owner = repo.full_name.split('/')[0];
+  const [owner, repo] = full_name.split('/');
   const params = {
     owner,
-    repo: repo.name,
+    repo,
   };
   const [error, res] = await to(octokit.repos.listLanguages(params));
 
