@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Table from './Table';
 import TextLink from './TextLink';
 
-function LinkTable({ data, nested = false }) {
+function LinkTable({ data, nested = false, maxHeight }) {
   const { t } = useTranslation();
 
   const title = t('table.link.listTitle');
@@ -15,6 +15,7 @@ function LinkTable({ data, nested = false }) {
     name: 'name',
     label: t('table.link.name'),
     options: {
+      display: false,
       filter: false,
       sort: true,
     },
@@ -23,10 +24,11 @@ function LinkTable({ data, nested = false }) {
     label: t('table.link.url'),
     options: {
       filter: false,
-      sort: false,
+      sort: true,
       customBodyRender(value) {
+        const link = value.startsWith('http') ? value : `http://${value}`;
         return (
-          <TextLink url={value} title={value} />);
+          <TextLink url={link} title={link} />);
       },
     },
   }];
@@ -44,7 +46,8 @@ function LinkTable({ data, nested = false }) {
       columns={columns}
       options={options}
       nested={nested}
-      themeProps={{ maxWidth: 300 }}
+      themeProps={{ cell: { maxWidth: 300 } }}
+      maxHeight={maxHeight}
     />
   );
 }
@@ -52,6 +55,7 @@ function LinkTable({ data, nested = false }) {
 LinkTable.propTypes = {
   data: PropTypes.array.isRequired,
   nested: PropTypes.bool,
+  maxHeight: PropTypes.string,
 };
 
 export default LinkTable;

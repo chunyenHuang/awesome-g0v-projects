@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import Link from 'react-router-dom/Link';
 
-function VisitButton({ url, title = 'Visit', tooltip, icon, className }) {
-  const isDisabled = (!url || url === '' || !url.startsWith('http'));
+function VisitButton({ url = '', title = 'Visit', tooltip, icon, className, variant = 'outlined' }) {
+  if (typeof url !== 'string') return null;
+
+  const isDisabled = (!url || url === '' || (!url.startsWith('http') && !url.startsWith('/')));
   const size = 'small';
 
   const tooltipTitle = tooltip || (isDisabled ? '' : title);
@@ -28,10 +31,24 @@ function VisitButton({ url, title = 'Visit', tooltip, icon, className }) {
         </span>
       </Tooltip>);
   }
+  if (url.startsWith('/')) {
+    return (
+      <Button
+        className={className}
+        variant={variant}
+        color="primary"
+        size={size}
+        to={url}
+        disabled={isDisabled}
+        component={Link}
+      >
+        {title}
+      </Button>);
+  }
   return (
     <Button
       className={className}
-      variant="outlined"
+      variant={variant}
       color="primary"
       size={size}
       target="_blank"
@@ -48,6 +65,7 @@ VisitButton.propTypes = {
   tooltip: PropTypes.string,
   icon: PropTypes.object,
   className: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 export default VisitButton;

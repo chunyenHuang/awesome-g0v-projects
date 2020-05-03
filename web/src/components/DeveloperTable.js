@@ -10,7 +10,7 @@ import RepoTable from './RepoTable';
 import CellImage from './table/CellImage';
 import { getRepos } from '../data';
 
-function DeveloperTable({ repos: inRepos, nested = false }) {
+function DeveloperTable({ repos: inRepos, nested = false, maxHeight }) {
   const { t } = useTranslation();
   const [repos, setRepos] = useState([]);
   const [data, setData] = useState([]);
@@ -68,6 +68,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
     name: 'averageContributions',
     label: t('table.developer.averageContributions'),
     options: {
+      display: false,
       filter: false,
       sort: true,
     },
@@ -99,6 +100,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
 
   useEffect(() => {
     if (inRepos) {
+      console.log(inRepos);
       setRepos(inRepos);
     } else {
       (async () => {
@@ -116,6 +118,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
       columns={columns}
       options={options}
       nested={nested}
+      maxHeight={maxHeight}
     />
   );
 }
@@ -123,6 +126,7 @@ function DeveloperTable({ repos: inRepos, nested = false }) {
 DeveloperTable.propTypes = {
   repos: PropTypes.array,
   nested: PropTypes.bool,
+  maxHeight: PropTypes.string,
 };
 
 export default DeveloperTable;
@@ -140,6 +144,7 @@ function getContributorsFromRepos(repos) {
         details: contributor,
         repos: [],
         majorRepoName: '',
+        majorProjectName: '',
         majorContributions: 0,
         totalContributions: 0,
         averageContributions: 0,
@@ -150,6 +155,7 @@ function getContributorsFromRepos(repos) {
 
       if (repoContributions > data.majorContributions) {
         data.majorContributions = repoContributions;
+        data.majorProjectName = repo.projectName;
         data.majorRepoName = repo.name;
       }
 

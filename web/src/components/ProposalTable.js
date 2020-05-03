@@ -11,8 +11,9 @@ import Looks3Icon from '@material-ui/icons/Looks3';
 import Table from './Table';
 import CellList from './table/CellList';
 import VisitButton from './VisitButton';
+import TextLink from './TextLink';
 
-function ProposalTable({ data, nested = false, hideFields = [] }) {
+function ProposalTable({ data, nested = false, hideFields = [], maxHeight }) {
   const { t } = useTranslation();
   const [manpowers, setManpowers] = useState([]);
 
@@ -56,6 +57,7 @@ function ProposalTable({ data, nested = false, hideFields = [] }) {
     options: {
       filter: false,
       sort: true,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
     },
   }, {
     name: 'owner_name',
@@ -180,6 +182,7 @@ function ProposalTable({ data, nested = false, hideFields = [] }) {
       columns={columns}
       options={options}
       nested={nested}
+      maxHeight={maxHeight}
     />
   );
 }
@@ -188,6 +191,7 @@ ProposalTable.propTypes = {
   data: PropTypes.array.isRequired,
   nested: PropTypes.bool,
   hideFields: PropTypes.array,
+  maxHeight: PropTypes.string,
 };
 
 export default ProposalTable;

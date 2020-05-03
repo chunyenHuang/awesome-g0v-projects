@@ -17,7 +17,7 @@ import NestedTableContainer from './table/NestedTableContainer';
 import G0vJsonProjectDetails from './G0vJsonProjectDetails';
 import { getRepos } from '../data';
 
-function RepoTable({ data: inData, nested = false }) {
+function RepoTable({ data: inData, nested = false, maxHeight }) {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [languages, setLanguages] = useState([]);
@@ -34,6 +34,14 @@ function RepoTable({ data: inData, nested = false }) {
       customBodyRender(value) {
         return value ? <ErrorIcon color="secondary" /> : <WbSunnyIcon style={{ color: green[500] }} />;
       },
+    },
+  }, {
+    name: 'projectName',
+    label: t('table.repo.projectName'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
     },
   }, {
     name: 'owner.login',
@@ -136,13 +144,13 @@ function RepoTable({ data: inData, nested = false }) {
         return (<G0vJsonIconButton url={value} repo={repo} />);
       },
     },
-  // }, {
-  //   name: 'hackmdUrl',
-  //   label: ' ',
-  //   options: {
-  //     filter: false,
-  //     customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.hackmdUrl')} icon={<DescriptionIcon />} />,
-  //   },
+    // }, {
+    //   name: 'hackmdUrl',
+    //   label: ' ',
+    //   options: {
+    //     filter: false,
+    //     customBodyRender: (value) => <VisitButton url={value} title={t('table.repo.hackmdUrl')} icon={<DescriptionIcon />} />,
+    //   },
   }, {
     name: 'html_url',
     label: ' ',
@@ -199,6 +207,7 @@ function RepoTable({ data: inData, nested = false }) {
       columns={columns}
       options={options}
       nested={nested}
+      maxHeight={maxHeight}
     />
   );
 }
@@ -206,6 +215,7 @@ function RepoTable({ data: inData, nested = false }) {
 RepoTable.propTypes = {
   data: PropTypes.array,
   nested: PropTypes.bool,
+  maxHeight: PropTypes.string,
 };
 
 export default RepoTable;

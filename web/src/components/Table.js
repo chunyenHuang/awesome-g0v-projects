@@ -6,7 +6,8 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import TableFooter from './TableFooter';
 import { debounceSearchRender } from './table/DebounceTableSearchRender';
 
-const theme = (props = {}) => {
+const theme = (maxHeight, props = {}) => {
+  const { cell = {} } = props;
   const cellStyle = Object.assign({
     maxWidth: 180,
     minWidth: 32,
@@ -15,7 +16,11 @@ const theme = (props = {}) => {
     padding: '4px 4px 4px 8px',
     cursor: 'pointer',
     fontSize: 12,
-  }, props);
+  }, cell);
+
+  // calc(100vh - 170px)
+  const scrollMaxHeightCss = `${maxHeight ? maxHeight : 'calc(100vh - 115px)'} !important`;
+  console.log(scrollMaxHeightCss);
 
   return createMuiTheme({
     overrides: {
@@ -29,7 +34,8 @@ const theme = (props = {}) => {
           padding: 0,
         },
         responsiveScrollMaxHeight: {
-          maxHeight: 'calc(100vh - 170px) !important',
+          height: scrollMaxHeightCss,
+          maxHeight: scrollMaxHeightCss,
         },
       },
       MUIDataTableHeadCell: {
@@ -58,7 +64,7 @@ const theme = (props = {}) => {
 
 console.log(theme);
 
-function Table({ title, description, data, columns, options, nested = false, themeProps }) {
+function Table({ title, description, data, columns, options, nested = false, themeProps, maxHeight }) {
   const onItemClick = (rowData, rowMeta) => {
     const item = data[rowMeta.dataIndex];
     console.log(item);
@@ -93,7 +99,7 @@ function Table({ title, description, data, columns, options, nested = false, the
   }, options);
 
   return (
-    <MuiThemeProvider theme={theme(themeProps)}>
+    <MuiThemeProvider theme={theme(maxHeight, themeProps)}>
       <MUIDataTable
         className="data-table"
         title={title}
@@ -113,6 +119,7 @@ Table.propTypes = {
   options: PropTypes.object,
   nested: PropTypes.bool,
   themeProps: PropTypes.object,
+  maxHeight: PropTypes.string,
 };
 
 export default Table;

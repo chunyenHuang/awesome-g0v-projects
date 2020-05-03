@@ -103,7 +103,6 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","勞工薪資預算程式",,,"kiang","開放資料,開放政府,經濟活動","kiang/salary",https://github.com/kiang/salary
 "awesome-g0v","69K薪水工作查詢",,,"g0v","開放資料,開放政府,經濟活動","g0v/i69",https://github.com/g0v/i69/
 "awesome-g0v","求職小幫手",,"467","ronnywang","開放資料,開放政府,經濟活動","ronnywang/jobhelper,nansenat16/jobhelper-mobile,yisheng-liu/jobhelper_ff,nansenat16/jobhelper-ie",https://github.com/ronnywang/jobhelper
-"awesome-g0v","你被服貿了嗎？",,"50","g0v","開放資料,開放政府,經濟活動","g0v/tisa-map",https://github.com/g0v/tisa-map
 "awesome-g0v","自經區立法辯論比較表",,,"fepztw","開放資料,開放政府,經濟活動","fepztw/fepztw.github.io",https://github.com/fepztw
 "awesome-g0v","開放標案",,,"mlwmlw","開放資料,開放政府,經濟活動","mlwmlw/pcc",https://github.com/mlwmlw/pcc
 "awesome-g0v","台灣公司登記資料",,,"ronnywang","開放資料,開放政府,經濟活動","ronnywang/twcompany",https://github.com/ronnywang/twcompany
@@ -277,7 +276,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","sense.tw - 議題釐清工具",,"507","hychen","媒體",,
 "g0v_db","sense.tw 榕樹下・眾開講",,"492","ael","工具",,"https://docs.google.com/presentation/d/1JzmCysvXnzM7DhTlqwZolnW2Znk11A5icq-8WRnaJM0/edit?usp=sharing"
 "g0v_db","uWikipedia.org 油雞百科",,"510","fly","待確認",,"j.mp/y-tts-"
-"g0v_db","vTaiwan",,"648,509,494,475,443,362,216","子魚,Peace,書漾,哲輔,au,tmonk","民主參與",,"https://g0v.hackmd.io/@tmonk/rJHYWR9S4/https%3A%2F%2Fvtaiwan.tw%2F?type=book"
+"g0v_db","vTaiwan",,"648,509,494,475,443,362,216","子魚,Peace,書漾,哲輔,au,tmonk","民主參與","g0v/vue.vtaiwan.tw","https://g0v.hackmd.io/@tmonk/rJHYWR9S4/https%3A%2F%2Fvtaiwan.tw%2F?type=book"
 "g0v_db","✨💌🕳zMAGIC CHAT PORTALS between the chat-homes of all communities!",,"546","patcon","工具",,"https://g0v.hackmd.io/s/Sy5y_pw1N"
 "g0v_db","「g0v 公民科技創新獎助金」& 詢問台",,"369","ipa","g0v",,"http://grants.g0v.tw"
 "g0v_db","「假的！」-- 護病比資料查詢",,"346","peggy","醫療",,"https://g0v.hackpad.com/L4KNanSM67U"
@@ -299,7 +298,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","企業永續資訊平台（Corporate Social Responsibility）",,"437","李振北","工具",,
 "g0v_db","你今天加班了嗎?",,"320","韋銘","勞動",,"https://g0v.hackpad.com/tA21IMtODD8"
 "g0v_db","你想要怎樣的黨產資料網站？",,"356","雨蒼","轉型正義",,"https://g0v.hackpad.com/xpvderSMBSU"
-"g0v_db","你被服貿了嗎？（服貿行業對照表）",,"78","nchild","法律",,"https://g0v.hackpad.com/-g0v--SUkMbG4IV6v"
+"g0v_db","你被服貿了嗎？（服貿行業對照表）",,"78,50","nchild","開放資料,開放政府,經濟活動,法律","g0v/tisa-map","https://g0v.hackpad.com/-g0v--SUkMbG4IV6v"
 "g0v_db","來去宜蘭住一輩子",,"199","wenchuan","農業,經濟",,"https://g0v.hackpad.com/jAFuERTpDC5"
 "g0v_db","信差 - 社運鄉民出來走",,"498","eddie","待確認",,"https://g0v.hackpad.tw/Courier--zbl3CtRxsmg"
 "g0v_db","假新聞的主題：籌辦演講會／大松來玩桌遊《抓誑新聞》",,"555","Michael_LI","待確認",,"https://hackmd.io/s/H10h63AIE#"
@@ -621,7 +620,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","運輸．共享",,"483","嘉豪(Kahou)","交通",,
 "g0v_db","運送供需媒合系統",,"28","David","交通",,"http://zh.scribd.com/doc/131353017/gn-M424559"
 "g0v_db","違建類型統計及視覺化",,"603","林穎孟","都市",,"https://hackmd.io/@hsiaoa/rksxNtlIS/edit"
-"g0v_db","違章工廠舉報系統",,"614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
+"g0v_db","違章工廠舉報系統 Disfactory",,"614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
 "g0v_db","選前大補帖",,"621","bruce","待確認",,"g0v slack #2020voting-guide"
 "g0v_db","選區視覺化,ly.g0v.tw website",,"23","kirby","選舉",,"https://github.com/clkao/TWVoteData/blob/master/mly/8"
 "g0v_db","選服透明化",,"564","HY Hsu / SSivart","選舉",,"https://github.com/FroggyTaipei/froggy-service"

@@ -6,38 +6,52 @@ import RepoTable from './components/RepoTable';
 // import OrganizationTable from './components/OrganizationTable';
 import DeveloperTable from './components/DeveloperTable';
 import Info from './components/Info';
+import Project from './components/Project';
+import Unsolved from './components/Unsolved';
 
 export default [{
   title: 'header.findProjects',
-  path: '/',
+  paths: ['/', '/projects'],
   component: ProjectTable,
 }, {
+  title: 'header.project',
+  paths: [
+    '/project/:name',
+    '/project/:name/*',
+  ],
+  component: Project,
+  hide: true,
+}, {
   title: 'header.findProposals',
-  path: '/proposals',
+  paths: ['/proposals'],
   component: ProposalEventTable,
 }, {
   title: 'header.findTasks',
-  path: '/tasks',
+  paths: ['/tasks'],
   component: TaskTable,
 }, {
   title: 'header.findCowriting',
-  path: '/cowriting',
+  paths: ['/cowriting'],
   component: HackmdTagTable,
 }, {
   title: 'header.findRepositories',
-  path: '/repositories',
+  paths: ['/repositories'],
   component: RepoTable,
   // }, {
   //   title: 'header.findOrganizations',
-  //   path: '/organizations',
+  //   paths:[ '/organizations',
   //   component: OrganizationTable,
 }, {
   title: 'header.findDevelopers',
-  path: '/developers',
+  paths: ['/developers'],
   component: DeveloperTable,
 }, {
+  title: 'header.unsolved',
+  paths: ['/unsolved'],
+  component: Unsolved,
+}, {
   title: 'header.info',
-  path: '/info',
+  paths: ['/info'],
   component: Info,
   hide: true,
 }];

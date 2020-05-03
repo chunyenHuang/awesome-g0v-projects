@@ -7,8 +7,9 @@ import { useTranslation } from 'react-i18next';
 import Table from './Table';
 import CellList from './table/CellList';
 import VisitButton from './VisitButton';
+import TextLink from './TextLink';
 
-function HackmdTable({ data, nested = false }) {
+function HackmdTable({ data, nested = false, maxHeight }) {
   const { t } = useTranslation();
   const [tags, setTags] = useState([]);
 
@@ -16,6 +17,14 @@ function HackmdTable({ data, nested = false }) {
   const description = 'Data Source: https://g0v.hackmd.io';
 
   const columns = [{
+    name: 'projectName',
+    label: t('table.hackmd.projectName'),
+    options: {
+      filter: false,
+      sort: true,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
+    },
+  }, {
     name: 'title',
     label: t('table.hackmd.title'),
     options: {
@@ -45,6 +54,7 @@ function HackmdTable({ data, nested = false }) {
     name: 'publishType',
     label: t('table.hackmd.publishType'),
     options: {
+      display: false,
       filter: true,
       sort: true,
     },
@@ -52,6 +62,7 @@ function HackmdTable({ data, nested = false }) {
     name: 'publishedAt',
     label: t('table.hackmd.publishedAt'),
     options: {
+      display: false,
       filter: false,
       sort: true,
       customBodyRender: (value) => value ? moment(value).format('YYYY/MM/DD') : '',
@@ -111,6 +122,7 @@ function HackmdTable({ data, nested = false }) {
       columns={columns}
       options={options}
       nested={nested}
+      maxHeight={maxHeight}
     />
   );
 }
@@ -118,6 +130,7 @@ function HackmdTable({ data, nested = false }) {
 HackmdTable.propTypes = {
   data: PropTypes.array.isRequired,
   nested: PropTypes.bool,
+  maxHeight: PropTypes.string,
 };
 
 export default HackmdTable;

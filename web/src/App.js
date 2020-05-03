@@ -4,17 +4,21 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   HashRouter as Router,
   Route,
-  Switch,
+  // Switch,
 } from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import './i18n';
 
-import Header from './components/Header';
+// import Header from './components/Header';
 import routes from './routes';
 import { load } from './data';
+import Sidebar from './components/Sidebar';
 
 const useStyles = makeStyles((theme) => ({
-  main: {},
+  main: {
+    display: 'flex',
+  },
   spinner: {
     position: 'absolute',
     top: 150,
@@ -22,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     // padding: theme.spacing(2),
-    paddingTop: 55,
+    // paddingTop: 55,
+    flexGrow: 1,
   },
 }));
 
@@ -41,18 +46,27 @@ function App() {
     <div className={classes.main}>
       <Router basename={'/'}>
         <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
-          <Header updatedAt={updatedAt}/>
+          <CssBaseline />
+
+          {/* <Header updatedAt={updatedAt} /> */}
+          <Sidebar updatedAt={updatedAt} />
+
           {!updatedAt && <CircularProgress className={classes.spinner} />}
+
           {updatedAt &&
-            <div className={classes.container}>
-              <Switch>
-                {routes.map((route, index) => (
-                  <Route path={route.path} exact key={index}>
-                    <route.component />
-                  </Route>
-                ))}
-              </Switch>
-            </div>}
+            <main className={classes.container}>
+              {/* <Switch> */}
+              {routes.map((route, index) => (
+                <React.Fragment key={index}>
+                  {route.paths.map((path)=>(
+                    <Route path={path} exact key={path}>
+                      <route.component />
+                    </Route>
+                  ))}
+                </React.Fragment>
+              ))}
+              {/* </Switch> */}
+            </main>}
         </React.Suspense>
       </Router>
     </div>

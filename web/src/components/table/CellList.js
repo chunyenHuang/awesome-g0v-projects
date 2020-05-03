@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CellList({ value = [], targetKey }) {
+function CellList({ value = [], targetKey, max = 3 }) {
   const classes = useStyles();
-  const showLast = 3;
+  const showLast = max;
 
   if (typeof value === 'string' || !value) {
     value = value || '';
@@ -52,6 +52,7 @@ CellList.propTypes = {
     PropTypes.object,
   ]),
   targetKey: PropTypes.string,
+  max: PropTypes.number,
 };
 
 export default CellList;

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import DescriptionIcon from '@material-ui/icons/Description';
+
 import Table from './Table';
 import CellList from './table/CellList';
 import VisitButton from './VisitButton';
@@ -13,8 +15,9 @@ import NestedTableContainer from './table/NestedTableContainer';
 import { getProjects, getTags } from '../data';
 import HackmdTable from './HackmdTable';
 import ProjectStatusBadget from './ProjectStatusBadget';
+import TextLink from './TextLink';
 
-function ProjectTable({ data: inData }) {
+function ProjectTable({ data: inData, maxHeight }) {
   const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [tags, setTags] = useState([]);
@@ -55,11 +58,13 @@ function ProjectTable({ data: inData }) {
     options: {
       filter: false,
       sort: true,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
     },
   }, {
     name: 'description',
     label: t('table.project.description'),
     options: {
+      display: false,
       filter: false,
       sort: true,
     },
@@ -97,6 +102,14 @@ function ProjectTable({ data: inData }) {
       filter: false,
       sort: false,
       customBodyRender: (value) => <CellList value={value}/>,
+    },
+  }, {
+    name: 'needs',
+    label: t('table.project.needs'),
+    options: {
+      filter: false,
+      sort: false,
+      customBodyRender: (value) => <CellList value={value} />,
     },
   }, {
     name: 'owners',
@@ -175,12 +188,24 @@ function ProjectTable({ data: inData }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender: (value) => <VisitButton url={value} title={t('table.project.homepage')} />,
+      customBodyRender: (value) => <VisitButton url={value} title={t('table.project.homepage')} icon={<DescriptionIcon />}/>,
+    },
+  }, {
+    name: 'name',
+    label: ' ',
+    options: {
+      filter: false,
+      sort: false,
+      customBodyRender: (value) => (<VisitButton url={`/project/${value}`} title={t('table.project.visit')} />),
     },
   }];
 
   const options = {
     expandableRows: true,
+    // TODO: project preview
+    isRowExpandable() {
+      return false;
+    },
     renderExpandableRow(rowData, rowMeta) {
       const item = data[rowMeta.dataIndex];
       return (
@@ -226,12 +251,14 @@ function ProjectTable({ data: inData }) {
       data={data}
       columns={columns}
       options={options}
+      maxHeight={maxHeight}
     />
   );
 }
 
 ProjectTable.propTypes = {
   data: PropTypes.array,
+  maxHeight: PropTypes.string,
 };
 
 export default ProjectTable;

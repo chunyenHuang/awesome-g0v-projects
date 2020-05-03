@@ -164,6 +164,18 @@ export const getProjects = async () => {
   return output;
 };
 
+export const getProjectsByTag = async (inTag, ignoreProjectNames = []) => {
+  const { data: projects } = await getProjects();
+
+  return projects.filter((x) => x.tags.includes(inTag) && !ignoreProjectNames.includes(x.name));
+};
+
+export const getProject = async (name) => {
+  const { data: projects } = await getProjects();
+
+  return projects.find((x) => x.name === name);
+};
+
 export const getProposals = async () => {
   const key = 'proposals';
   if (cache[key]) return cache[key];
@@ -207,11 +219,22 @@ export const getGitHubIssues = async () => {
   const output = await res.json();
 
   output.data = output.data
+    .map((item) => {
+      item.source = 'GitHub';
+      return item;
+    })
     .sort(sortByKey('created_at', true));
 
   cache[key] = output;
 
   return output;
+};
+
+export const getGitHubIssuesByRepos = async (repos = []) => {
+  const { data: issues } = await getGitHubIssues();
+  return issues.filter((x) => {
+    return repos.some(({ full_name }) => x.repository_url.endsWith(`/${full_name}`));
+  });
 };
 
 export const getLogs = async () => {

@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Table from './Table';
 import GithubLinkButton from './GithubLinkButton';
-import { getGitHubIssues, getRepos } from '../data';
+import { getGitHubIssuesByRepos, getRepos } from '../data';
 import CellList from './table/CellList';
 import CellParagraph from './table/CellParagraph';
 import CellImage from './table/CellImage';
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TaskTable({ data: inData, nested = false }) {
+function TaskTable({ repos: inRepos, nested = false, maxHeight }) {
   const classes = useStyles();
 
   const { t } = useTranslation();
@@ -140,21 +140,21 @@ function TaskTable({ data: inData, nested = false }) {
 
   useEffect(() => {
     (async () => {
-      if (inData) {
-        setData(inData);
-      } else {
-        const { data: githubIssues } = await getGitHubIssues();
-
-        setData(githubIssues.map((item) => {
-          item.source = 'GitHub';
-          return item;
-        }));
-      }
-
-      const { data: repos } = await getRepos();
-      setRepos(repos);
+      const githubIssues = await getGitHubIssuesByRepos(repos);
+      setData(githubIssues);
     })();
-  }, [inData]);
+  }, [repos]);
+
+  useEffect(() => {
+    (async () => {
+      if (inRepos) {
+        setRepos(inRepos);
+      } else {
+        const { data: repos } = await getRepos();
+        setRepos(repos);
+      }
+    })();
+  }, [inRepos]);
 
   return (
     <Table
@@ -164,13 +164,15 @@ function TaskTable({ data: inData, nested = false }) {
       columns={columns}
       options={options}
       nested={nested}
+      maxHeight={maxHeight}
     />
   );
 }
 
 TaskTable.propTypes = {
-  data: PropTypes.array,
+  repos: PropTypes.array,
   nested: PropTypes.bool,
+  maxHeight: PropTypes.string,
 };
 
 export default TaskTable;

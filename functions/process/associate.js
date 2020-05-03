@@ -10,6 +10,13 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
     .map((item) => {
       const projectName = item.name;
 
+      const addProjectName = (x) => {
+        x.projectName = x.projectName || projectName;
+        x.projectNames = x.projectNames || [];
+        x.projectNames.push(projectName);
+        return x;
+      };
+
       item.g0v_db_rows = item.g0v_db_rows.split(',').filter((x) => x).map((x) => parseInt(x));
       item.github_repos = item.github_repos.split(',').filter((x) => x);
       item.owners = item.owners.split(',').filter((x) => x);
@@ -17,19 +24,17 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
 
       item.proposals = g0vDbData
         .filter((x) => item.g0v_db_rows.includes(x.row))
-        .map((x) => {
-          x.projectName = projectName;
-          return x;
-        });
+        .map(addProjectName);
 
       let totalContributors = 0;
       item.repos = repos
         .filter((x) => item.github_repos.includes(x.full_name))
+        .map(addProjectName)
         .map((x) => {
-          x.projectName = projectName;
           totalContributors += x.contributors.length;
           return x;
         });
+
       item.github_contributors_count = totalContributors;
 
       const lastProposedDate = (item.proposals[0] || {}).date;
@@ -125,11 +130,7 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
         });
 
       item.hackmds = [...matchedHackmds, ...otherHackmds]
-        .map((x) => {
-          // do not overwrite if the hackmd is associated to another project already.
-          x.projectName = x.projectName || projectName;
-          return x;
-        });
+        .map(addProjectName);
 
       const lastHackmdUpdatedDate = (item.hackmds[0] || {}).lastchangeAt;
       item.lastHackmdUpdatedDate = lastHackmdUpdatedDate ? moment(lastHackmdUpdatedDate).toISOString() : null;
@@ -140,13 +141,30 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
         item.lastHackmdUpdatedDate,
       ].filter((x) => x).sort((a, b) => a > b ? -1 : 1)[0];
 
+      // TODO: iterrate all the nested prop to get all valid url links
       item.urls = urls;
+
+      // gather all the manpower needs
+      item.needs = [];
+      item.proposals.forEach(({ manpower }) => {
+        manpower.forEach((i) => {
+          if (i && !item.needs.includes(i)) item.needs.push(i);
+        });
+      });
+      item.repos.filter((x) => x.g0vJsonUrl).forEach(({ g0vJson }) => {
+        Array.isArray(g0vJson.needs) && g0vJson.needs.forEach((i) => {
+          if (i && typeof i === 'string' && !item.needs.includes(i)) item.needs.push(i);
+        });
+      });
+
+      item.needs.filter((x) => x).map((x) => x.replace(/\n\r/g, ' '));
 
       return item;
     });
 
   const addMissingProjectName = (x) => {
     x.projectName = x.projectName || null;
+    x.projectNames = x.projectNames || [];
     return x;
   };
 
