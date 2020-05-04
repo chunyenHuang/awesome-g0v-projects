@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import moment from 'moment';
+// import moment from 'moment';
 
 import { getProject } from '../data';
 import RepoTable from './RepoTable';
