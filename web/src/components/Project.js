@@ -78,30 +78,37 @@ function Project({ project: inProject }) {
     return [{
       path: 'dashboard',
       title: t('project.dashboard'),
+      disabled: false,
       render: () => <ProjectDashboard project={project} />,
     }, {
       path: 'proposals',
-      title: t('project.proposals') + ` (${project ? project.g0v_db_rows.length : 0})`,
+      title: t('project.proposals') + ` (${project.g0v_db_rows.length})`,
+      disabled: project.g0v_db_rows.length === 0,
       render: () => <ProposalTable data={project.proposals} hideFields={['event_name', 'dummy_event_type']} maxHeight={tableMaxHeight} />,
     }, {
       path: 'repos',
-      title: t('project.repos') + ` (${project ? project.github_repos.length : 0})`,
+      title: t('project.repos') + ` (${project.github_repos.length})`,
+      disabled: project.github_repos.length === 0,
       render: () => <RepoTable data={project.repos} maxHeight={tableMaxHeight} />,
     }, {
       path: 'tasks',
       title: t('project.recentTasks'),
+      disabled: project.repos.length === 0,
       render: () => <TaskTable repos={project.repos} maxHeight={tableMaxHeight} />,
     }, {
       path: 'cowritings',
-      title: t('project.cowritings') + ` (${project? project.hackmds.length : 0})`,
+      title: t('project.cowritings') + ` (${project.hackmds.length})`,
+      disabled: project.hackmds.length === 0,
       render: () => <HackmdTable data={project.hackmds} maxHeight={tableMaxHeight} />,
     }, {
       path: 'links',
-      title: t('project.links') + ` (${project?project.urls.length : 0})`,
+      title: t('project.links') + ` (${project.urls.length})`,
+      disabled: project.urls.length === 0,
       render: () => <LinkTable data={project.urls} maxHeight={tableMaxHeight} />,
     }, {
       path: 'developers',
-      title: t('project.developers') + ` (${project?project.github_contributors_count:0})`,
+      title: t('project.developers') + ` (${project.github_contributors_count})`,
+      disabled: project.github_contributors_count === 0,
       render: () => <DeveloperTable repos={project.repos} maxHeight={tableMaxHeight} />,
     }].map((item) => {
       item.path = `/project/${encodedProjectName}/${item.path}`;
@@ -146,11 +153,12 @@ function Project({ project: inProject }) {
           <Typography variant="h6" className={classes.title} onClick={()=> history.push(`/project/${encodedProjectName}/dashboard`)}>
             {project.name}
           </Typography>
-          {menu.map(({ title, path }, index) => (
+          {menu.map(({ title, path, disabled }, index) => (
             <Button
               key={title}
               to={path}
               component={Link}
+              disabled={disabled}
               className={selectedIndex === index ? classes.selected : ''}
               onClick={()=> setSelectedIndex(index)}
             >
