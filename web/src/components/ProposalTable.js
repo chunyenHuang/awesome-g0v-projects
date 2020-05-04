@@ -57,7 +57,7 @@ function ProposalTable({ data, nested = false, hideFields = [], maxHeight }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${encodeURIComponent(value)}`} />,
     },
   }, {
     name: 'owner_name',

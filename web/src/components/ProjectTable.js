@@ -58,7 +58,7 @@ function ProjectTable({ data: inData, maxHeight }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${encodeURIComponent(value)}`} />,
     },
   }, {
     name: 'description',
@@ -196,7 +196,7 @@ function ProjectTable({ data: inData, maxHeight }) {
     options: {
       filter: false,
       sort: false,
-      customBodyRender: (value) => (<VisitButton url={`/project/${value}`} title={t('table.project.visit')} />),
+      customBodyRender: (value) => (<VisitButton url={`/project/${encodeURIComponent(value)}`} title={t('table.project.visit')} />),
     },
   }];
 

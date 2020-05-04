@@ -40,7 +40,7 @@ export default function SimilarProjectList({ projectName, tags }) {
   const [tagProjects, setTagProjects] = useState([]);
 
   const selectProject = (name) => {
-    history.push(`/project/${name}/dashboard`);
+    history.push(`/project/${encodeURIComponent(name)}/dashboard`);
   };
 
   useEffect(() => {

@@ -58,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
 function Project({ project: inProject }) {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { name: projectName } = useParams();
+  const { name } = useParams();
+  const encodedProjectName = name;
+  const projectName = decodeURIComponent(name);
+  console.log(projectName);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -101,7 +104,7 @@ function Project({ project: inProject }) {
       title: t('project.developers') + ` (${project?project.github_contributors_count:0})`,
       render: () => <DeveloperTable repos={project.repos} maxHeight={tableMaxHeight} />,
     }].map((item) => {
-      item.path = `/project/${project.name}/${item.path}`;
+      item.path = `/project/${encodedProjectName}/${item.path}`;
       return item;
     });
   };
@@ -110,12 +113,12 @@ function Project({ project: inProject }) {
 
   useEffect(() => {
     if (history.location.pathname.split('/').length === 3) {
-      history.push(`/project/${projectName}/dashboard`);
+      history.push(`/project/${encodedProjectName}/dashboard`);
     } else {
       const index = menu.findIndex(({ path }) => path === history.location.pathname);
       setSelectedIndex(index);
     }
-  }, [history, projectName, menu]);
+  }, [history, encodedProjectName, menu]);
 
   useEffect(() => {
     (async () => {
@@ -140,7 +143,7 @@ function Project({ project: inProject }) {
     <div className={classes.main}>
       <AppBar position="fixed" color="default" elevation={1} className={classes.appBar}>
         <Toolbar variant="dense">
-          <Typography variant="h6" className={classes.title} onClick={()=> history.push(`/project/${projectName}/dashboard`)}>
+          <Typography variant="h6" className={classes.title} onClick={()=> history.push(`/project/${encodedProjectName}/dashboard`)}>
             {project.name}
           </Typography>
           {menu.map(({ title, path }, index) => (
@@ -155,9 +158,9 @@ function Project({ project: inProject }) {
             </Button>
           ))}
           <div className={classes.space}></div>
-          <span>
+          {/* <span>
             {t('project.lastUpdatedAt')} {moment(project.lastUpdatedAt).fromNow(true)} {t('text.ago')}
-          </span>
+          </span> */}
         </Toolbar>
       </AppBar>
 

@@ -170,7 +170,7 @@
   "project.links": "相關連結",
   "project.developers": "開發人員",
   "project.similarProjects": "類似專案 (相同標籤)",
-  "project.lastUpdatedAt": "專案最近更新於",
+  "project.lastUpdatedAt": "更新於",
   "project.needs": "人力需求",
   "project.keywords": "關鍵字",
   "project.noG0vJson": "找不到 g0v.json...",

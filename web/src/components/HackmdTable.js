@@ -22,7 +22,7 @@ function HackmdTable({ data, nested = false, maxHeight }) {
     options: {
       filter: false,
       sort: true,
-      customBodyRender: (value) => <TextLink title={value} url={`/project/${value}`} />,
+      customBodyRender: (value) => <TextLink title={value} url={`/project/${encodeURIComponent(value)}`} />,
     },
   }, {
     name: 'title',
