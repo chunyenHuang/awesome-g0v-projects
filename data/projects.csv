@@ -41,7 +41,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","中央政府總預算",,,"g0v","開放資料,開放政府,課責","g0v/twbudget",https://github.com/g0v/twbudget
 "awesome-g0v","各年度各縣市總預算視覺",,,"kiang","開放資料,開放政府,課責","kiang/dgbas.gov.tw",https://github.com/kiang/dgbas.gov.tw
 "awesome-g0v","立委聯絡資訊",,,"g0v","開放資料,開放政府,課責","g0v/ly-tel",https://github.com/g0v/ly-tel
-"awesome-g0v","立委投票指南",,"234,160,138,121,81","Yo Yo,johnny,","開放資料,開放政府,課責,選舉,政治","g0v/twly-voter-guide",https://github.com/g0v/twly-voter-guide
+"awesome-g0v","立委投票指南",,"621,234,160,138,121,81","bruce,Yo Yo,johnny","開放資料,開放政府,課責,選舉,政治","g0v/twly-voter-guide,g0v/twly_crawler,g0v/2020voting-guide",https://github.com/g0v/twly-voter-guide
 "awesome-g0v","2016大選區域立委圖",,,"tommy87166","開放資料,開放政府,課責","tommy87166/tommy87166.github.io",https://github.com/tommy87166/tommy87166.github.io
 "awesome-g0v","台灣各種組織不推薦立委名單",,,"soidid","開放資料,開放政府,課責","soidid/soidid.github.io",https://github.com/soidid/soidid.github.io
 "awesome-g0v","台灣選舉黃頁",,,"kiang","開放資料,開放政府,課責","kiang/elections",https://github.com/kiang/elections
@@ -599,7 +599,6 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","運送供需媒合系統",,"28","David","交通",,"http://zh.scribd.com/doc/131353017/gn-M424559"
 "g0v_db","違建類型統計及視覺化",,"603","林穎孟","都市",,"https://hackmd.io/@hsiaoa/rksxNtlIS/edit"
 "g0v_db","違章工廠舉報系統 Disfactory",,"614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
-"g0v_db","選前大補帖",,"621","bruce","待確認",,"g0v slack #2020voting-guide"
 "g0v_db","選區視覺化,ly.g0v.tw website",,"23","kirby","選舉",,"https://github.com/clkao/TWVoteData/blob/master/mly/8"
 "g0v_db","選服透明化",,"564","HY Hsu / SSivart","選舉",,"https://github.com/FroggyTaipei/froggy-service"
 "g0v_db","選票成份分析update",,"22","Bater","選舉",,
