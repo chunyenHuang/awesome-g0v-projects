@@ -54,7 +54,7 @@ export default function ProposalGallery({ proposals = [] }) {
         {proposals.map((proposal, index) => (
           <Card className={classes.card} key={index}>
             <YouTube
-              videoId={proposal.video_link.split('/').pop()}
+              videoId={youtubeUrlParser(proposal.video_link)}
               opts={{ width: '100%' }}
             />
             <CardContent>
@@ -82,3 +82,9 @@ export default function ProposalGallery({ proposals = [] }) {
 ProposalGallery.propTypes = {
   proposals: PropTypes.array.isRequired,
 };
+
+function youtubeUrlParser(url) {
+  const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[7].length == 11) ? match[7] : false;
+}
