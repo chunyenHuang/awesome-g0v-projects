@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     overflow: 'auto',
     // height: 300,
-    maxHeight: 300,
+    // maxHeight: 300,
   },
   listSection: {
     backgroundColor: 'inherit',
@@ -34,7 +34,7 @@ export default function SimpleList({ title, data }) {
 
   return (
     <Card className={classes.container}>
-      <ListSubheader>{title}</ListSubheader>
+      <ListSubheader>{title} ({data.length})</ListSubheader>
       <List className={classes.listContainer} >
         {data.map((item, index) => (
           <ListItem

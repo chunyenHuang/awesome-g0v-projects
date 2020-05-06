@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
-    overflow: 'auto',
-    height: 800,
-    maxHeight: '90vh',
+    // overflow: 'auto',
+    // height: 600,
+    // maxHeight: '85vh',
   },
   listSection: {
     backgroundColor: 'inherit',
@@ -59,7 +59,7 @@ export default function SimilarProjectList({ projectName, tags }) {
         {tags.map((tag, index) => (
           <li key={`section-${index}`} className={classes.listSection}>
             <ul className={classes.ul}>
-              <ListSubheader>{tag}</ListSubheader>
+              <ListSubheader>{tag} ({(tagProjects[index]||[]).length})</ListSubheader>
               {(tagProjects[index] || []).map(({ name }) => (
                 <ListItem
                   key={`${index}-${name}`}

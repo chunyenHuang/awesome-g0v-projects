@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 
+import ProposalGallery from './ProposalGallery';
 import G0vJsonGallery from './G0vJsonGallery';
 import SimilarProjectList from './SimilarProjectList';
 import SimpleList from './SimpleList';
@@ -36,14 +37,15 @@ function ProjectDashboard({ project }) {
 
   return (
     <Grid container className={classes.main} spacing={2}>
-      <Grid item md={2}>
+      <Grid item md={3}>
         <SimpleList title={t('project.needs')} data={project.needs}/>
         <SimpleList title={t('project.keywords')} data={project.keywords}/>
       </Grid>
       <Grid item md={6}>
+        <ProposalGallery proposals={project.proposals} />
         <G0vJsonGallery g0vJsons={g0vJsons} />
       </Grid>
-      <Grid item md={4}>
+      <Grid item md={3}>
         <SimilarProjectList projectName={project.name} tags={project.tags} />
       </Grid>
     </Grid>
