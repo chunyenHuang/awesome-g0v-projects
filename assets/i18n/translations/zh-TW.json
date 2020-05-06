@@ -175,6 +175,7 @@
   "project.keywords": "關鍵字",
   "project.noG0vJson": "找不到 g0v.json...",
   "project.noG0vJsonDescription": "你可以點選上方的 GitHub 按鍵，協助新增或編輯 g0v.json",
+  "project.guideline": "專案說明",
 
   "end": "The end of file"
 }
