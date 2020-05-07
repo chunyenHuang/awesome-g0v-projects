@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import YouTube from 'react-youtube';
-import Carousel from 'react-material-ui-carousel'
+import Carousel from 'react-material-ui-carousel';
 
 import VisitButton from './VisitButton';
 
@@ -86,5 +86,5 @@ ProposalGallery.propTypes = {
 function youtubeUrlParser(url) {
   const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
   const match = url.match(regExp);
-  return (match && match[7].length == 11) ? match[7] : false;
+  return (match && match[7].length === 11) ? match[7] : false;
 }
