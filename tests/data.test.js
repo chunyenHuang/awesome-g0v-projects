@@ -194,7 +194,14 @@ describe('Test Projects', () => {
             allOwners.push(owner);
           }
         });
-      return `"g0v_db","${sanitize(item.project)}",,"${item.row}","${sanitize(item.owner_name.replace(/, +?/g, ',')) || 'unknown'}","${item.tags.filter((x)=>x).join(',') || '待確認'}",,"${sanitize(item.guideline)}"`;
+      return [
+        `"g0v_db"`,
+        `"${sanitize(item.project)}"`,
+        `"${item.row}"`,
+        `"${sanitize(item.owner_name.replace(/, +?/g, ',')) || 'unknown'}"`,
+        `"${item.tags.filter((x)=>x).join(',') || '待確認'}"`,
+        `"${sanitize(item.guideline)}"`,
+      ].join(',');
     }).sort((a, b) => a > b ? 1 : -1).join('\n'));
 
     fs.writeFileSync(path.join(__dirname, 'proposals-owners.csv'), allOwners.map((item) => {
