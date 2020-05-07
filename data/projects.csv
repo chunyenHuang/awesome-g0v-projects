@@ -2,7 +2,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 
 "manual","Cofacts 真的假的",,"645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil","事實查核","cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
 "manual","美國國會台灣觀測站",,"634","bruce","待確認","ACTtaiwan/us-tw-watch-site,ACTtaiwan/ustw-site",
-"manual","LikeCoin 讚賞公民共和國",,,"williamchong007","待確認","likecoin/likecoin,likecoin/dao,likecoin/LikeCoinButton-integration,likecoin/likecoin-button-sdk,likecoin/liker-land-browser-extension,likecoin/likecoin-wordpress,likecoin/likecoin-app,likecoin/likecoin-api-public",
+"manual","LikeCoin 讚賞公民共和國",,,"kin ko,williamchong007","媒體,區塊鏈,抗審查","likecoin/likecoin,likecoin/dao,likecoin/LikeCoinButton-integration,likecoin/likecoin-button-sdk,likecoin/liker-land-browser-extension,likecoin/likecoin-wordpress,likecoin/likecoin-app,likecoin/likecoin-api-public","https://like.co"
 "manual","MyData Taiwan - mylog14",,,"bafu","待確認","MyDataTaiwan/mylog14","https://www.mydata.org.tw"
 
 "awesome-g0v","The web site.",,,"g0v","g0v基礎建設","g0v/g0v.tw",https://github.com/g0v/g0v.tw
