@@ -61,7 +61,7 @@
   "table.organization.id": "辨識碼",
   "table.organization.description": "描述",
   "table.organization.repos": "GitHub 開源項目",
-  "table.organization.githubRepo": "GitHub Repo",
+  "table.organization.githubRepo": "GitHub 源碼庫",
 
   "table.repo.title": "GitHub 開源項目列表",
   "table.repo.projectName": "專案名稱",
@@ -78,14 +78,14 @@
   "table.repo.createdAt": "創立時間",
   "table.repo.pushedAt": "最後更新於",
   "table.repo.license": "授權",
-  "table.repo.githubRepo": "GitHub Repo",
+  "table.repo.githubRepo": "GitHub 源碼庫",
   "table.repo.hackmdUrl": "Hackmd 共筆標籤",
 
   "table.developer.title": "開發者列表",
   "table.developer.type": "類別",
   "table.developer.avatar": "頭像",
   "table.developer.githubId": "ID",
-  "table.developer.majorRepoName": " 主要參與Repo",
+  "table.developer.majorRepoName": " 主要參與源碼庫",
   "table.developer.majorProjectName": " 主要參與專案",
   "table.developer.majorContributions": "主要貢獻",
   "table.developer.repos": "相關參與",
@@ -131,7 +131,7 @@
 
   "table.task.listTitle": "任務列表",
   "table.task.source": "來源",
-  "table.task.githubRepo": "GitHub Repo",
+  "table.task.githubRepo": "GitHub 源碼庫",
   "table.task.title": "名稱",
   "table.task.description": "敘述",
   "table.task.labels": "標籤",
@@ -149,7 +149,7 @@
   "g0vJson.helpAdd": "協助新增 g0v.json",
   "g0vJson.helpEdit": "協助修改 g0v.json",
   "g0vJson.homepage": "首頁",
-  "g0vJson.repo": "GitHub Repo",
+  "g0vJson.repo": "GitHub 源碼庫",
 
   "header.findProjects": "找專案",
   "header.findProposals": "找提案",
