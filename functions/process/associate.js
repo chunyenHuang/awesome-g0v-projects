@@ -122,7 +122,7 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
           }
 
           // TODO: use partial match for tags
-          if (similarity(item.name, title) >= 0.5) {
+          if (similarity(item.name, title) >= 0.8) {
             return true;
           }
 

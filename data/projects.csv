@@ -70,7 +70,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","NGO list retreieved from judicial.gov.tw.",,,"g0v","開放資料,開放政府,政府運作","g0v/foundationtw",https://github.com/g0v/foundationtw
 "awesome-g0v","植物疫情與藥劑查詢系統",,,"g0v","開放資料,開放政府,公共安全","g0v/agriculture",https://github.com/g0v/agriculture
 "awesome-g0v","零時空污觀測網",,"343","immortalmice","開放資料,開放政府,公共安全","immortalmice/Real-time-Air-Quality-Map",https://github.com/immortalmice/Real-time-Air-Quality-Map
-"awesome-g0v","環境儀表板",,"76","g0v","開放資料,開放政府,公共安全","g0v/env.g0v.tw",https://github.com/g0v/env.g0v.tw
+"awesome-g0v","環境儀表板",,"76","g0v","開放資料,開放政府,公共安全","g0v/env.g0v.tw,g0v/moer.g0v.tw",https://g0v.hackmd.io/r42IeTDdT5ONGprjI-UkQQ
 "awesome-g0v","賽豬公上太空",,,"jimyhuang","開放資料,開放政府,公共安全","jimyhuang/twlandsat-browse",https://github.com/jimyhuang/twlandsat-browse
 "awesome-g0v","車禍熱點",,"242","Drainet","開放資料,開放政府,公共安全,公營服務","Drainet/cacci-opendata",https://github.com/Drainet/cacci-opendata
 "awesome-g0v","路見不平",,"37","g0v","開放資料,開放政府,公營服務","g0v/roadpin",https://github.com/g0v/roadpin
@@ -208,7 +208,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","Taiwan Online",,"44","crys","媒體",,"https://docs.google.com/file/d/0B_jHHdJNIQKNd1JDSndZOEp3bEU/edit?usp=sharing"
 "g0v_db","The Space Hub",,"470","bess","地圖,工具",,"https://g0v.hackpad.tw/The-Space-Hub"
 "g0v_db","The good, bad and ugly of Emergency Data",,"547","Ziv/Peling/Dennis","待確認",,"https://drive.google.com/file/d/19PfW0r6i2bR8g6EGStOZGTabWUP8BHBS/view?usp=sharing"
-"g0v_db","Translate4you 為你翻譯",,"276","chewei","語言,翻譯,工具",,"https://g0v.hackpad.com/Translate4you--j5b4i4DdTbX"
+"g0v_db","Translate4you 為你翻譯",,"276","chewei","語言,翻譯,工具","g0v/Translate4you","https://g0v.hackpad.com/Translate4you--j5b4i4DdTbX"
 "g0v_db","Trello 看板一秒變網站",,"493","書懷","工具",,"https://g0v.hackpad.tw/Trelolo.com--zqDbdM2arCv"
 "g0v_db","WaterGo！免費飲用水地圖",,"323","陳瑞賓","環境",,"http://beta.hackfoldr.org/drinking-water/BAdDl4G9uXM"
 "g0v_db","WizardAmigos CodeCamps",,"373","NIna&Alex","工具,遊戲",,"http://slides.com/ninabreznik/wizardamigos-7#"
