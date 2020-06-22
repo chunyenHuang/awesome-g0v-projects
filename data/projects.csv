@@ -1,4 +1,6 @@
 source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
+"manual","令人驚奇的零時政府",,"","jhuang","g0v基礎建設","chunyenHuang/awesome-g0v-projects",
+"manual","幸福存摺",,"","jhuang","教育,工具","chunyenHuang/piggy-bank-of-happiness",
 
 "manual","Cofacts 真的假的",,"652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil","事實查核","cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
 "manual","美國國會台灣觀測站",,"634","bruce","待確認","ACTtaiwan/us-tw-watch-site,ACTtaiwan/ustw-site",
