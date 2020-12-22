@@ -3,7 +3,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "manual","幸福存摺",,"665","jhuang","教育,工具","chunyenHuang/piggy-bank-of-happiness",
 "manual","健保自付差額特材",,"668","jhuang","開放資料,醫療,工具","chunyenHuang/nhi-open-data-tool",
 
-"manual","Cofacts 真的假的",,"676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil","事實查核","cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
+"manual","Cofacts 真的假的",,"694,676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil","事實查核","cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
 "manual","美國國會台灣觀測站",,"634","bruce","待確認","ACTtaiwan/us-tw-watch-site,ACTtaiwan/ustw-site",
 "manual","LikeCoin 讚賞公民共和國",,"658","kin ko,williamchong007","媒體,區塊鏈,抗審查","likecoin/likecoin,likecoin/dao,likecoin/LikeCoinButton-integration,likecoin/likecoin-button-sdk,likecoin/liker-land-browser-extension,likecoin/likecoin-wordpress,likecoin/likecoin-app,likecoin/likecoin-api-public","https://like.co"
 "manual","MyData Taiwan - mylog14",,,"bafu","待確認","MyDataTaiwan/mylog14","https://www.mydata.org.tw"
@@ -97,7 +97,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","中華語文知識庫 資料檔",,,"g0v","開放資料,開放政府,公營服務","g0v/moedict-data-csld",https://github.com/g0v/moedict-data-csld
 "awesome-g0v","萌典閃卡",,,"g0v","開放資料,開放政府,公營服務","g0v/moedict-dodo",https://github.com/g0v/moedict-dodo
 "awesome-g0v","零時字引",,,"g0v","開放資料,開放政府,公營服務","g0v/z0y",https://github.com/g0v/z0y
-"awesome-g0v","阿美語萌典",,"679,659,643,568,556,525,485,468,451,418,407,383,313,285,260,169","g0v","開放資料,開放政府,公營服務","g0v/moedict-app,g0v/amis-moedict,miaoski/amis-safolu,miaoski/amis-francais",https://github.com/g0v/moedict-app/tree/amis
+"awesome-g0v","阿美語萌典",,"686,679,659,643,568,556,525,485,468,451,418,407,383,313,285,260,169","g0v","開放資料,開放政府,公營服務","g0v/moedict-app,g0v/amis-moedict,miaoski/amis-safolu,miaoski/amis-francais",https://github.com/g0v/moedict-app/tree/amis
 "awesome-g0v","萌典字宙反應爐",,,"audreyt","開放資料,開放政府,公營服務","audreyt/moe",https://github.com/audreyt/moe
 "awesome-g0v","國科會計畫補助學校金額",,,"g0v","開放資料,開放政府,公營服務","g0v/nsc-projects",https://github.com/g0v/nsc-projects
 "awesome-g0v","勞工薪資預算程式",,,"kiang","開放資料,開放政府,經濟活動","kiang/salary",https://github.com/kiang/salary
@@ -194,7 +194,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","PTT.ai",,"558","Lilian / 老蕭 / Sam","待確認",,"https://github.com/ailabstw/go-pttai"
 "g0v_db","People Watch",,"30","snowmantw","媒體",,
 "g0v_db","Positive Coin 帕斯堤貨幣",,"612","李紫彤","待確認",,"https://hackmd.io/@Ntwa8442Sl6UiFDk6420VQ/B1aUq2cQS"
-"g0v_db","Ptt 不能亡：社群機制重構與降低使用者進入門檻",,"677,654,649,616,583","祖儀,okcool","社群媒體",,"https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ"
+"g0v_db","Ptt 不能亡：社群機制重構與降低使用者進入門檻",,"691,`677,654,649,616,583","祖儀,okcool","社群媒體",,"https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ"
 "g0v_db","一起打造永續的租屋社群 - Rentea 之合作租屋",,"674,596,575","克羅依,ddio","生活,工具",,"https://g0v.hackmd.io/Bv_1JeHoT1O8gIjFBEJROg"
 "g0v_db","Rev Now 音樂製造",,"318","Neo","共享,媒體",,"待補"
 "g0v_db","Roadpin - Report",,"108","老蕭","交通",,"http://106.187.101.193"
@@ -597,7 +597,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","運輸．共享",,"483","嘉豪(Kahou)","交通",,
 "g0v_db","運送供需媒合系統",,"28","David","交通",,"http://zh.scribd.com/doc/131353017/gn-M424559"
 "g0v_db","違建類型統計及視覺化",,"603","林穎孟","都市",,"https://hackmd.io/@hsiaoa/rksxNtlIS/edit"
-"g0v_db","違章工廠舉報系統 Disfactory",,"670,614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
+"g0v_db","違章工廠舉報系統 Disfactory",,"696,670,614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
 "g0v_db","選區視覺化,ly.g0v.tw website",,"23","kirby","選舉",,"https://github.com/clkao/TWVoteData/blob/master/mly/8"
 "g0v_db","選服透明化",,"564","HY Hsu / SSivart","選舉",,"https://github.com/FroggyTaipei/froggy-service"
 "g0v_db","選票成份分析update",,"22","Bater","選舉",,
@@ -673,6 +673,14 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","開放政大",,"681","A-Han","待確認",,
 "g0v_db","識字題庫",,"682","tmonk","待確認",,
 "g0v_db","sky無人機大小事",,"683","gavin","待確認",,
-"g0v_db","CC0 中文句庫 / 統計工具 Common Voice 語音庫",,"684","irvin","待確認",,
-"g0v_db","CC0 繁中語料 & Common Voice 語音庫 omt: 代名詞貼紙",,"609","irvin","待確認",,"slack #rand0m"
+"g0v_db","CC0 中文句庫 / 統計工具 Common Voice 語音庫",,"685,684,609","irvin","待確認",,"slack #rand0m"
 "g0v_db","Mozilla Common Voice 語音資料庫收集",,"553","irvin","開放資料",,"https://moztw.hackpad.tw/Common-Voice-g0v33"
+
+"g0v_db","無麩質案全網",,"687","心怡","待確認",,"https://g0v.hackmd.io/YgaREhnPQn20PxtafWbjtg"
+"g0v_db","g0v Summit 2020 Code of Conduct 改善版提案",,"688","Claire","待確認",,
+"g0v_db","g0v Summit 2020 進度報告！徵人！",,"689","Bess","待確認",,
+"g0v_db","開放國會行動方案草案意見徵集",,"690","Isabel","待確認",,
+"g0v_db","點滴濃度小幫手",,"692","Giovanni","待確認",,
+"g0v_db","多粉對談速配版",,"693","allenlinli","待確認",,
+"g0v_db","CoTeach 教案資源共享平臺",,"695","孟庭","待確認",,
+"g0v_db","iDystopia: 2030 數位身份大冒險",,"697","clkao","待確認",,
