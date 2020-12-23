@@ -145,7 +145,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "awesome-g0v","新聞小幫手",,"406,45","g0v","新媒體","g0v/newshelper-backend,g0v/newshelper-extension,yllan/newshelper-safari",https://github.com/g0v/newshelper-backend
 
 "g0v_db","0 時動議 LINK TOPIC",,"3","clkao,kcwu,hychen","媒體",,
-"g0v_db","2015 WWViews ＠ TW 跨國審議/投票系統專案",,"232","家華","環境",,"https://g0v.hackpad.com/2015-WWViews-TW--W6l1GtZ3l1A"
+"g0v_db","2015 WWViews ＠ TW 跨國審議 投票系統專案",,"232","家華","環境",,"https://g0v.hackpad.com/2015-WWViews-TW--W6l1GtZ3l1A"
 "g0v_db","2015 summer of ?",,"206","Ly","法律",,"https://speakerdeck.com/yhsiang/2015-summer-of"
 "g0v_db","2016 總統大選承諾一覽表",,"274,252","MrOrz","監督,政治",,"http://beta.hackfoldr.org/president2016-folder"
 "g0v_db","2018縣市長選舉地圖",,"473","積木","政治,選舉,地圖",,"https://hackmd.io/GwDghgJhCmEKwFpogsBAWAzHaCCcATCAOwIAMeYARnAIwTHrpUBmQA=="
@@ -173,10 +173,10 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","Foodsharing Taiwan - foodsharing tool",,"422","Stefan Simon","剩食",,"https://www.facebook.com/foodsharingtaiwan"
 "g0v_db","GroovIM",,"17","Mindos","待確認",,"https://hackpad.com/DBKDLhwKiA4"
 "g0v_db","Guild Wars 2 Inventory",,"293","ETBlue","工具",,"https://g0v.hackpad.com/Guild-Wars-2-Inventory-NcrQirRU18O"
-"g0v_db","HackMD UI/UX 改善案",,"350","jackycute","工具",,"http://youtu.be/BGvr-s3EDKI"
+"g0v_db","HackMD UI UX 改善案",,"350","jackycute","工具",,"http://youtu.be/BGvr-s3EDKI"
 "g0v_db","HackStory共筆時間軸",,"381,379","劉李","媒體",,"https://g0v.hackpad.com/HackStory-6svktTYKVLb"
 "g0v_db","HackingMap DEMO",,"481","unknown","待確認",,"https://g0v.github.io/HackingMap"
-"g0v_db","Herstory in East Asia / 東亞女權運動時間地圖",,"671,660,640","ael","待確認",,"https://g0v.hackmd.io/EYSWYz8ZRB2oN6RHrVNf5g?both"
+"g0v_db","Herstory in East Asia - 東亞女權運動時間地圖",,"671,660,640","ael","待確認",,"https://g0v.hackmd.io/EYSWYz8ZRB2oN6RHrVNf5g?both"
 "g0v_db","How Well Do You Know About China?",,"489","Brian","待確認",,
 "g0v_db","ICO 資訊揭露平台",,"537","GITA","待確認",,"https://g0v.hackpad.tw/ICO-transparency-platform-TqFhFwXrI4h"
 "g0v_db","InternLens 實習透視鏡，全台最透明的實習資訊平台",,"401","kjohn","勞動",,"https://quip.com/jUL9AOFMHDST"
@@ -191,10 +191,10 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","NT01 地球上的夢幻逸品線上型錄",,"601","cotton","環境",,
 "g0v_db","News Diff 來看看新聞改過了沒?",,"41","ronnywang","媒體",,"https://github.com/ronnywang/newsdiff"
 "g0v_db","Open Source Guide 翻譯坑",,"462","TypingMonkey","待確認",,"https://g0v.hackpad.tw/g0v-shadow-ta138sdLdND"
-"g0v_db","PTT.ai",,"558","Lilian / 老蕭 / Sam","待確認",,"https://github.com/ailabstw/go-pttai"
+"g0v_db","PTT.ai",,"558","Lilian,老蕭,Sam","待確認",,"https://github.com/ailabstw/go-pttai"
 "g0v_db","People Watch",,"30","snowmantw","媒體",,
 "g0v_db","Positive Coin 帕斯堤貨幣",,"612","李紫彤","待確認",,"https://hackmd.io/@Ntwa8442Sl6UiFDk6420VQ/B1aUq2cQS"
-"g0v_db","Ptt 不能亡：社群機制重構與降低使用者進入門檻",,"691,`677,654,649,616,583","祖儀,okcool","社群媒體",,"https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ"
+"g0v_db","Ptt 不能亡：社群機制重構與降低使用者進入門檻",,"691,677,654,649,616,583","祖儀,okcool","社群媒體",,"https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ"
 "g0v_db","一起打造永續的租屋社群 - Rentea 之合作租屋",,"674,596,575","克羅依,ddio","生活,工具",,"https://g0v.hackmd.io/Bv_1JeHoT1O8gIjFBEJROg"
 "g0v_db","Rev Now 音樂製造",,"318","Neo","共享,媒體",,"待補"
 "g0v_db","Roadpin - Report",,"108","老蕭","交通",,"http://106.187.101.193"
@@ -307,8 +307,8 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","公務員開放資料",,"307,294,280","Peggy","公務員",,"http://beta.hackfoldr.org/1y53yMePrhGHqYRiLnpGxRBCkEbq6gk72eswTGewx2mc"
 "g0v_db","公有地大行動",,"185,136","Afeyhsu,dz1984","土地,公有地",,"http://hackfoldr.org/POPonFire"
 "g0v_db","公有地大行動-財政部國產署管理土地地圖",,"275","chewei","地政,地圖",,"http://hackfoldr.org/POPonFire"
-"g0v_db","公有地大行動/天龍特公地",,"158","chewei","地圖",,"http://hackfoldr.org/POPonFire/6UvvtZqOfN5"
-"g0v_db","公有地大行賄 / 公有地大行動",,"436","chewei","法律",,"https://g0v.hackpad.tw/1KopENAUlH6"
+"g0v_db","公有地大行動 天龍特公地",,"158","chewei","地圖",,"http://hackfoldr.org/POPonFire/6UvvtZqOfN5"
+"g0v_db","公有地大行賄 公有地大行動",,"436","chewei","法律",,"https://g0v.hackpad.tw/1KopENAUlH6"
 "g0v_db","公有地專案：有了開放資料之後？",,"409","chewei","土地",,"https://goo.gl/fS86d3"
 "g0v_db","公民協作二二八檔案資料庫",,"511,495","Wen","轉型正義",,"https://g0v.hackpad.tw/SWnxLFXNXLv"
 "g0v_db","公民團體不推薦",,"89","soidid","國會",,
@@ -332,8 +332,8 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","動民主 1.0",,"54","ETBlue","民主參與",,"http://hack.g0v.tw/g0v-hackath4n/k0GhzNzPTyW"
 "g0v_db","動民主 1.337 - 全民記者會",,"106","ETBlue","民主參與",,"https://g0v.hackpad.com/-g0v-hackath7n-g6Ka3ms2rp3"
 "g0v_db","動民主 2.0",,"55","ETBlue","民主參與",,"http://hack.g0v.tw/meta/iTXM54EBWVo"
-"g0v_db","動民主 lab、g0v project list",,"154","ETBlue","g0v",,"http://hack.g0v.tw/don-democracy/Ejozjt0LSZm , http://hack.g0v.tw/meta/CPsHrGu1qLA"
-"g0v_db","動民主0.5",,"153","tkirby","政治,民主參與",,"http://github.com/g0v/don-republic/ http://bindo.la"
+"g0v_db","動民主 lab、g0v project list",,"154","ETBlue","g0v",,"http://hack.g0v.tw/don-democracy/Ejozjt0LSZm"
+"g0v_db","動民主0.5",,"153","tkirby","政治,民主參與",,"http://github.com/g0v/don-republic/"
 "g0v_db","動民主家族",,"95,65","ETBlue","民主參與",,"http://hack.g0v.tw/don-democracy/Ra62eyV02sC"
 "g0v_db","勞動相關遊戲計畫",,"478","柏豪","勞動",,"https://g0v.hackpad.tw/hnC9l7LwwwNGRd"
 "g0v_db","勞基法函式庫：勞基法相關應用的基石",,"402","yurenju","勞動",,"https://hackmd.io/c/SJES19Fy-"
@@ -351,7 +351,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","反制中共網軍入侵中文維基百科",,"591","台灣維基社群","資訊戰",,"https://g0v.hackmd.io/yD6PSK2tTSmPh6ZGAHpKVw?both"
 "g0v_db","叛民城市地圖資料集",,"316","楊緬因","地圖,資料庫",,"https://hackpad.com/JAhnEkKAxoi"
 "g0v_db","台中市公有地地圖 🗺️  & 台北市公有資產資料釋出概況 👁‍🗨",,"539","chewei","土地,建築",,"https://g0v.hackmd.io/F-qKThrCSUG5lc2FRBWjIw?view&fbclid=IwAR0TiY_kJQOWVx1184fe2OQdStjqB81b0fpe2-W-oQvU8ctUDRuxgNC2LRo"
-"g0v_db","台中自由/開放文化授權條款 1.0 版 - Hack 博物館開放文化的新選項",,"396","林誠夏","待確認",,"https://hackmd.io/s/S11nftLcg"
+"g0v_db","台中自由 開放文化授權條款 1.0 版 - Hack 博物館開放文化的新選項",,"396","林誠夏","待確認",,"https://hackmd.io/s/S11nftLcg"
 "g0v_db","台北市建築使用執照分析",,"26","Ronny","建築",,"http://tpebuilding.g0v.ronny.tw"
 "g0v_db","台北市心理資源地圖",,"413","Fumi","心理",,"http://beta.hackfoldr.org/psy"
 "g0v_db","台北市政府跟社群的合作",,"270","unknown","開放文化",,"https://g0v.hackpad.com/doit-20150820--uXVYkyc7ldE"
@@ -366,7 +366,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","吼吼熊愛味噌",,"132","johnson lin","選舉",,"http://hoekuma.tumblr.com"
 "g0v_db","哲學萌典",,"207","weihung","知識",,"https://g0v.hackpad.com/tor49cAgodQ"
 "g0v_db","回收卡路里",,"585","Buni","待確認",,"https://g0v.hackmd.io/s/H1NjSr86E"
-"g0v_db","回音森林 (for 學校/教師)  - 用 AI 訓練學生口說的 Website",,"589","阿旺","語言",,"https://g0v.hackmd.io/OAq3-ouBTBScLk7TOYCQtg"
+"g0v_db","回音森林 (for 學校 教師)  - 用 AI 訓練學生口說的 Website",,"589","阿旺","語言",,"https://g0v.hackmd.io/OAq3-ouBTBScLk7TOYCQtg"
 "g0v_db","國土管理局報告",,"60","mindos","土地",,"https://github.com/g0v/twgeojson"
 "g0v_db","國家寶藏",,"441,408","蕭a,mooon","歷史","national-treasures-tw/backend,national-treasures-tw/landing-page","http://beta.hackfoldr.org/national-treasures"
 "g0v_db","國會無雙",,"73","spicycop","國會",,
@@ -418,7 +418,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","心家園：臨時住宅與永久屋規劃設計資料庫",,"237","chewei","都市",,"https://g0v.hackpad.com/jEoiuMS44dD"
 "g0v_db","性別統計資料庫",,"311","Tin","性別,資料庫",,"https://g0v.hackpad.com/--I6TyKqNg0Yz"
 "g0v_db","情境網頁遊戲框架",,"267","billy3321","工具",,"https://g0v.hackpad.com/J84agQVmxG7"
-"g0v_db","憲動盟野生官網/野生部落格",,"221","etblue","法律",,"https://g0v.hackpad.com/-x--ZlxnPcG1xLm#:h=專案報告@2015/4/18-無殼蝸牛黑客松"
+"g0v_db","憲動盟野生官網 野生部落格",,"221","etblue","法律",,"https://g0v.hackpad.com/-x--ZlxnPcG1xLm#:h=專案報告@2015/4/18-無殼蝸牛黑客松"
 "g0v_db","憲改限時批",,"222","ipa","法律",,"http://bit.ly/1CWo9at"
 "g0v_db","憲餅互動小鋪",,"220","isabel","法律",,"http://bit.ly/1Hi7BAf"
 "g0v_db","憲餅廚房",,"205,186","isabel,ipa","法律",,"http://hackfoldr.org/cckitchen"
@@ -470,7 +470,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","服貿專題網",,"125","Michael_LI","法律",,"http://hack.g0v.tw/CSTACO"
 "g0v_db","服貿開箱聞",,"87","Wayneh","法律,視覺化",,"https://g0v.hackpad.com/m0WRLUMCtoQ"
 "g0v_db","木材追追追－Sarawak to Taiwan",,"175","chewei","環境",,"https://g0v.hackpad.com/Sarawak-to-Taiwan-oqsXADzMrp8"
-"g0v_db","板橋新民街區公有宿舍群 / 盤點群眾規劃工具 / 北市府公有資產網頁",,"463","chewei","建築",,"https://goo.gl/p7KsVv"
+"g0v_db","板橋新民街區公有宿舍群 盤點群眾規劃工具 北市府公有資產網頁",,"463","chewei","建築",,"https://goo.gl/p7KsVv"
 "g0v_db","林克傳說",,"90","gene","媒體",,"http://link.que.tw"
 "g0v_db","林崔馬克",,"586","tmonk","經濟",,
 "g0v_db","核電翻譯機",,"101","蔡雅瀅","能源",,"https://g0v.hackpad.com/8sYMW30othK"
@@ -499,7 +499,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","物種時空分布資料-以蛾為例",,"20","hsuhong","生態",,"http://www.i35.club.tw/tw_moths"
 "g0v_db","猛禽 FB",,"521","Ronny","動物,法律",,"https://g0v.hackpad.tw/8RnmdP7IFFH"
 "g0v_db","珊瑚體檢十年數據怎麼看",,"513","lulu","環境",,"https://docs.google.com/document/d/152VmClLsG6PYIZdliEYNdEu-ZPTdcpKQwD52n6DfprI/edit"
-"g0v_db","環境、污染與資訊之地理套疊",,"200","孫瑋孜 / xavier","環境",,"https://g0v.hackpad.com/3IlRBxAKgVg"
+"g0v_db","環境、污染與資訊之地理套疊",,"200","孫瑋孜,xavier","環境",,"https://g0v.hackpad.com/3IlRBxAKgVg"
 "g0v_db","環境資訊全球推動計畫 Environmental Knights",,"255","formotse","環境",,"https://g0v.hackpad.com/Environmental-Knights-YZtxPge4Xbq"
 "g0v_db","生活政治的資訊系統計畫",,"283","柏瑜","政治,生活",,"https://hackpad.com/5ywvJjfdnZX"
 "g0v_db","發文附上判決書運動",,"236","ronny","法律",,"https://g0v.hackpad.com/hQ12Bq8UQIq"
@@ -599,7 +599,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","違建類型統計及視覺化",,"603","林穎孟","都市",,"https://hackmd.io/@hsiaoa/rksxNtlIS/edit"
 "g0v_db","違章工廠舉報系統 Disfactory",,"696,670,614,600","小海","農業,工業,土地","Disfactory/Disfactory","https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing"
 "g0v_db","選區視覺化,ly.g0v.tw website",,"23","kirby","選舉",,"https://github.com/clkao/TWVoteData/blob/master/mly/8"
-"g0v_db","選服透明化",,"564","HY Hsu / SSivart","選舉",,"https://github.com/FroggyTaipei/froggy-service"
+"g0v_db","選服透明化",,"564","HY Hsu,SSivart","選舉",,"https://github.com/FroggyTaipei/froggy-service"
 "g0v_db","選票成份分析update",,"22","Bater","選舉",,
 "g0v_db","選票與代議士",,"111","Kai","選舉",,
 "g0v_db","選舉媒體紀錄",,"269","ytsu","選舉",,"https://g0v.hackpad.com/--tCSj9sN15ZI"
@@ -673,7 +673,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 "g0v_db","開放政大",,"681","A-Han","待確認",,
 "g0v_db","識字題庫",,"682","tmonk","待確認",,
 "g0v_db","sky無人機大小事",,"683","gavin","待確認",,
-"g0v_db","CC0 中文句庫 / 統計工具 Common Voice 語音庫",,"685,684,609","irvin","待確認",,"slack #rand0m"
+"g0v_db","CC0 中文句庫 - 統計工具 Common Voice 語音庫",,"685,684,609","irvin","待確認",,"slack #rand0m"
 "g0v_db","Mozilla Common Voice 語音資料庫收集",,"553","irvin","開放資料",,"https://moztw.hackpad.tw/Common-Voice-g0v33"
 
 "g0v_db","無麩質案全網",,"687","心怡","待確認",,"https://g0v.hackmd.io/YgaREhnPQn20PxtafWbjtg"
