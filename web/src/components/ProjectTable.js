@@ -64,7 +64,7 @@ function ProjectTable({ data: inData, maxHeight }) {
     name: 'description',
     label: t('table.project.description'),
     options: {
-      display: false,
+      // display: false,
       filter: false,
       sort: true,
     },

@@ -32,9 +32,15 @@ export default function Unsolved() {
   }, []);
   return (
     <Grid container spacing={2} direction="column">
-      <ProposalTable data={proposals} nested={true} maxHeight={maxHeight}/>
-      <RepoTable data={repos} nested={true} maxHeight={maxHeight}/>
-      <HackmdTable data={hackmds} nested={true} maxHeight={maxHeight}/>
+      <Grid item xs={12}>
+        <ProposalTable data={proposals} nested={true} maxHeight={maxHeight}/>
+      </Grid>
+      <Grid item xs={12}>
+        <RepoTable data={repos} nested={true} maxHeight={maxHeight}/>
+      </Grid>
+      <Grid item xs={12}>
+        <HackmdTable data={hackmds} nested={true} maxHeight={maxHeight}/>
+      </Grid>
     </Grid>);
 }
 

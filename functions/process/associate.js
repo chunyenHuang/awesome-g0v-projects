@@ -2,7 +2,7 @@ const similarity = require('similarity');
 const moment = require('moment');
 
 const isValidLink = (string) => {
-  return string !== '' && string.startsWith('http');
+  return string && string !== '' && string.startsWith('http');
 };
 
 const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
@@ -48,8 +48,8 @@ const associate = (projects, repos = [], g0vDbData = [], hackmds = []) => {
         if (item.proposals[0]) {
           const { guideline, video_link, other_document } = item.proposals[0];
 
-          item.homepage = isValidLink(guideline) ? guideline :
-            isValidLink(video_link) ? video_link : other_document;
+          item.homepage = (isValidLink(guideline) ? guideline :
+            isValidLink(video_link) ? video_link : other_document) || '';
         } else
         if (item.repos[0]) {
           item.homepage = item.repos[0].html_url;
