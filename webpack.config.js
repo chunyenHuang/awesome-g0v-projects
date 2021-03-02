@@ -12,6 +12,6 @@ module.exports = {
     __dirname: true,
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
 };

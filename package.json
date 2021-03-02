@@ -7,7 +7,7 @@
     "eslint": "node_modules/.bin/eslint functions tests && cd web && node_modules/.bin/eslint src",
     "build": "npm run build:web",
     "build:web": "cd web && npm run build && cd ..",
-    "deploy": "node_modules/.bin/serverless deploy",
+    "deploy": "SLS_DEBUG=* node_modules/.bin/serverless deploy",
     "deploy:local": "node_modules/.bin/serverless deploy --profile goldax",
     "deploy:gh-pages": "cd web && npm run deploy && cd ..",
     "invoke:local": "aws lambda invoke --function-name awesome-g0v-projects-dev-process --profile goldax --log-type Tail tests/invoke-result.json",
