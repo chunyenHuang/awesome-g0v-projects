@@ -40,6 +40,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@octokit/core": "^3.2.5",
     "@octokit/rest": "^17.5.2",
     "await-to-js": "^2.1.1",
     "csvtojson": "^2.0.10",
