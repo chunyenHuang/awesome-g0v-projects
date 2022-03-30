@@ -71,6 +71,7 @@ describe('Test data format', () => {
 describe('Test Projects', () => {
   test('Data link', async () => {
     const getG0vDdData = async () => {
+      const rawFile = path.join(__dirname, `g0vDb-raw.json`);
       const cacheFile = path.join(__dirname, `g0vDb.json`);
       if (fs.existsSync(cacheFile)) {
         return require(cacheFile);
@@ -79,6 +80,7 @@ describe('Test Projects', () => {
       const url = 'https://sheets.googleapis.com/v4/spreadsheets/1C9-g1pvkfqBJbfkjPB0gvfBbBxVlWYJj6tTVwaI5_x8/values/%E5%A4%A7%E6%9D%BE%E6%8F%90%E6%A1%88%E5%88%97%E8%A1%A8!A1:W10000?key=AIzaSyBhiqVypmyLHYPmqZYtvdSvxEopcLZBdYU'; // eslint-disable-line
       const res = await fetch(url);
       const { values } = await res.json();
+      fs.writeFileSync(rawFile, JSON.stringify(values, null, 2));
 
       const headers = values.shift().map((x) => x.replace(/ /g, '_'));
 
@@ -117,15 +119,21 @@ describe('Test Projects', () => {
 
     const hasMappedProjectRows = [];
 
+    const errors = [];
+
     projects.forEach((project) => {
       // check tags
       project.tags.split(',').filter((x) => x).forEach((tag) => {
-        expect(tags.find((x) => x.name === tag), `${tag} does not exist in tags.csv`).toBeDefined();
+        if (!tags.find((x) => x.name === tag)) {
+          errors.push(`Missing tag: ${tag}`);
+        }
       });
 
       // check owners
       project.owners.split(',').filter((x) => x).forEach((owner) => {
-        expect(owners.find((x) => x.name === owner), `${owner} does not exist in owner.csv`).toBeDefined();
+        if (!owners.find((x) => x.name === owner)) {
+          errors.push(`Missing owner: "g0v_db","${owner}",,,`);
+        }
       });
 
       // check db relations
@@ -153,9 +161,14 @@ describe('Test Projects', () => {
       // }
 
       rowNums.forEach((rowNum) => {
-        expect(checkedRowNums.includes(rowNum), `${rowNum} does not exist in g0v db`).toBeDefined();
+        if (!checkedRowNums.includes(rowNum)) {
+          errors.push(`Mismatched ROW: ${rowNum}`);
+        }
       });
     });
+
+    console.log(errors.sort((a, b) => a > b ? 1 : -1).join('\n'));
+    expect(errors.length).toEqual(0);
 
     const unprocessedLogs = [];
     const unprocessed = [];
@@ -170,7 +183,7 @@ describe('Test Projects', () => {
 
     logs = [...logs, ...unprocessedLogs];
 
-    console.log(logs);
+    console.log(logs.sort((a, b) => a > b ? 1 : -1).join('\n'));
 
     fs.writeFileSync(path.join(__dirname, 'log.txt'), logs.join('\n'));
 
