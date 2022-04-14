@@ -2,7 +2,7 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 manual,令人驚奇的零時政府,,,jhuang,g0v基礎建設,chunyenHuang/awesome-g0v-projects,
 manual,幸福存摺,,665,jhuang,"教育,工具",chunyenHuang/piggy-bank-of-happiness,
 manual,健保自付差額特材,,668,jhuang,"開放資料,醫療,工具",chunyenHuang/nhi-open-data-tool,
-manual,Cofacts 真的假的,,"797,777,762,752,739,726,711,694,676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil",事實查核,"cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
+manual,Cofacts 真的假的,,"817,797,777,762,752,739,726,711,694,676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil",事實查核,"cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
 manual,美國國會台灣觀測站,,634,bruce,待確認,"ACTtaiwan/us-tw-watch-site,ACTtaiwan/ustw-site",
 manual,LikeCoin 讚賞公民共和國,,658,"kin ko,williamchong007","媒體,區塊鏈,抗審查","likecoin/likecoin,likecoin/dao,likecoin/LikeCoinButton-integration,likecoin/likecoin-button-sdk,likecoin/liker-land-browser-extension,likecoin/likecoin-wordpress,likecoin/likecoin-app,likecoin/likecoin-api-public",https://like.co
 manual,MyData Taiwan - mylog14,,,bafu,待確認,MyDataTaiwan/mylog14,https://www.mydata.org.tw
@@ -191,7 +191,7 @@ g0v_db,Open Source Guide 翻譯坑,,462,TypingMonkey,待確認,,https://g0v.hack
 g0v_db,PTT.ai,,558,"Lilian,老蕭,Sam",待確認,,https://github.com/ailabstw/go-pttai
 g0v_db,People Watch,,30,snowmantw,媒體,,
 g0v_db,Positive Coin 帕斯堤貨幣,,612,李紫彤,待確認,,https://hackmd.io/@Ntwa8442Sl6UiFDk6420VQ/B1aUq2cQS
-g0v_db,PTT 不能亡,,"803,781,773,755,747,777,727,707,691,677,654,649,616,583","老蕭,祖儀,okcool,提莫,Ken,denkeni",社群媒體,,https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ
+g0v_db,PTT 不能亡,,"810,803,781,773,755,747,777,727,707,691,677,654,649,616,583","老蕭,祖儀,okcool,提莫,Ken,denkeni",社群媒體,,https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ
 g0v_db,一起打造永續的租屋社群 - Rentea 之合作租屋,,"674,596,575","克羅依,ddio","生活,工具",,https://g0v.hackmd.io/Bv_1JeHoT1O8gIjFBEJROg
 g0v_db,Rev Now 音樂製造,,318,Neo,"共享,媒體",,待補
 g0v_db,Roadpin - Report,,108,老蕭,交通,,http://106.187.101.193
@@ -594,7 +594,7 @@ g0v_db,連續錄影數十台新聞頻道，監督選舉假資訊傳播／紅色�
 g0v_db,運輸．共享,,483,嘉豪(Kahou),交通,,
 g0v_db,運送供需媒合系統,,28,David,交通,,http://zh.scribd.com/doc/131353017/gn-M424559
 g0v_db,違建類型統計及視覺化,,603,林穎孟,都市,,https://hackmd.io/@hsiaoa/rksxNtlIS/edit
-g0v_db,違章工廠舉報系統 Disfactory,,"783,763,736,720,700,696,670,614,600",小海,"農業,工業,土地",Disfactory/Disfactory,https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing
+g0v_db,違章工廠舉報系統 Disfactory,,"819,783,763,736,720,700,696,670,614,600",小海,"農業,工業,土地",Disfactory/Disfactory,https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing
 g0v_db,"選區視覺化,ly.g0v.tw website",,23,kirby,選舉,,https://github.com/clkao/TWVoteData/blob/master/mly/8
 g0v_db,選服透明化,,564,"HY Hsu,SSivart",選舉,,https://github.com/FroggyTaipei/froggy-service
 g0v_db,選票成份分析update,,22,Bater,選舉,,
@@ -706,7 +706,7 @@ g0v_db,來 slack #rand0m 聊天 Common Voice 來錄音 & 整理 #rand0m 文字�
 
 g0v_db,疫情紓困資訊彙整 💰,,734,peter,待確認,,https://g0v.hackmd.io/@jothon/S1pZe539_
 g0v_db,Slack 歡迎訊息與 Channel 完補計畫 🙋,,735,isabel,待確認,,https://g0v.hackmd.io/@yukaii/Disfactory/%2F5QH2TlaXQR21wMo3UIKZug
-g0v_db,ARAY 公民科技貢獻者的專案與任務視覺化平台,,"753,737","Bess,John",待確認,,https://g0v.hackmd.io/vJ7_irbLRQGMYF29C9mZGA
+g0v_db,ARAY 公民科技貢獻者的專案與任務視覺化平台,,"811,753,737","Bess,John,Kowei",待確認,,https://g0v.hackmd.io/vJ7_irbLRQGMYF29C9mZGA
 g0v_db,中央政府總預算 改,,738,ronny,待確認,,https://cofacts.tw/hack
 g0v_db,Wikidata,,"740,723",Allen,待確認,,https://g0v.hackmd.io/@jothon/Sch001-2021/%2F%40jothon%2FSch001_camp_infras
 g0v_db,零時小學校 Sch001,,741,Bess (jothon),待確認,,https://g0v.hackmd.io/@flyo/skioji
@@ -742,13 +742,23 @@ g0v_db,各國解封指引彙整,,784,雨蒼,待確認,,https://hackmd.io/@billy3
 g0v_db,S-E-E 永續所得指標,,785,世界和平（Huanry）,待確認,,https://g0v.hackmd.io/kRuCNIToRLmbOYe9mWUXTg
 g0v_db,碳匯城鄉 - 桃園與臺南公有資產碳匯潛力地點盤點,,786,chewei,待確認,,https://g0v.hackmd.io/@chewei/carbon-uptake
 g0v_db,mate your fellow: 以科技的力量尋找學伴及學習資源,,788,"tonychen,stacy chen",待確認,,https://g0v.hackmd.io/@iJFodCheRYWaF9sZakcLIA/Syn5IxbYK
-g0v_db,g0v Podcast,,"794,789",jothon(ichieh),待確認,,https://g0v.hackmd.io/@chihao/HkceASC_K
+g0v_db,g0v Podcast,,"815,794,789",jothon(ichieh),待確認,,https://g0v.hackmd.io/@chihao/HkceASC_K
 g0v_db,#decentralizehk,,"793,790,765","Aurora,Wei",待確認,,https://g0v.hackmd.io/Y1S3ovOsRYmmxj6CjQdh7A?view
 g0v_db,一生監督（立委）,,791,denkeni,待確認,,
 g0v_db,lysayit 立委說了什麼,,792,ronnywang,待確認,,https://docs.google.com/presentation/d/1WZZb8tz4nKSrbUsxY5SV6pIv10or13XBpjhyWUGF1ts/edit?usp=sharing
 g0v_db,醬讀讀書 17yo.ga,,795,fly,待確認,,https://hackmd.io/@flab
-g0v_db,智慧健檢平台,,796,Yvonne,待確認,,https://g0v.hackmd.io/ragerNXPTsuIyrasHW9fiA
+g0v_db,智慧健檢平台,,"816,796",Yvonne,待確認,,https://g0v.hackmd.io/ragerNXPTsuIyrasHW9fiA
 g0v_db,Accessibility Fixing,,798,"Caleb,Morgan",待確認,,https://hackmd.io/@i6x1MuXFR0q_Reh6_uOQDw/HJ5-goMTt
 g0v_db,疫情解封指引,,799,"jinwen,Sandra",待確認,,https://hackmd.io/jcoG0uOWRZK1IUEYWXRB6w
 g0v_db,Oh!Shown 台灣黑熊通報與資訊平台,,"802,771,758",diaoga,待確認,,https://hackmd.io/ReyUVvh1TjK0Jp5B3Q_ppA?view
 g0v_db,基基本本,,804,青高,待確認,,https://hackmd.io/@DoSomethingTogether/HJBoUJp9K
+
+g0v_db,大學科系查詢系統,,805,JoeyHsu,待確認,,https://drive.google.com/file/d/1njIVBsssUsbwyTcV2vJlGAcFgBN8TijW/view?usp=sharing
+g0v_db,學習鏈,,806,xing,待確認,,https://docs.google.com/presentation/d/1-3HwvWUUdFqlkrR1b6O_mvmvZO5ZBbC5sGvReCMtImU/edit#slide=id.p
+g0v_db,"Bilingual Nation, language learning, AI and who is and who shoud be in charge of the data?",,807,"Jason de Anthropologist",待確認,,
+g0v_db,Reopen疫情解封指引,,808,jingwen,待確認,,https://hackmd.io/@World-Can-Help-Us/BkbqCjTXc
+g0v_db,香港愛國愛黨法官檔案 ,,809,Christina,待確認,,https://drive.google.com/file/d/1FLijj5a4JcpjpwWFLdNQJTwAi1fgGnck/view?usp=sharing
+g0v_db,網路疫情資訊資料庫 COVID-19 Chinese Archive,,812,Lulu,待確認,,https://hackmd.io/jMINZPr4QSu_p4xPyBPJrQ
+g0v_db,g0v 10 週年嘉年華,,813,chihao,待確認,,https://g0v.hackmd.io/@chihao/g10v-book/
+g0v_db,製作臺南市減碳機會地圖 - 碳匯城鄉,,814,chewei,待確認,,https://g0v.hackmd.io/@chewei/carbon-uptake/https%3A%2F%2Fg0v.hackmd.io%2FwSvlrDnQRWCVEOOE7N5ZaA%3Fview
+g0v_db,白色恐怖體驗網頁遊戲,,818,"Holo, Vic",待確認,,https://docs.google.com/presentation/d/1gtjRDRiJx4ldGpqhyhcSle5FV7GXym5k/edit?usp=sharing&ouid=101311416682262359897&rtpof=true&sd=true
