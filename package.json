@@ -31,7 +31,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "jest": "^25.4.0",
     "jest-expect-message": "^1.0.2",
-    "serverless": "^1.68.0",
+    "serverless": "^3.25.1",
     "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-pseudo-parameters": "^2.5.0",
     "serverless-s3-sync": "^1.12.0",
