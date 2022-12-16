@@ -2,10 +2,12 @@ source,name,description,g0v_db_rows,owners,tags,github_repos,homepage
 manual,令人驚奇的零時政府,,,jhuang,g0v基礎建設,chunyenHuang/awesome-g0v-projects,
 manual,幸福存摺,,665,jhuang,"教育,工具",chunyenHuang/piggy-bank-of-happiness,
 manual,健保自付差額特材,,668,jhuang,"開放資料,醫療,工具",chunyenHuang/nhi-open-data-tool,
-manual,Cofacts 真的假的,,"817,797,777,762,752,739,726,711,694,676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil",事實查核,"cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
+manual,Cofacts 真的假的,,"860,843,830,817,797,777,762,752,739,726,711,694,676,652,645,633,611,593,574,562,524,501,482,469,455,438,415,382,377,364","MrOrz,bil",事實查核,"cofacts/rumors-api,cofacts/rumors-site,cofacts/rumors-line-bot,cofacts/rumors-fb-bot,cofacts/rumors-ai,cofacts/rumors-db,cofacts/rumors-deploy",
 manual,美國國會台灣觀測站,,634,bruce,待確認,"ACTtaiwan/us-tw-watch-site,ACTtaiwan/ustw-site",
 manual,LikeCoin 讚賞公民共和國,,658,"kin ko,williamchong007","媒體,區塊鏈,抗審查","likecoin/likecoin,likecoin/dao,likecoin/LikeCoinButton-integration,likecoin/likecoin-button-sdk,likecoin/liker-land-browser-extension,likecoin/likecoin-wordpress,likecoin/likecoin-app,likecoin/likecoin-api-public",https://like.co
 manual,MyData Taiwan - mylog14,,,bafu,待確認,MyDataTaiwan/mylog14,https://www.mydata.org.tw
+manual,違章工廠舉報系統 Disfactory,,"840,819,783,763,736,720,700,696,670,614,600",小海,"農業,工業,土地",Disfactory/Disfactory,https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing
+
 awesome-g0v,The web site.,,,g0v,g0v基礎建設,g0v/g0v.tw,https://github.com/g0v/g0v.tw
 awesome-g0v,Logo & styles.,,,g0v,g0v基礎建設,g0v/style-guide,https://github.com/g0v/style-guide
 awesome-g0v,glyphs,,,g0v,g0v基礎建設,g0v/glyph,https://github.com/g0v/glyph
@@ -191,7 +193,7 @@ g0v_db,Open Source Guide 翻譯坑,,462,TypingMonkey,待確認,,https://g0v.hack
 g0v_db,PTT.ai,,558,"Lilian,老蕭,Sam",待確認,,https://github.com/ailabstw/go-pttai
 g0v_db,People Watch,,30,snowmantw,媒體,,
 g0v_db,Positive Coin 帕斯堤貨幣,,612,李紫彤,待確認,,https://hackmd.io/@Ntwa8442Sl6UiFDk6420VQ/B1aUq2cQS
-g0v_db,PTT 不能亡,,"810,803,781,773,755,747,777,727,707,691,677,654,649,616,583","老蕭,祖儀,okcool,提莫,Ken,denkeni",社群媒體,,https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ
+g0v_db,PTT 不能亡,,"847,810,803,781,773,755,747,777,727,707,691,677,654,649,616,583","老蕭,祖儀,okcool,提莫,Ken,denkeni,Teemo",社群媒體,,https://g0v.hackpad.tw/Ptt--ctwZwU7BxcJ
 g0v_db,一起打造永續的租屋社群 - Rentea 之合作租屋,,"674,596,575","克羅依,ddio","生活,工具",,https://g0v.hackmd.io/Bv_1JeHoT1O8gIjFBEJROg
 g0v_db,Rev Now 音樂製造,,318,Neo,"共享,媒體",,待補
 g0v_db,Roadpin - Report,,108,老蕭,交通,,http://106.187.101.193
@@ -594,7 +596,6 @@ g0v_db,連續錄影數十台新聞頻道，監督選舉假資訊傳播／紅色�
 g0v_db,運輸．共享,,483,嘉豪(Kahou),交通,,
 g0v_db,運送供需媒合系統,,28,David,交通,,http://zh.scribd.com/doc/131353017/gn-M424559
 g0v_db,違建類型統計及視覺化,,603,林穎孟,都市,,https://hackmd.io/@hsiaoa/rksxNtlIS/edit
-g0v_db,違章工廠舉報系統 Disfactory,,"819,783,763,736,720,700,696,670,614,600",小海,"農業,工業,土地",Disfactory/Disfactory,https://drive.google.com/file/d/1MB3xjIwZd8NbgH39ax6ojsy76HjaN6Rh/view?usp=sharing
 g0v_db,"選區視覺化,ly.g0v.tw website",,23,kirby,選舉,,https://github.com/clkao/TWVoteData/blob/master/mly/8
 g0v_db,選服透明化,,564,"HY Hsu,SSivart",選舉,,https://github.com/FroggyTaipei/froggy-service
 g0v_db,選票成份分析update,,22,Bater,選舉,,
@@ -726,12 +727,11 @@ g0v_db,協尋喵星人,,"801,760","Cheryl,A4",待確認,,https://g0v.hackmd.io/q
 g0v_db,九週年：g0v 時間軸以及 10 週年相關,,761,Isabel/jothon,待確認,,https://g0v.hackmd.io/@jothon/from9to10
 g0v_db,bridge,,764,pm5,待確認,,
 g0v_db,g0v g0v g0v g0v g0v g0v g0v g0v g0v g0v (g0v𐄂10) (g0v 十倍奉還?) 嘉年華,,766,chihao,待確認,,https://g0v.hackmd.io/xEH5jmkuROyZZL4EWe2vQA?both
-g0v_db,CourseAPI 線上開放式課程整合查詢平台,,767,Ted,待確認,,https://www.notion.so/toedu/CourseAPI-4e8faffe36c144058176dec509f15366
 g0v_db,g0v 九周年、wikidata 也是九周年,,768,allen,待確認,,https://slides.com/allenwang6212/wikidata-g0v-46n
 g0v_db,World Can Help Us：各國解封指引彙整,,769,enen,待確認,,https://hackmd.io/@World-Can-Help-Us/01
 g0v_db,社會安全網站（ like literally XD ),,770,LUCHHH,待確認,,https://g0v.hackmd.io/s/HJZQH0OrK
 g0v_db,立法院預算審議附帶決議結構化建置,,772,Joshua kao,待確認,,https://app.slack.com/client/T02G2SXKM/C02KH515RK2
-g0v_db,CourseAPI 開放式課程資訊匯流學院,,774,Ted,待確認,,https://www.notion.so/toedu/CourseAPI-4e8faffe36c144058176dec509f15366
+g0v_db,CourseAPI 開放式課程資訊匯流學院,,"863,826,767,774","chewei,Ted",待確認,,https://toedu.notion.site/0df44af565e845498c1d3bb04d2a7a13
 g0v_db,零時樂團,,775,Ted (同上),待確認,,https://g0v.hackmd.io/@Ted-Lu/SyciCm6wt
 g0v_db,Aesthetic Programming 美學程式設計,,776, tzutung,待確認,,  https://ctp.cc.au.dk/pad/p/Aesthetic_Programming_-_TW
 g0v_db,歷史好庫協作翻譯,,778,Sam (ㄙㄚㄇ）,待確認,,https://hackmd.io/-VFY-6irSFuWZtdtt1g4ng
@@ -747,7 +747,7 @@ g0v_db,#decentralizehk,,"793,790,765","Aurora,Wei",待確認,,https://g0v.hackmd
 g0v_db,一生監督（立委）,,791,denkeni,待確認,,
 g0v_db,lysayit 立委說了什麼,,792,ronnywang,待確認,,https://docs.google.com/presentation/d/1WZZb8tz4nKSrbUsxY5SV6pIv10or13XBpjhyWUGF1ts/edit?usp=sharing
 g0v_db,醬讀讀書 17yo.ga,,795,fly,待確認,,https://hackmd.io/@flab
-g0v_db,智慧健檢平台,,"816,796",Yvonne,待確認,,https://g0v.hackmd.io/ragerNXPTsuIyrasHW9fiA
+g0v_db,智慧健檢平台,,"862,824,816,796","Thomas,Yvonne",待確認,,https://g0v.hackmd.io/ragerNXPTsuIyrasHW9fiA
 g0v_db,Accessibility Fixing,,798,"Caleb,Morgan",待確認,,https://hackmd.io/@i6x1MuXFR0q_Reh6_uOQDw/HJ5-goMTt
 g0v_db,疫情解封指引,,799,"jinwen,Sandra",待確認,,https://hackmd.io/jcoG0uOWRZK1IUEYWXRB6w
 g0v_db,Oh!Shown 台灣黑熊通報與資訊平台,,"802,771,758",diaoga,待確認,,https://hackmd.io/ReyUVvh1TjK0Jp5B3Q_ppA?view
@@ -755,10 +755,47 @@ g0v_db,基基本本,,804,青高,待確認,,https://hackmd.io/@DoSomethingTogethe
 
 g0v_db,大學科系查詢系統,,805,JoeyHsu,待確認,,https://drive.google.com/file/d/1njIVBsssUsbwyTcV2vJlGAcFgBN8TijW/view?usp=sharing
 g0v_db,學習鏈,,806,xing,待確認,,https://docs.google.com/presentation/d/1-3HwvWUUdFqlkrR1b6O_mvmvZO5ZBbC5sGvReCMtImU/edit#slide=id.p
-g0v_db,"Bilingual Nation, language learning, AI and who is and who shoud be in charge of the data?",,807,"Jason de Anthropologist",待確認,,
 g0v_db,Reopen疫情解封指引,,808,jingwen,待確認,,https://hackmd.io/@World-Can-Help-Us/BkbqCjTXc
 g0v_db,香港愛國愛黨法官檔案 ,,809,Christina,待確認,,https://drive.google.com/file/d/1FLijj5a4JcpjpwWFLdNQJTwAi1fgGnck/view?usp=sharing
 g0v_db,網路疫情資訊資料庫 COVID-19 Chinese Archive,,812,Lulu,待確認,,https://hackmd.io/jMINZPr4QSu_p4xPyBPJrQ
 g0v_db,g0v 10 週年嘉年華,,813,chihao,待確認,,https://g0v.hackmd.io/@chihao/g10v-book/
 g0v_db,製作臺南市減碳機會地圖 - 碳匯城鄉,,814,chewei,待確認,,https://g0v.hackmd.io/@chewei/carbon-uptake/https%3A%2F%2Fg0v.hackmd.io%2FwSvlrDnQRWCVEOOE7N5ZaA%3Fview
 g0v_db,白色恐怖體驗網頁遊戲,,818,"Holo, Vic",待確認,,https://docs.google.com/presentation/d/1gtjRDRiJx4ldGpqhyhcSle5FV7GXym5k/edit?usp=sharing&ouid=101311416682262359897&rtpof=true&sd=true
+g0v_db,我們問題很多。協力出訪：日本公民科技在幹嘛,,820,"Sam,chihao",待確認,,https://docs.google.com/document/d/1sLUNvTpovgAqSu9OrX--DW3famh_1U1MVGIdu-DoUPA/edit#
+g0v_db,g0v 10週年生日趴！歡迎大家一起來協作一個趴踢！,,821,"Peter cui",待確認,,https://g0v.hackmd.io/@chihao/g10v-book/
+g0v_db,島島阿學多元學習資源平台,,822,"Tiff,Pei",待確認,,https://g0v.hackmd.io/Bu-QsJgaStu5T_F27v86aQ?both
+g0v_db,g0v 10 週年獎助金提案-第3案-沒有人互動燈箱，每個人零時政府,,823,"Teemo",待確認,,https://g0v.hackmd.io/@Teemo/2022LightBox
+g0v_db,給我 RSS，許你一輩子：ISCN RSS Issuer,,825,"宏信",待確認,,https://lancatlin.github.io/iscn-rss-issuer-slide/
+g0v_db,將需要的PHP extensions加入到composer.json裡的require block中,,827,"Peter",待確認,bowphp/app,https://github.com/bowphp/app
+g0v_db,Migrating to GitHub Action for CI,,828,"Peter",待確認,ar2labs/wiring,https://github.com/ar2labs/wiring
+g0v_db,Improve the Drogon C++ web app framework,,829,"marty1885",待確認,drogonframework/drogon,https://docs.google.com/presentation/d/1kj_gP7iezPB1iuVxzbydLnYvjhj09zkGsmAkNMtiZXs/edit?usp=sharing
+g0v_db,OPass,,831,"Denny",待確認,CCIP-App/CCIP-Android,https://opass.app/
+g0v_db,Laravel Framework 繁體中文文件翻譯,,832,"recca711",待確認,laravel-taiwan/docs,https://github.com/laravel-taiwan/docs/
+g0v_db,"moztw.org Firefox 版本資訊翻譯更新 CC0 國台語句庫 + Common Voice 語音庫",,833,"Irvin",待確認,,https://hackmd.io/@moztw/firefox-release-notes-101
+g0v_db,COSCUP 志工平台,,834,"toomore",待確認,,https://s3.toomore.net/coscup/volunteer/g0v.pdf
+g0v_db,區塊鏈公投系統與民主化科普媒體 - DAO 模組開發,,835,"Nick",待確認,,www.civicue.com
+g0v_db,g0v 新朋友的入坑傳送門,,836,"ky",待確認,,https://g0v.hackmd.io/D2nKI7djQUaUS3uKdkmI3w?view
+g0v_db,公民協力杜絕台灣人口販運之勞力剝削計劃 Anti-Labor Exploitation,,837,"Peggy",待確認,,
+g0v_db,政治獻金爬梳彙整,,838,"Joshua",待確認,,https://docs.google.com/presentation/d/13EW9h4q6O2t4_Jrik3ZTfym6Z8Y0rQN6/edit?usp=sharing&ouid=112156183623214014629&rtpof=true&sd=true
+g0v_db,藝文環境的補助資料視覺化,,839,"SeanGau",待確認,,https://g0v.hackmd.io/@SeanGau/SyIidsF_c
+g0v_db,一起來辦趴：十週年零宇宙大爆炸,,841,"peter",待確認,,https://g0v.hackmd.io/@eaKkAb8HRjOKJ4erd2STnA/10Anni-Party
+g0v_db,g0v 十週年參與者徽章,,842,"ronny",待確認,,https://docs.google.com/presentation/d/1RIerafuSOShS7KRC9anquuKDbAA6MGQyHA7x2vEFuso/edit?usp=sharing
+g0v_db,全民科學平台,,844,"丁志仁",待確認,,http://jendo.org:9001/p/g0v_s4e
+g0v_db,藝文活水向哪流,,845,"seangau",待確認,,https://g0v.hackmd.io/@SeanGau/SyIidsF_c
+g0v_db,da0,,"865,846","Noah",待確認,,https://g0v.hackmd.io/@noahyeh/rkmURiDaq
+g0v_db,一起來擺攤,,848,"peter",待確認,,https://g0v.hackmd.io/@PnCIgRWVQsqQ4A5lSSVXEQ/BkWCxb8a9
+g0v_db,Oh! Shown!,,849,"tai",待確認,,https://hackmd.io/k9v9qVSBRNGUv0rnJcUphQ
+g0v_db,Bilingual Nation AI,,"868,850,807","Jason de Anthropologist",待確認,,https://g0v.hackmd.io/i-_ueV_CRoWdibfvEpyqLQ
+g0v_db,「職」凱瑞你,,851,"鄭渝臻,藍如妤",待確認,,https://hackmd.io/@ruyu/carryyourcareer
+g0v_db,CiviCue,,852,"Zenic",待確認,,https://www.civicue.com
+g0v_db,開源辦公室工具箱編譯計畫,,853,"RenWei",待確認,,https://docs.google.com/document/d/1zh9vaNaRlQWUU1Ll_7GiWzhDzuHlljkksUIUxO9y3lw/edit
+g0v_db,歷史影像平台,,854,"宥伯",待確認,,https://drive.google.com/drive/folders/1UXm--eVF0TFAZBc4HbxszPkw5yc-vLWP?usp=sharing
+g0v_db,翻譯社群語彙庫,,855,"RSChiang",待確認,,https://g0v.hackmd.io/kXJetmRdTHqEjx3iN7e-Ig
+g0v_db,十週年生日趴,,856,"mglee",待確認,,https://g0v.hackmd.io/@eaKkAb8HRjOKJ4erd2STnA/10Anni-Party/
+g0v_db,全民辦教育,,857,"周樂生",待確認,,https://drive.google.com/drive/folders/1qZbsXtexTKRMC73035EbvF_yPJnDE9UN?usp=sharing
+g0v_db,零時小學校 2022-23 專案孵化競賽,,858,"Tiff",待確認,,https://sch001.g0v.tw/
+g0v_db,g0v 成就系統,,859,"Ronny",待確認,,https://badge.g0v.tw/
+g0v_db,九合一選舉之政見收集平台,,861,"HC",待確認,,https://g0v.hackmd.io/zZDy8ihRQt2SGpOFNi5pmA?view
+g0v_db,重建網路互信,,864,"Charles",待確認,,https://g0v.hackmd.io/@Charlesincities/r1wIODflo
+g0v_db,g0v三段式分散式自主口述歷史計畫,,866,"ipa",待確認,,https://g0v.hackmd.io/QzMRe-U-RXG36-F28zJcAQ?view
+g0v_db,Join8,,867,"Xing",待確認,,https://g0v.hackmd.io/0Ya-AfwOQu-qrbWUB12_KA
