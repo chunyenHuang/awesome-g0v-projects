@@ -1,5 +1,7 @@
 # awesome-g0v-projects
 
+這個方案已經停止開發，除了基本除錯外，不再新增功能。專案管理與整理將移至 [Aray](https://github.com/g0v/aray)
+
 有感與@ael在深夜聊天時發現，[好像社群一直沒有辦法維護 g0v project hub 這種東西](https://g0v-tw.slack.com/archives/C0386M58S/p1587666570002700)，決定做一個能夠整合並追蹤專案的使用者介面，讓新血能夠更容易地找到適合的專案或是讓管理者能了解專案進度。
 
 - [Website 網站](https://chunyenhuang.github.io/awesome-g0v-projects)
