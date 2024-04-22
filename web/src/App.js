@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className={classes.main}>
-      <Router basename={'/'}>
+      <Router basename={process.env.PUBLIC_URL}>
         <React.Suspense fallback={<CircularProgress className={classes.spinner} />}>
           <CssBaseline />
 
