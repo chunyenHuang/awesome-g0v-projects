@@ -4,7 +4,7 @@ frameworkVersion: '>=1.0.0 <2.0.0'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs16.x
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
   profile: ${opt:profile}
@@ -33,7 +33,7 @@ functions:
     timeout: 300
     events:
       - schedule:
-          rate: rate(6 hours)
+          rate: rate(12 hours)
     iamRoleStatementsName: ${self:provider.product}-process
     iamRoleStatements:
       - Effect: Allow
