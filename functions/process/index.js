@@ -43,6 +43,32 @@ const getSecret = async () => {
   return JSON.parse(secret);
 };
 
+const getHackmdData = async () => {
+  try {
+    const headers = {
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+    };
+
+    const hackmdOverviewUrl = 'https://g0v.hackmd.io/api/overview';
+    const res = await fetch(hackmdOverviewUrl, { method: 'GET', headers });
+
+    const hackmdOverviewData = await res.json();
+
+    return { hackmdOverviewUrl, hackmdOverviewData };
+  } catch (e) {
+    // https://raw.githubusercontent.com/g0v-data/g0v-hackmd-archive/main/posts.json
+    // 因為現在 g0v.hackmd 搬進 hackmd 的 AWS 環境中，比照 hackmd 本身的資安規範，因此 WAF 變嚴格
+    // 不過先前揪松這邊有跟 hackmd 申請讓揪松的 IP 進到白名單，這樣才能讓 g0v-hackmd-archive 可以繼續運作，這邊就可以每小時更新一次資料了
+    const hackmdOverviewUrl = 'https://raw.githubusercontent.com/g0v-data/g0v-hackmd-archive/main/posts.json';
+
+    const res = await fetch(hackmdOverviewUrl);
+    const hackmdOverviewData = await res.json();
+
+    return { hackmdOverviewUrl, hackmdOverviewData: Object.values(hackmdOverviewData) };
+  }
+};
+
 exports.handler = async () => {
   const { GITHUB_API_KEY: githubApiKey } = await getSecret();
 
@@ -63,10 +89,7 @@ exports.handler = async () => {
   ]);
   const { repos, issues, logs } = await getReposAndIssues(projects, githubApiKey);
 
-  // handle hackmd
-  const hackmdOverviewUrl = 'https://g0v.hackmd.io/api/overview'; // ?v=
-  const res = await fetch(hackmdOverviewUrl);
-  const hackmdOverviewData = await res.json();
+  const { hackmdOverviewUrl, hackmdOverviewData } = await getHackmdData();
 
   const {
     updatedProjects,
